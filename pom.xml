@@ -10,6 +10,11 @@
         <artifactId>oss-parent</artifactId>
         <version>9</version>
     </parent>
+    <properties>
+        <!-- Maven compiler Plugin -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <description>Base pom for open-source projects</description>
     <inceptionYear>2018</inceptionYear>
     <url>https://github.com/OliWolff/oss-parent-pom/</url>
