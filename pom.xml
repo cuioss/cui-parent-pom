@@ -60,7 +60,7 @@
         <repository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>${snapshot.repo.url}</url>
+            <url>${staging.repo.url}</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
