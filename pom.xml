@@ -15,15 +15,34 @@
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
+        <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
+        <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
-        <maven.dependency.plugin.version>3.0.0</maven.dependency.plugin.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
         <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
+        <maven.failsafe.plugin.version>2.22.0</maven.failsafe.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+        <maven.jar.plugin.version>3.1.0</maven.jar.plugin.version>
+        <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
+        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
         <maven.site.plugin.version>3.7.1</maven.site.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+        <maven.surefire.plugin.version>2.22.0</maven.surefire.plugin.version>
+        <maven.surefire_report.plugin.version>2.22.0</maven.surefire_report.plugin.version>
+        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
+        <!-- Plugin Configuration -->
         <!-- org.codehaus plugins -->
-        <enforcer.extra.rules.version>1.0-beta-6</enforcer.extra.rules.version>
+        <enforcer.extra.rules.version>1.0-beta-9</enforcer.extra.rules.version>
+        <buildhelper.maven.plugin.version>3.0.0</buildhelper.maven.plugin.version>
+        <buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
+        <!-- Maven compiler Plugin -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Additional Configuration for javadoc plugin -->
+        <javadoc.version>1.8</javadoc.version>
+        <javaee.version>7</javaee.version>
     </properties>
     <inceptionYear>2018</inceptionYear>
     <url>https://github.com/cuioss/oss-parent-pom/</url>
@@ -96,28 +115,32 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven.antrun.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven.assembly.plugin.version}</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven.clean.plugin.version}</version>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${maven.deploy.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>${maven.install.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven.site.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.resources.plugin.version}</version>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${maven.dependency.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven.deploy.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
@@ -150,7 +173,7 @@
                                         <property>project.name</property>
                                     </requirePropertyDiverges>
                                     <requirePropertyDiverges>
-                                        <message> Children must have a diverging description</message>
+                                        <message>Children must have a diverging description</message>
                                         <property>project.description</property>
                                     </requirePropertyDiverges>
                                     <requireSameVersions>
@@ -169,6 +192,151 @@
                             <version>${enforcer.extra.rules.version}</version>
                         </dependency>
                     </dependencies>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven.failsafe.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven.install.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/log4j2.xml</exclude>
+                            <!-- Exclude eclipse workspace files -->
+                            <exclude>**/*.jsfdia</exclude>
+                        </excludes>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Build-Time>${maven.build.timestamp}</Build-Time>
+                                <Build-User>${user.name}</Build-User>
+                                <Build-Maven>Maven ${maven.version}</Build-Maven>
+                                <Build-Java>${java.version}</Build-Java>
+                                <Build-OS>${os.name}</Build-OS>
+                                <Build-Number>${buildNumber}</Build-Number>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.javadoc.plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <linksource>true</linksource>
+                        <additionalparam>-Xdoclint:none</additionalparam>
+                        <quiet>true</quiet>
+                        <javadocVersion>${javadoc.version}</javadocVersion>
+                        <notimestamp>true</notimestamp>
+                        <splitindex>true</splitindex>
+                        <doctitle>CUIOSS-Documentation</doctitle>
+                        <links>
+                            <link>https://docs.oracle.com/javaee/${javaee.version}/api/</link>
+                        </links>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven.site.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <argLine>${argLine} -Xms64m -Xmx512m</argLine>
+                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                        <printSummary>true</printSummary>
+                        <trimStackTrace>false</trimStackTrace>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>${maven.surefire_report.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${maven.war.plugin.version}</version>
+                    <configuration>
+                        <!-- since version 3.0 the default behavior changes to "false" -->
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <!-- Exclude eclipse workspace files -->
+                        <packagingExcludes>**/log4j2.xml,**/*.jsfdia</packagingExcludes>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Build-Time>${maven.build.timestamp}</Build-Time>
+                                <Build-User>${user.name}</Build-User>
+                                <Build-Maven>Maven ${maven.version}</Build-Maven>
+                                <Build-Java>${java.version}</Build-Java>
+                                <Build-OS>${os.name}</Build-OS>
+                                <Build-Number>${buildNumber}</Build-Number>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${buildhelper.maven.plugin.version}</version>
+                    <!-- track and expose the maven version being used -->
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>maven-version</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>${buildnumber.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <phase>validate</phase>
+                            <id>create_buildNumber</id>
+                            <goals>
+                                <goal>create</goal>
+                            </goals>
+                            <configuration>
+                                <doCheck>false</doCheck>
+                                <doUpdate>false</doUpdate>
+                                <revisionOnScmFailure>unknown</revisionOnScmFailure>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+                        <shortRevisionLength>7</shortRevisionLength>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
