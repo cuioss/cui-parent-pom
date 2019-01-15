@@ -16,25 +16,25 @@
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
-        <maven.assembly.plugin.version>3.1.0</maven.assembly.plugin.version>
+        <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
         <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
         <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
-        <maven.failsafe.plugin.version>2.22.0</maven.failsafe.plugin.version>
+        <maven.failsafe.plugin.version>2.22.1</maven.failsafe.plugin.version>
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-        <maven.jar.plugin.version>3.1.0</maven.jar.plugin.version>
+        <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
         <maven.site.plugin.version>3.7.1</maven.site.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
-        <maven.surefire.plugin.version>2.22.0</maven.surefire.plugin.version>
+        <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
         <maven.surefire_report.plugin.version>2.22.1</maven.surefire_report.plugin.version>
         <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
         <!-- Plugin Configuration -->
         <!-- org.codehaus plugins -->
-        <enforcer.extra.rules.version>1.0-beta-9</enforcer.extra.rules.version>
+        <enforcer.extra.rules.version>1.1</enforcer.extra.rules.version>
         <buildhelper.maven.plugin.version>3.0.0</buildhelper.maven.plugin.version>
         <buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
         <!-- Maven compiler Plugin -->
