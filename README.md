@@ -9,11 +9,11 @@ It aims at modules being at least Java 8. In addition it defines the sonatype-re
 
 ## Maven Coordinates
 ```xml
-	<parent>
-		<groupId>com.github.cuioss</groupId>
-    	<artifactId>cuioss-parent-pom</artifactId>
-    	<version>1.0-SNAPSHOT</version>
-	</parent>
+<parent>
+   <groupId>com.github.cuioss</groupId>
+   <artifactId>cuioss-parent-pom</artifactId>
+   <version>1.0-SNAPSHOT</version>
+</parent>
 ```
 
 ## Configured Plugins
