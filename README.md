@@ -2,6 +2,8 @@
 
 ## Status
 [![Build Status](https://travis-ci.org/cuioss/oss-parent-pom.svg?branch=master)](https://travis-ci.org/cuioss/oss-parent-pom)
+[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/)
 
 ## What is it?
 Parent pom for our open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
