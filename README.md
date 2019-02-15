@@ -7,16 +7,25 @@
 Parent pom for our open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
 It aims at modules being at least Java 8. In addition it defines the sonatype-repositories as read and deploy repositories.
 
+## Maven Coordinates
+```xml
+	<parent>
+		<groupId>com.github.cuioss</groupId>
+    	<artifactId>cuioss-parent-pom</artifactId>
+    	<version>1.0-SNAPSHOT</version>
+	</parent>
+```
+
 ## Configured Plugins
 - [maven-ant-plugin](https://maven.apache.org/plugins/maven-ant-plugin/): 1.8
 - [maven-assembly-plugin](https://maven.apache.org/plugins/maven-assembly-plugin/): 3.1.1
 - [maven-clean-plugin](https://maven.apache.org/plugins/maven-clean-plugin/): 3.1.0
 - [maven-compiler-plugin](https://maven.apache.org/plugins/maven-compiler-plugin/): 3.8.0
-	-- Source and target are configured to Java 8
+	- Source and target are configured to Java 8
 - [maven-dependency-plugin](https://maven.apache.org/plugins/maven-dependency-plugin/): 3.1.1	
 - [maven-deploy-plugin](https://maven.apache.org/plugins/maven-deploy-plugin/): 2.8.2	
 - [maven-enforcer-plugin](https://maven.apache.org/plugins/maven-enforcer-plugin/): 1.4.1
-	-- Ammended with org.codehaus.mojo:extra-enforcer-rules
+	- Ammended with org.codehaus.mojo:extra-enforcer-rules
 - [maven-failsafe-plugin](https://maven.apache.org/plugins/maven-failsafe-plugin/): 2.22.1
 - [maven-install-plugin](https://maven.apache.org/plugins/maven-install-plugin/): 2.5.2	
 - [maven-jar-plugin](https://maven.apache.org/plugins/maven-jar-plugin/): 3.1.1
