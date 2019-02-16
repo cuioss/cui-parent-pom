@@ -6,8 +6,8 @@
 [![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/)
 
 ## What is it?
-Parent pom for our open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
-It aims at modules being at least Java 8. In addition it defines the sonatype-repositories as read and deploy repositories.
+Parent pom for open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
+It aims at modules being at least Java 8. It defines the sonatype-repositories as read and deploy repositories.
 
 ## Maven Coordinates
 ```xml
