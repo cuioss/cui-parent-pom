@@ -26,7 +26,9 @@
         <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
         <maven.jar.plugin.version>3.1.1</maven.jar.plugin.version>
         <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
+        <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+        <maven.shade.plugin.version>3.2.1</maven.shade.plugin.version>
         <maven.site.plugin.version>3.7.1</maven.site.plugin.version>
         <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
         <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
@@ -49,6 +51,7 @@
     <scm>
         <url>https://github.com/cuioss/oss-parent-pom/</url>
         <connection>https://github.com/cuioss/oss-parent-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/cuioss/oss-parent-pom/</developerConnection>
     </scm>
     <issueManagement>
         <url>https://github.com/cuioss/oss-parent-pom/issues</url>
@@ -244,8 +247,16 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven.release.plugin.version}</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven.resources.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${maven.site.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
@@ -267,7 +278,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.plugin.version}</version>
                     <configuration>
-                        <argLine>${argLine} -Xms64m -Xmx512m</argLine>
+                       <argLine>${argLine} -Xms64m -Xmx1024m</argLine>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <printSummary>true</printSummary>
                         <trimStackTrace>false</trimStackTrace>

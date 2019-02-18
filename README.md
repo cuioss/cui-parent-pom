@@ -32,7 +32,9 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-install-plugin](https://maven.apache.org/plugins/maven-install-plugin/): 2.5.2	
 - [maven-jar-plugin](https://maven.apache.org/plugins/maven-jar-plugin/): 3.1.1
 - [maven-javadoc-plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/): 3.0.1
+- [maven-release-plugin](https://maven.apache.org/plugins/maven-release-plugin/): 2.5.3
 - [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/): 3.1.0
+- [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/): 3.2.1
 - [maven-site-plugin](https://maven.apache.org/plugins/maven-site-plugin/): 3.7.1
 - [maven-source-plugin](https://maven.apache.org/plugins/maven-source-plugin/): 3.0.1
 - [maven-surefire-plugin](https://maven.apache.org/plugins/maven-surefire-plugin/): 2.22.1
