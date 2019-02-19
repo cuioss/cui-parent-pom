@@ -14,7 +14,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 <parent>
    <groupId>com.github.cuioss</groupId>
    <artifactId>cuioss-parent-pom</artifactId>
-   <version>1.0.0.1</version>
+   <version>1.0.0.2</version>
 </parent>
 ```
 
