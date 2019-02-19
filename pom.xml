@@ -44,9 +44,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- Additional Configuration for javadoc plugin -->
         <javadoc.version>1.8</javadoc.version>
-        <javaee.version>7</javaee.version>
     </properties>
-    <inceptionYear>2018</inceptionYear>
+    <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/oss-parent-pom/</url>
     <scm>
         <url>https://github.com/cuioss/oss-parent-pom/</url>
@@ -98,7 +97,7 @@
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>
@@ -109,9 +108,9 @@
             <url>${deploy.snapshot.repo.url}</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>${deploy.staging.repo.url}</url>
+            <id>sonatype-nexus-public</id>
+            <name>Sonatype Nexus Public Repo</name>
+            <url>${public.repo.url}</url>
         </repository>
     </distributionManagement>
     <build>
@@ -163,8 +162,8 @@
                                         <banRelease>true</banRelease>
                                     </requirePluginVersions>
                                     <requireMavenVersion>
-                                        <version>[3.0.5,)</version>
-                                        <message>Maven 3.0.5 is the minimal requirement.</message>
+                                        <version>[3.5.0,)</version>
+                                        <message>Maven 3.5.0 is the minimal requirement.</message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>[1.8.0-73,1.9.0)</version>
@@ -242,7 +241,7 @@
                         <splitindex>true</splitindex>
                         <doctitle>CUIOSS-Documentation</doctitle>
                         <links>
-                            <link>https://docs.oracle.com/javaee/${javaee.version}/api/</link>
+                            <link>https://javaee.github.io/javaee-spec/javadocs/</link>
                         </links>
                     </configuration>
                 </plugin>
