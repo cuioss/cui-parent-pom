@@ -110,7 +110,7 @@
         <repository>
             <id>sonatype-nexus-public</id>
             <name>Sonatype Nexus Public Repo</name>
-            <url>${public.repo.url}</url>
+            <url>${staging.repo.url}</url>
         </repository>
     </distributionManagement>
     <build>
