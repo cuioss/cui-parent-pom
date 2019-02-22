@@ -22,13 +22,13 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-ant-plugin](https://maven.apache.org/plugins/maven-ant-plugin/): 1.8
 - [maven-assembly-plugin](https://maven.apache.org/plugins/maven-assembly-plugin/): 3.1.1
 - [maven-clean-plugin](https://maven.apache.org/plugins/maven-clean-plugin/): 3.1.0
-- [maven-compiler-plugin](https://maven.apache.org/plugins/maven-compiler-plugin/): 3.8.0
 	- Source and target are configured to Java 8
 - [maven-dependency-plugin](https://maven.apache.org/plugins/maven-dependency-plugin/): 3.1.1	
 - [maven-deploy-plugin](https://maven.apache.org/plugins/maven-deploy-plugin/): 2.8.2	
 - [maven-enforcer-plugin](https://maven.apache.org/plugins/maven-enforcer-plugin/): 1.4.1
 	- Ammended with org.codehaus.mojo:extra-enforcer-rules
 - [maven-failsafe-plugin](https://maven.apache.org/plugins/maven-failsafe-plugin/): 2.22.1
+- [maven-gpg-plugin](https://maven.apache.org/plugins/maven-gpg-plugin/): 1.6
 - [maven-install-plugin](https://maven.apache.org/plugins/maven-install-plugin/): 2.5.2	
 - [maven-jar-plugin](https://maven.apache.org/plugins/maven-jar-plugin/): 3.1.1
 - [maven-javadoc-plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/): 3.0.1
@@ -41,6 +41,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-surefire-report-plugin](https://maven.apache.org/plugins/maven-surefire-report-plugin/): 2.22.1
 - [maven-war-plugin](https://maven.apache.org/plugins/maven-war-plugin/): 3.2.2
 - [org.codehaus.mojo:build-helper-maven-plugin](https://www.mojohaus.org/build-helper-maven-plugin/): 1.4
+- [org.codehaus.mojo:versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin/): 2.7
 
 ## Activated Plugins
 By using this parent there is only the enforcer plugin activated. The others are only configured
