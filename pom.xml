@@ -4,7 +4,7 @@
     <groupId>com.github.cuioss</groupId>
     <artifactId>cuioss-parent-pom</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0.2-SNAPSHOT</version>
+    <version>1.0.0.2</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins: 
     maven-clean-plugin, maven-deploy-plugin, maven-enforcer-plugin, maven-install-plugin with being already activated.</description>
     <properties>
@@ -112,9 +112,9 @@
             <url>${deploy.snapshot.repo.url}</url>
         </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-public</id>
+            <id>sonatype-nexus-staging</id>
             <name>Sonatype Nexus Public Repo</name>
-            <url>${staging.repo.url}</url>
+            <url>${deploy.staging.repo.url}</url>
         </repository>
     </distributionManagement>
     <build>
