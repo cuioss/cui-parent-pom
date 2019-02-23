@@ -40,8 +40,10 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-surefire-plugin](https://maven.apache.org/plugins/maven-surefire-plugin/): 2.22.1
 - [maven-surefire-report-plugin](https://maven.apache.org/plugins/maven-surefire-report-plugin/): 2.22.1
 - [maven-war-plugin](https://maven.apache.org/plugins/maven-war-plugin/): 3.2.2
-- [org.codehaus.mojo:build-helper-maven-plugin](https://www.mojohaus.org/build-helper-maven-plugin/): 1.4
+- [org.codehaus.mojo:build-helper-maven-plugin](https://www.mojohaus.org/build-helper-maven-plugin/): 3.0.0
+- [org.codehaus.mojo:buildnumber-maven-plugin](https://www.mojohaus.org/buildnumber-maven-plugin/): 1.4
 - [org.codehaus.mojo:versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin/): 2.7
+- [jandex-maven-plugin](https://github.com/wildfly/jandex-maven-plugin): 1.0.5
 
 ## Activated Plugins
 By using this parent there is only the enforcer plugin activated. The others are only configured

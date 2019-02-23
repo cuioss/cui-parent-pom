@@ -41,6 +41,8 @@
         <buildhelper.maven.plugin.version>3.0.0</buildhelper.maven.plugin.version>
         <buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
         <versions.maven.plugin.version>2.7</versions.maven.plugin.version>
+        <!-- jandex plugin -->
+        <jandex.maven.plugin.version>1.0.5</jandex.maven.plugin.version>
         <!-- Maven compiler Plugin -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -367,6 +369,20 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions.maven.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jboss.jandex</groupId>
+                    <artifactId>jandex-maven-plugin</artifactId>
+                    <version>${jandex.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>make-index</id>
+                            <goals>
+                                <goal>jandex</goal>
+                            </goals>
+                            <!-- phase is 'process-classes by default' -->
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
