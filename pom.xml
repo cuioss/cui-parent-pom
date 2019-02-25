@@ -3,7 +3,7 @@
     <groupId>com.github.cuioss</groupId>
     <artifactId>cuioss-parent-pom</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0.4-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins: 
     maven-clean-plugin, maven-deploy-plugin, maven-enforcer-plugin, maven-install-plugin with being already activated.</description>
     <properties>
@@ -12,7 +12,7 @@
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
-        <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
+        <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
         <maven.assembly.plugin.version>3.1.1</maven.assembly.plugin.version>
@@ -275,7 +275,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven.site.plugin.version}</version>
+                    <version>${maven.shade.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
@@ -407,4 +407,7 @@
             </build>
         </profile>
     </profiles>
+    <modules>
+        <module>cuioss-parent-java</module>
+    </modules>
 </project>
