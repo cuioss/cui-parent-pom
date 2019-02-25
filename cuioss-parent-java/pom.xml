@@ -10,7 +10,7 @@
     <artifactId>cuioss-parent-java</artifactId>
     <name>cuioss java parent</name>
     <packaging>pom</packaging>
-    <description>Parent for all java modules</description>
+    <description>Parent for all java modules. Providing configuration for default maven-plugins</description>
     <build>
         <plugins>
             <plugin>
