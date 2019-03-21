@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.cuioss</groupId>
     <artifactId>cuioss-parent-pom</artifactId>
+    <name>cuioss parent pom</name>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins: 
@@ -479,5 +480,6 @@
     </profiles>
     <modules>
         <module>cuioss-parent-java</module>
+        <module>cuioss-dependency-management</module>
     </modules>
 </project>
