@@ -16,6 +16,7 @@
         <guava.plus.version>1.0-SNAPSHOT</guava.plus.version>
         <lombok.version>1.18.6</lombok.version>
         <junit.jupiter.version>5.4.1</junit.jupiter.version>
+        <hamcrest.version>1.3</hamcrest.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -75,6 +76,18 @@
                 <groupId>org.junit.vintage</groupId>
                 <artifactId>junit-vintage-engine</artifactId>
                 <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>${hamcrest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-library</artifactId>
+                <version>${hamcrest.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
