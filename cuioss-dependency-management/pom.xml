@@ -12,18 +12,41 @@
     <name>cuioss dependency management</name>
     <description>Provides a number of dependency-declarations that can be consumed directly</description>
     <properties>
-        <guava.version>27.1-SNAPSHOT</guava.version>
+        <guava.light.version>27.1-SNAPSHOT</guava.light.version>
+        <guava.plus.version>1.0-SNAPSHOT</guava.plus.version>
+        <lombok.version>1.18.6</lombok.version>
         <junit.jupiter.version>5.4.1</junit.jupiter.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <!-- Cuioss libraries -->
             <dependency>
                 <groupId>com.github.cuioss</groupId>
                 <artifactId>guava-light</artifactId>
-                <version>${guava.version}</version>
+                <version>${guava.light.version}</version>
                 <scope>compile</scope>
             </dependency>
+            <dependency>
+                <groupId>com.github.cuioss</groupId>
+                <artifactId>guava-plus</artifactId>
+                <version>${guava.plus.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Standard Third Parties -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Testing -->
             <!-- Junit 5 -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
