@@ -2,11 +2,11 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.cuioss</groupId>
-    <artifactId>cuioss-parent-pom</artifactId>
-    <name>cuioss parent pom</name>
+    <artifactId>cui-parent-pom</artifactId>
+    <name>cui parent pom</name>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins: 
+    <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     maven-clean-plugin, maven-deploy-plugin, maven-enforcer-plugin, maven-install-plugin with being already activated.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -391,7 +391,7 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven 
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven
                     build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
@@ -479,7 +479,7 @@
         </profile>
     </profiles>
     <modules>
-        <module>cuioss-parent-java</module>
-        <module>cuioss-dependency-management</module>
+        <module>cui-parent-java</module>
+        <module>cui-dependency-management</module>
     </modules>
 </project>

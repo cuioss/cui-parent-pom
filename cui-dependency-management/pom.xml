@@ -3,24 +3,24 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.cuioss</groupId>
-        <artifactId>cuioss-parent-pom</artifactId>
+        <artifactId>cui-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <artifactId>cuioss-dependency-management</artifactId>
+    <artifactId>cui-dependency-management</artifactId>
     <packaging>pom</packaging>
-    <name>cuioss dependency management</name>
+    <name>cui dependency management</name>
     <description>Provides a number of dependency-declarations that can be consumed directly</description>
     <properties>
         <guava.light.version>27.1-SNAPSHOT</guava.light.version>
-        <cuioss-java-utils.version>1.0-SNAPSHOT</cuioss-java-utils.version>
+        <cui-java-utils.version>1.0-SNAPSHOT</cui-java-utils.version>
         <lombok.version>1.18.6</lombok.version>
         <junit.jupiter.version>5.4.1</junit.jupiter.version>
         <hamcrest.version>1.3</hamcrest.version>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <!-- Cuioss libraries -->
+            <!-- cui libraries -->
             <dependency>
                 <groupId>com.github.cuioss</groupId>
                 <artifactId>guava-light</artifactId>
@@ -29,8 +29,8 @@
             </dependency>
             <dependency>
                 <groupId>com.github.cuioss</groupId>
-                <artifactId>cuioss-java-utils</artifactId>
-                <version>${cuioss-java-utils.version}</version>
+                <artifactId>cui-java-utils</artifactId>
+                <version>${cui-java-utils.version}</version>
                 <scope>compile</scope>
             </dependency>
             <!-- Standard Third Parties -->

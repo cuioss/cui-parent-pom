@@ -2,12 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.cuioss</groupId>
-        <artifactId>cuioss-parent-pom</artifactId>
+        <artifactId>cui-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <artifactId>cuioss-parent-java</artifactId>
-    <name>cuioss java parent</name>
+    <artifactId>cui-parent-java</artifactId>
+    <name>cui java parent</name>
     <packaging>pom</packaging>
     <description>Parent for all java modules. Providing configuration for default maven-plugins</description>
     <build>
