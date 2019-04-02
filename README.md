@@ -1,9 +1,9 @@
-# oss-parent-pom
+# cui-parent-pom
 
 ## Status
-[![Build Status](https://travis-ci.org/cuioss/oss-parent-pom.svg?branch=master)](https://travis-ci.org/cuioss/oss-parent-pom)
+[![Build Status](https://travis-ci.org/cuioss/cui-parent-pom.svg?branch=master)](https://travis-ci.org/cuioss/cui-parent-pom)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cuioss-parent-pom/)
+[![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cui-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cui-parent-pom/)
 
 ## What is it?
 Parent pom for open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
@@ -13,7 +13,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 ```xml
 <parent>
    <groupId>com.github.cuioss</groupId>
-   <artifactId>cuioss-parent-pom</artifactId>
+   <artifactId>cui-parent-pom</artifactId>
    <version>1.0</version>
 </parent>
 ```
@@ -46,4 +46,4 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [jandex-maven-plugin](https://github.com/wildfly/jandex-maven-plugin): 1.0.5
 
 ## Activated Plugins
-By using this parent there is only the enforcer plugin activated. The others are only configured
+By using this parent there is only the enforcer plugin activated. The others are only configured and are activated implicilty via context, e.g. jar-build or explicit.
