@@ -51,14 +51,14 @@
         <javadoc.version>1.8</javadoc.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
-    <url>https://github.com/cuioss/oss-parent-pom/</url>
+    <url>https://github.com/cuioss/cui-parent-pom/</url>
     <scm>
-        <url>https://github.com/cuioss/oss-parent-pom/</url>
-        <connection>https://github.com/cuioss/oss-parent-pom.git</connection>
-        <developerConnection>scm:git:https://github.com/cuioss/oss-parent-pom/</developerConnection>
+        <url>https://github.com/cuioss/cui-parent-pom/</url>
+        <connection>https://github.com/cuioss/cui-parent-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/cuioss/cui-parent-pom/</developerConnection>
     </scm>
     <issueManagement>
-        <url>https://github.com/cuioss/oss-parent-pom/issues</url>
+        <url>https://github.com/cuioss/cui-parent-pom/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
     <licenses>
