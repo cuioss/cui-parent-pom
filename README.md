@@ -52,7 +52,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-dependency-plugin](https://maven.apache.org/plugins/maven-dependency-plugin/): 3.1.1	
 - [maven-deploy-plugin](https://maven.apache.org/plugins/maven-deploy-plugin/): 2.8.2	
 - [maven-enforcer-plugin](https://maven.apache.org/plugins/maven-enforcer-plugin/): 1.4.1
-	- Ammended with org.codehaus.mojo:extra-enforcer-rules
+	- Ammended with org.codehaus.mojo:extra-enforcer-rules: 1.2
 - [maven-failsafe-plugin](https://maven.apache.org/plugins/maven-failsafe-plugin/): 2.22.1
 - [maven-gpg-plugin](https://maven.apache.org/plugins/maven-gpg-plugin/): 1.6
 - [maven-install-plugin](https://maven.apache.org/plugins/maven-install-plugin/): 2.5.2	
@@ -70,6 +70,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [org.codehaus.mojo:buildnumber-maven-plugin](https://www.mojohaus.org/buildnumber-maven-plugin/): 1.4
 - [org.codehaus.mojo:versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin/): 2.7
 - [jandex-maven-plugin](https://github.com/wildfly/jandex-maven-plugin): 1.0.5
+- [sonar-maven-plugin](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Maven): 3.6.0.1398
 
 ## Activated Plugins
 By using this parent there is only the enforcer plugin activated. The others are only configured and are activated implicitly via context, e.g. jar-build or explicit.

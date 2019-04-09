@@ -49,6 +49,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- Additional Configuration for javadoc plugin -->
         <javadoc.version>1.8</javadoc.version>
+        <!-- Sonar-maven-plugin -->
+        <sonar.maven.plugin.version>3.6.0.1398</sonar.maven.plugin.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -390,6 +392,11 @@
                             <!-- phase is 'process-classes by default' -->
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar.maven.plugin.version}</version>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven 
                     build itself. -->
