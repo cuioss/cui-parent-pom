@@ -19,7 +19,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 </parent>
 ```
 
-### Parent pom for java -projects
+### Parent pom for java-projects
 ```xml
 <parent>
    <groupId>com.github.cuioss</groupId>
