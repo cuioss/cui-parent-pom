@@ -56,7 +56,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-failsafe-plugin](https://maven.apache.org/plugins/maven-failsafe-plugin/): 2.22.2
 - [maven-gpg-plugin](https://maven.apache.org/plugins/maven-gpg-plugin/): 1.6
 - [maven-install-plugin](https://maven.apache.org/plugins/maven-install-plugin/): 2.5.2	
-- [maven-jar-plugin](https://maven.apache.org/plugins/maven-jar-plugin/): 3.1.1
+- [maven-jar-plugin](https://maven.apache.org/plugins/maven-jar-plugin/): 3.1.2
 - [maven-javadoc-plugin](https://maven.apache.org/plugins/maven-javadoc-plugin/): 3.0.1
 - [maven-release-plugin](https://maven.apache.org/plugins/maven-release-plugin/): 2.5.3
 - [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/): 3.1.0
