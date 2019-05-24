@@ -62,14 +62,14 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/): 3.1.0
 - [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/): 3.2.1
 - [maven-site-plugin](https://maven.apache.org/plugins/maven-site-plugin/): 3.7.1
-- [maven-source-plugin](https://maven.apache.org/plugins/maven-source-plugin/): 3.0.1
+- [maven-source-plugin](https://maven.apache.org/plugins/maven-source-plugin/): 3.1.0
 - [maven-surefire-plugin](https://maven.apache.org/plugins/maven-surefire-plugin/): 2.22.2
 - [maven-surefire-report-plugin](https://maven.apache.org/plugins/maven-surefire-report-plugin/): 2.22.2
 - [maven-war-plugin](https://maven.apache.org/plugins/maven-war-plugin/): 3.2.2
 - [org.codehaus.mojo:build-helper-maven-plugin](https://www.mojohaus.org/build-helper-maven-plugin/): 3.0.0
 - [org.codehaus.mojo:buildnumber-maven-plugin](https://www.mojohaus.org/buildnumber-maven-plugin/): 1.4
 - [org.codehaus.mojo:versions-maven-plugin](https://www.mojohaus.org/versions-maven-plugin/): 2.7
-- [jandex-maven-plugin](https://github.com/wildfly/jandex-maven-plugin): 1.0.5
+- [jandex-maven-plugin](https://github.com/wildfly/jandex-maven-plugin): 1.0.6
 - [sonar-maven-plugin](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner+for+Maven): 3.6.0.1398
 
 ## Activated Plugins
