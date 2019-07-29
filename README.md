@@ -61,7 +61,7 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 - [maven-release-plugin](https://maven.apache.org/plugins/maven-release-plugin/): 2.5.3
 - [maven-resources-plugin](https://maven.apache.org/plugins/maven-resources-plugin/): 3.1.0
 - [maven-shade-plugin](https://maven.apache.org/plugins/maven-shade-plugin/): 3.2.1
-- [maven-site-plugin](https://maven.apache.org/plugins/maven-site-plugin/): 3.7.1
+- [maven-site-plugin](https://maven.apache.org/plugins/maven-site-plugin/): 3.8.2
 - [maven-source-plugin](https://maven.apache.org/plugins/maven-source-plugin/): 3.1.0
 - [maven-surefire-plugin](https://maven.apache.org/plugins/maven-surefire-plugin/): 2.22.2
 - [maven-surefire-report-plugin](https://maven.apache.org/plugins/maven-surefire-report-plugin/): 2.22.2
