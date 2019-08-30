@@ -50,7 +50,7 @@
         <!-- Additional Configuration for javadoc plugin -->
         <javadoc.version>1.8</javadoc.version>
         <!-- Sonar-maven-plugin -->
-        <sonar.maven.plugin.version>3.6.0.1398</sonar.maven.plugin.version>
+        <sonar.maven.plugin.version>3.6.1.1688</sonar.maven.plugin.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
