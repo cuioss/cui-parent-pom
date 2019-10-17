@@ -17,7 +17,7 @@
         <lombok.version>1.18.8</lombok.version>
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
         <junit.version>4.12</junit.version>
-        <hamcrest.version>2.1</hamcrest.version>
+        <hamcrest.version>2.2</hamcrest.version>
     </properties>
     <dependencyManagement>
         <dependencies>
