@@ -1,6 +1,7 @@
 # cui-parent-pom
 
 ## Status
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcuioss%2Fcui-parent-pom%2Fbadge&style=flat)](https://actions-badge.atrox.dev/cuioss/cui-parent-pom/goto)
 [![Build Status](https://travis-ci.org/cuioss/cui-parent-pom.svg?branch=master)](https://travis-ci.org/cuioss/cui-parent-pom)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cui-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cui-parent-pom/)
