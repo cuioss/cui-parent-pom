@@ -14,7 +14,7 @@
     <properties>
         <guava.light.version>27.1-SNAPSHOT</guava.light.version>
         <cui-java-utils.version>1.0-SNAPSHOT</cui-java-utils.version>
-        <lombok.version>1.18.14</lombok.version>
+        <lombok.version>1.18.16</lombok.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <junit.version>4.13.1</junit.version>
         <hamcrest.version>2.2</hamcrest.version>
