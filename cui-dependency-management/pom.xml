@@ -13,7 +13,7 @@
     <description>Provides a number of dependency-declarations that can be consumed directly</description>
     <properties>
         <cui-java-utils.version>1.0-SNAPSHOT</cui-java-utils.version>
-        <lombok.version>1.18.16</lombok.version>
+        <lombok.version>1.18.20</lombok.version>
         <junit.jupiter.version>5.7.1</junit.jupiter.version>
         <junit.version>4.13.1</junit.version>
         <hamcrest.version>2.2</hamcrest.version>
