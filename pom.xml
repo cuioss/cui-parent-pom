@@ -38,7 +38,7 @@
         <maven.war.plugin.version>3.3.2</maven.war.plugin.version>
         <!-- Plugin Configuration -->
         <!-- org.codehaus plugins -->
-        <enforcer.extra.rules.version>1.3</enforcer.extra.rules.version>
+        <enforcer.extra.rules.version>1.4</enforcer.extra.rules.version>
         <buildhelper.maven.plugin.version>3.2.0</buildhelper.maven.plugin.version>
         <buildnumber.maven.plugin.version>1.4</buildnumber.maven.plugin.version>
         <versions.maven.plugin.version>2.8.1</versions.maven.plugin.version>
