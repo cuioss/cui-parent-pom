@@ -41,7 +41,7 @@
         <enforcer.extra.rules.version>1.6.1</enforcer.extra.rules.version>
         <buildhelper.maven.plugin.version>3.3.0</buildhelper.maven.plugin.version>
         <buildnumber.maven.plugin.version>3.0.0</buildnumber.maven.plugin.version>
-        <versions.maven.plugin.version>2.12.0</versions.maven.plugin.version>
+        <versions.maven.plugin.version>2.13.0</versions.maven.plugin.version>
         <!-- jandex plugin -->
         <jandex.maven.plugin.version>1.2.3</jandex.maven.plugin.version>
         <!-- Maven compiler Plugin -->
