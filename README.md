@@ -1,7 +1,7 @@
 # cui-parent-pom
 
 ## Status
-[![Build Status](https://travis-ci.org/cuioss/cui-parent-pom.svg?branch=master)](https://travis-ci.org/cuioss/cui-parent-pom)
+[![Java CI with Maven](https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg)](https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Maven](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/github/cuioss/cui-parent-pom/maven-metadata.xml.svg)](http://central.maven.org/maven2/com/github/cuioss/cui-parent-pom/)
 
