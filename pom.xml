@@ -45,12 +45,10 @@
         <!-- jandex plugin -->
         <jandex.maven.plugin.version>1.2.3</jandex.maven.plugin.version>
         <!-- Maven compiler Plugin -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <!-- Additional Configuration for javadoc plugin -->
         <javadoc.version>1.8</javadoc.version>
-        <!-- Sonar-maven-plugin -->
-        <sonar.maven.plugin.version>3.9.1.2184</sonar.maven.plugin.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -81,22 +79,25 @@
         </contributor>
         <contributor>
             <name>Matthias Walliczek</name>
-            <url>https://github.com/cuioss</url>
+            <url>https://github.com/mwalliczek</url>
             <roles>
+                <role>owner</role>
                 <role>developer</role>
             </roles>
         </contributor>
         <contributor>
             <name>Eugen Fischer</name>
-            <url>https://github.com/cuioss</url>
+            <url>https://github.com/EugenFischer</url>
             <roles>
+                <role>owner</role>
                 <role>developer</role>
             </roles>
         </contributor>
         <contributor>
             <name>Sven Haag</name>
-            <url>https://github.com/cuioss</url>
+            <url>https://github.com/svenhaag</url>
             <roles>
+                <role>owner</role>
                 <role>developer</role>
             </roles>
         </contributor>
@@ -412,11 +413,6 @@
                             <!-- phase is 'process-classes by default' -->
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonarsource.scanner.maven</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>${sonar.maven.plugin.version}</version>
                 </plugin>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven 
                     build itself. -->
