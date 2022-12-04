@@ -7,7 +7,7 @@
 
 ## What is it?
 Parent pom for open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
-It aims at modules being at least Java 8. It defines the sonatype-repositories as read and deploy repositories.
+It aims at modules being at least Java 11. It defines the sonatype-repositories as read and deploy repositories.
 
 ## Maven Coordinates
 ### General parent pom
@@ -19,26 +19,79 @@ It aims at modules being at least Java 8. It defines the sonatype-repositories a
 </parent>
 ```
 
-### Parent pom for java-projects
-```xml
-<parent>
-   <groupId>com.github.cuioss</groupId>
-   <artifactId>cui-parent-java</artifactId>
-   <version>1.0</version>
-</parent>
-```
-
 ### Including dependency-management
 ```xml
 <dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>com.github.cuioss</groupId>
-            <artifactId>cui-dependency-management</artifactId>
-            <version>${cui.dependencies.version}</version>
+            <artifactId>cui-dependency-bom</artifactId>
+            <version>${cui.dependency.bom.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
     </dependencies>
 </dependencyManagement>
+```
+## Usage for Standard java-modules
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.cuioss</groupId>
+        <artifactId>cui-parent-pom</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>..</relativePath>
+    </parent>
+    <artifactId>cui-java-sample</artifactId>
+    <name>cui java sample</name>
+    <packaging>pom</packaging>
+    <description>Providing configuration for default maven-plugins</description>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.cuioss</groupId>
+                <artifactId>cui-dependency-bom</artifactId>
+                <!-- Defined at cui-parent-pom-->
+                <version>${cui.dependency.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- Provided-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- Unit testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jboss.jandex</groupId>
+                <artifactId>jandex-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
 ```

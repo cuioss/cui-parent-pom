@@ -14,6 +14,7 @@
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
+        <cui.dependency.bom.version>${project.version}</cui.dependency.bom.version>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.antrun.plugin.version>3.1.0</maven.antrun.plugin.version>
         <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
@@ -47,8 +48,6 @@
         <!-- Maven compiler Plugin -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <!-- Additional Configuration for javadoc plugin -->
-        <javadoc.version>1.8</javadoc.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -278,7 +277,6 @@
                         <source>${maven.compiler.source}</source>
                         <linksource>true</linksource>
                         <quiet>true</quiet>
-                        <javadocVersion>${javadoc.version}</javadocVersion>
                         <notimestamp>true</notimestamp>
                         <splitindex>true</splitindex>
                         <doctitle>CUIOSS-Documentation</doctitle>
@@ -440,7 +438,7 @@
                                     <pluginExecutionFilter>
                                         <groupId>org.jboss.jandex</groupId>
                                         <artifactId>jandex-maven-plugin</artifactId>
-                                        <versionRange>[1.0.5,)</versionRange>
+                                        <versionRange>[1.2.3,)</versionRange>
                                         <goals>
                                             <goal>jandex</goal>
                                         </goals>
@@ -455,7 +453,7 @@
                                     <pluginExecutionFilter>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-war-plugin</artifactId>
-                                        <versionRange>[3.0.0,)</versionRange>
+                                        <versionRange>[3.3.2,)</versionRange>
                                         <goals>
                                             <goal>exploded</goal>
                                         </goals>
@@ -502,7 +500,6 @@
         </profile>
     </profiles>
     <modules>
-        <module>cui-parent-java</module>
-        <module>cui-dependency-management</module>
+        <module>cui-dependency-bom</module>
     </modules>
 </project>
