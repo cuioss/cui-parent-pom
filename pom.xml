@@ -4,7 +4,7 @@
     <artifactId>cui-parent-pom</artifactId>
     <name>cui parent pom</name>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     maven-clean-plugin, maven-deploy-plugin, maven-enforcer-plugin, maven-install-plugin with being already activated.</description>
     <properties>
@@ -48,6 +48,8 @@
         <!-- Maven compiler Plugin -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <!-- Sonatype -->
+        <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
     </properties>
     <inceptionYear>2019</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -55,6 +57,7 @@
         <url>https://github.com/cuioss/cui-parent-pom/</url>
         <connection>scm:git:https://github.com/cuioss/cui-parent-pom.git</connection>
         <developerConnection>scm:git:https://github.com/cuioss/cui-parent-pom/</developerConnection>
+        <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <url>https://github.com/cuioss/cui-parent-pom/issues</url>
@@ -231,6 +234,12 @@
                 <plugin>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven.gpg.plugin.version}</version>
+                    <configuration>
+                        <gpgArguments>
+                            <arg>--pinentry-mode</arg>
+                            <arg>loopback</arg>
+                        </gpgArguments>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>sign-artifacts</id>
@@ -284,14 +293,37 @@
                             <link>https://javaee.github.io/javaee-spec/javadocs/</link>
                         </links>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${maven.release.plugin.version}</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>@{project.version}</tagNameFormat>
+                        <pushChanges>false</pushChanges>
                         <localCheckout>true</localCheckout>
-                        <preparationGoals>clean verify</preparationGoals>
+                        <remoteTagging>false</remoteTagging>
+                        <arguments>-DskipTests=true</arguments>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus.staging.maven.plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <serverId>sonatype-nexus-snapshots</serverId>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        <stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -493,7 +525,23 @@
             <build>
                 <plugins>
                     <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
