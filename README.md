@@ -13,7 +13,7 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
 ### General parent pom
 ```xml
 <parent>
-   <groupId>com.github.cuioss</groupId>
+   <groupId>io.github.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
    <version>1.0</version>
 </parent>
@@ -24,7 +24,7 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>com.github.cuioss</groupId>
+            <groupId>io.github.cuioss</groupId>
             <artifactId>cui-dependency-bom</artifactId>
             <version>${cui.dependency.bom.version}</version>
             <type>pom</type>
@@ -38,7 +38,7 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.cuioss</groupId>
+        <groupId>io.github.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
@@ -50,7 +50,7 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.github.cuioss</groupId>
+                <groupId>io.github.cuioss</groupId>
                 <artifactId>cui-dependency-bom</artifactId>
                 <!-- Defined at cui-parent-pom-->
                 <version>${cui.dependency.bom.version}</version>
