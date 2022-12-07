@@ -56,7 +56,7 @@ jobs:
     - name: Deploy Maven Site to cuioss.github.io🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: site
+        folder: target/site
         repository-name: cuioss/cuioss.github.io
         target-folder: ${{steps.metadata.outputs.current-version}}
 #    - name: Push changes to ${{github.base_ref}}
