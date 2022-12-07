@@ -51,7 +51,7 @@ jobs:
     - name: Maven release ${{steps.metadata.outputs.current-version}}
       run: |
         git checkout -b release
-        mvn -Prelease -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} site:stage
+        mvn -Prelease -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} site:site site:stage
         git checkout ${{github.base_ref}}
         git rebase release
         # mvn -Prelease -B release:perform -DskipTests
