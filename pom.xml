@@ -50,7 +50,7 @@
         <!-- Sonatype -->
         <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
     </properties>
-    <inceptionYear>2019</inceptionYear>
+    <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
     <scm>
         <url>https://github.com/cuioss/cui-parent-pom/</url>
