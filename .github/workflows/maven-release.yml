@@ -60,6 +60,7 @@ jobs:
         repository-name: cuioss/cuioss.github.io
         target-folder: ${{steps.metadata.outputs.current-version}}
         branch: main
+        token:  ${{ secrets.PAGES_DEPLOY_TOKEN }}
 #    - name: Push changes to ${{github.base_ref}}
 #      uses: ad-m/github-push-action@v0.6.0
 #      with:
