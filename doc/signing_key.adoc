@@ -30,4 +30,4 @@ Optional, to speed things up, not strictly necessary:
 ## Open Tasks / Todos
 
 * Minimize the key to a signing key
-* Create a project instead of a person specific key
+* Create a project instead of a person specific key.
