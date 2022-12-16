@@ -6,7 +6,7 @@
     <packaging>pom</packaging>
     <version>0.0.2-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
-    maven-clean-plugin, maven-deploy-plugin, maven-enforcer-plugin, maven-install-plugin with being already activated.</description>
+    In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release-pom" for standard java-releases.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Repository-Urls -->
@@ -14,7 +14,7 @@
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
-        <cui.dependency.bom.version>${project.version}</cui.dependency.bom.version>
+        <cui.java.bom.version>${project.version}</cui.java.bom.version>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
@@ -585,6 +585,6 @@
 
     </profiles>
     <modules>
-        <module>cui-dependency-bom</module>
+        <module>cui-java-bom</module>
     </modules>
 </project>

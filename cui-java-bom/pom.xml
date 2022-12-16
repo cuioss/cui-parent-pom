@@ -6,10 +6,10 @@
         <version>0.0.2-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <artifactId>cui-dependency-bom</artifactId>
+    <artifactId>cui-java-bom</artifactId>
     <packaging>pom</packaging>
-    <name>cui dependency management</name>
-    <description>Provides a number of dependency-declarations that can be consumed directly</description>
+    <name>cui java dependency management</name>
+    <description>Provides a number of standard-jave dependency-declarations that can be consumed directly</description>
     <properties>
         <cui-java-utils.version>1.0-SNAPSHOT</cui-java-utils.version>
         <lombok.version>1.18.24</lombok.version>

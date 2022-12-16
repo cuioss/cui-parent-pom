@@ -25,8 +25,8 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
     <dependencies>
         <dependency>
             <groupId>io.github.cuioss</groupId>
-            <artifactId>cui-dependency-bom</artifactId>
-            <version>${cui.dependency.bom.version}</version>
+            <artifactId>cui-java-bom</artifactId>
+            <version>${cui.java.bom.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -51,9 +51,9 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
         <dependencies>
             <dependency>
                 <groupId>io.github.cuioss</groupId>
-                <artifactId>cui-dependency-bom</artifactId>
+                <artifactId>cui-java-bom</artifactId>
                 <!-- Defined at cui-parent-pom-->
-                <version>${cui.dependency.bom.version}</version>
+                <version>${cui.java.bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -71,27 +71,6 @@ It aims at modules being at least Java 11. It defines the sonatype-repositories 
             <artifactId>junit-jupiter</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jboss.jandex</groupId>
-                <artifactId>jandex-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
     </build>
 </project>
 ```
