@@ -39,12 +39,12 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Cuioss Robot Action"
-        
 
     - name: Maven release ${{steps.metadata.outputs.current-version}}
       run: |
         git checkout -b release
-        mvn -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} site:site site:stage
+        mvn -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
+        mvn -Prelease-pom site:site site:stage
         git checkout ${{github.base_ref}}
         git rebase release
         mvn -Prelease-pom -B release:perform -DskipTests
@@ -61,6 +61,7 @@ jobs:
         target-folder: ${{steps.metadata.outputs.pages-reference}}
         branch: main
         token:  ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        
     - name: Push changes to ${{github.base_ref}}
       uses: ad-m/github-push-action@v0.6.0
       with:
