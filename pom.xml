@@ -342,7 +342,7 @@
                     <executions>
                         <execution>
                             <!-- Workaround for disabling deplyoment. THis will new done by a github-action-->
-                            <id>deploy</id>
+                            <id>default-deploy</id>
                             <phase>never</phase>
                         </execution>
                     </executions>
