@@ -6,7 +6,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom)
 
 ## What is it?
-Parent pom for open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
+Parent pom for cui-open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
 It aims at modules being at least Java 11. It defines the sonatype-repositories as read and deploy repositories.
 
 ## Maven Coordinates
