@@ -9,6 +9,8 @@
 Parent pom for cui-open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
 It aims at modules being at least Java 11. It defines the sonatype-repositories as read and deploy repositories.
 
+Maven-site result can be found [Project-Home-Page](https://cuioss.github.io/cui-parent-pom/)
+
 ## Maven Coordinates
 ### General parent pom
 ```xml
