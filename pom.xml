@@ -149,6 +149,10 @@
             <name>Sonatype Nexus Public Repo</name>
             <url>${deploy.staging.repo.url}</url>
         </repository>
+        <site>
+            <id>cuioss-home</id>
+            <url>https://cuioss.github.io/</url>
+        </site>
     </distributionManagement>
     <build>
         <pluginManagement>
