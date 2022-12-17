@@ -15,7 +15,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.github.cuioss.java</groupId>
-                <artifactId>cui.java.util</artifactId>
+                <artifactId>cui-java-util</artifactId>
                 <version>${version.cui.java.util}</version>
                 <scope>compile</scope>
             </dependency>

@@ -14,7 +14,7 @@
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
-        <cui.java.bom.version>${project.version}</cui.java.bom.version>
+        <cui.bom.version>${project.version}</cui.bom.version>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
