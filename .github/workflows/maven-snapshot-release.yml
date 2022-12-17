@@ -1,4 +1,4 @@
-name: Maven Release
+name: Maven Snapshot Release
 
 on:
   pull_request:
