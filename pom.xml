@@ -9,6 +9,7 @@
     In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release-pom" for standard java-releases.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>

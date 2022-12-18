@@ -57,7 +57,7 @@ jobs:
 
     - name: Deploy Snapshot with Maven, version ${{ steps.project.outputs.version }}
       if: ${{endsWith(steps.project.outputs.version, '-SNAPSHOT')}}
-      run: mvn -B deploy -Dmaven.test.skip=true -Dcui.bom.version=${{ steps.project.outputs.version }}
+      run: mvn -B -Prelease-pom deploy -Dmaven.test.skip=true -Dcui.bom.version=${{ steps.project.outputs.version }}
       env:
         MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}    
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
