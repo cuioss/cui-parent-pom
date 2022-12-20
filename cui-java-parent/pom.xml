@@ -4,7 +4,7 @@
         <groupId>io.github.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
         <version>0.0.4-SNAPSHOT</version>
-        <relativePath />
+        <relativePath>..</relativePath>
     </parent>
     <artifactId>cui-java-parent</artifactId>
     <packaging>pom</packaging>
