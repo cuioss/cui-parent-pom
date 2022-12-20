@@ -20,7 +20,7 @@
         <version.myfaces.api>2.3.10</version.myfaces.api>
         <version.jsf.mojarra>2.3.18</version.jsf.mojarra>
         <version.jsf.omnifaces>3.14.1</version.jsf.omnifaces>
-        <version.jsf.primefaces.>8.0</version.jsf.primefaces.>
+        <version.jsf.primefaces.>12.0.0</version.jsf.primefaces.>
         <!-- Servlet / EE api -->
         <version.jakarta.ee.web-api>8.0.0</version.jakarta.ee.web-api>
         <version.jakarta.el-api>3.0.3</version.jakarta.el-api>
