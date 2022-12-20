@@ -8,6 +8,7 @@
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release-pom" for standard java-releases.</description>
     <properties>
+        <cui.bom.version>0.0.4-SNAPSHOT</cui.bom.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
@@ -15,7 +16,6 @@
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
-        <cui.bom.version>${project.version}</cui.bom.version>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
@@ -50,6 +50,10 @@
         <maven.compiler.target>11</maven.compiler.target>
         <!-- Sonatype -->
         <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
+        <sonar.organization>cuioss-github</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.maven.plugin.version>3.9.1.2184</sonar.maven.plugin.version>
+        <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
     </properties>
     <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -368,7 +372,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.plugin.version}</version>
                     <configuration>
-                        <argLine>-Xms64m -Xmx1024m</argLine>
+                        <argLine>@{argLine} -Xms64m -Xmx1024m</argLine>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <printSummary>true</printSummary>
                         <trimStackTrace>false</trimStackTrace>
@@ -458,7 +462,35 @@
                         </execution>
                     </executions>
                 </plugin>
-
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar.maven.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.maven.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <formats>
+                                    <format>XML</format>
+                                </formats>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -594,9 +626,9 @@
                 </pluginManagement>
             </build>
         </profile>
-
     </profiles>
     <modules>
         <module>cui-java-bom</module>
+        <module>cui-java-parent</module>
     </modules>
 </project>

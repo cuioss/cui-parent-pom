@@ -10,14 +10,37 @@
     <packaging>pom</packaging>
     <properties>
         <version.cui.java.util>0.0.1</version.cui.java.util>
+        <version.cui.test.juli.logger>0.0.1</version.cui.test.juli.logger>
+        <version.cui.test.value.objects>0.0.1</version.cui.test.value.objects>
+        <version.cui.test.jsf.basic>0.0.1</version.cui.test.jsf.basic>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <!-- Standard Tools -->
             <dependency>
-                <groupId>io.github.cuioss.java</groupId>
+                <groupId>io.github.cuioss</groupId>
                 <artifactId>cui-java-util</artifactId>
                 <version>${version.cui.java.util}</version>
                 <scope>compile</scope>
+            </dependency>
+            <!-- Testing-->
+            <dependency>
+                <groupId>io.github.cuioss.test</groupId>
+                <artifactId>cui-test-juli-logger</artifactId>
+                <version>${version.cui.test.juli.logger}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.cuioss.test</groupId>
+                <artifactId>cui-test-value-objects</artifactId>
+                <version>${version.cui.test.value.objects}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.cuioss.test</groupId>
+                <artifactId>cui-test-jsf-basic</artifactId>
+                <version>${version.cui.test.jsf.basic}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

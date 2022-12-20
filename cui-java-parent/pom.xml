@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.github.cuioss</groupId>
+        <artifactId>cui-parent-pom</artifactId>
+        <version>0.0.4-SNAPSHOT</version>
+        <relativePath />
+    </parent>
+    <artifactId>cui-java-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>cui java parent</name>
+    <description>Parent pom for simple java-projects </description>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.cuioss</groupId>
+                <artifactId>cui-modules-bom</artifactId>
+                <version>${cui.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>@{argLine} -Xms64m -Xmx1024m</argLine>
+                            <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                            <printSummary>true</printSummary>
+                            <trimStackTrace>false</trimStackTrace>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
