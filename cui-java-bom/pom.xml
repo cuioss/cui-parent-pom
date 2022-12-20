@@ -46,7 +46,7 @@
         <!-- Override transitive from REST Easy -->
         <jackson.version>2.14.1</jackson.version>
         <!--         EE-implementations -->
-        <weld.version>3.1.9.Final</weld.version>
+        <weld.version>5.1.0.Final</weld.version>
         <weld.junit5.version>2.0.2.Final</weld.junit5.version>
         <deltaspike.version>1.9.6</deltaspike.version>
         <version.owasp.encoder>1.2.3</version.owasp.encoder>
