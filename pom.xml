@@ -54,6 +54,7 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.maven.plugin.version>3.9.1.2184</sonar.maven.plugin.version>
         <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
+        <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
     </properties>
     <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
@@ -346,11 +347,35 @@
                     <version>${maven.site.plugin.version}</version>
                     <executions>
                         <execution>
-                            <!-- Workaround for disabling deplyoment. THis will new done by a github-action-->
+                            <!-- Workaround for disabling deplyoment. This will be done by a github-action-->
                             <id>default-deploy</id>
                             <phase>never</phase>
                         </execution>
                     </executions>
+                    <configuration>
+                        <generateReports>true</generateReports>
+                        <generateSitemap>true</generateSitemap>
+                        <relativizeDecorationLinks>false</relativizeDecorationLinks>
+                        <locales>en</locales>
+                        <inputEncoding>UTF-8</inputEncoding>
+                        <outputEncoding>UTF-8</outputEncoding>
+                        <asciidoc>
+                            <!-- Optional site-wide AsciiDoc attributes -->
+                            <attributes>
+                                <icons>font</icons>
+                                <!-- Add required rouge styles in '/css/site.css' -->
+                                <source-highlighter>rouge</source-highlighter>
+                                <toclevels>2</toclevels>
+                            </attributes>
+                        </asciidoc>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctor-maven-plugin</artifactId>
+                            <version>${asciidoctor.maven.plugin.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -558,7 +583,7 @@
                 </plugins>
             </build>
         </profile>
-         <profile>
+        <profile>
             <id>release-pom-snapshot</id>
             <build>
                 <plugins>
