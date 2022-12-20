@@ -43,7 +43,8 @@ jobs:
     - name: Maven release ${{steps.metadata.outputs.current-version}}
       run: |
         git checkout -b release
-        mvn -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} versions:set-property -Dproperty=cui.bom.version -DnewVersion=${{steps.metadata.outputs.current-version}}
+        mvn -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
+        mvn versions:set-property -Dproperty=cui.bom.version -DnewVersion=${{steps.metadata.outputs.current-version}}
         mvn -Prelease-pom site:site site:stage
         git checkout ${{github.base_ref}}
         git rebase release
