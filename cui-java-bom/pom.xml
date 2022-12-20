@@ -36,7 +36,7 @@
         <version.jakarta.json-api>1.1.6</version.jakarta.json-api>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <microprofile.health.version>3.1</microprofile.health.version>
-        <microprofile.health.impl.smallrye.version>3.3.1</microprofile.health.impl.smallrye.version>
+        <microprofile.health.impl.smallrye.version>4.0.1</microprofile.health.impl.smallrye.version>
         <microprofile.metrics.version>3.0.1</microprofile.metrics.version>
         <microprofile.metrics.impl.smallrye.version>3.0.5</microprofile.metrics.impl.smallrye.version>
         <microprofile.config.version>2.0.1</microprofile.config.version>
