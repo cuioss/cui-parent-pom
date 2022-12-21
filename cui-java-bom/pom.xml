@@ -24,7 +24,7 @@
         <!-- Servlet / EE api -->
         <version.jakarta.ee.web-api>8.0.0</version.jakarta.ee.web-api>
         <version.jakarta.el-api>3.0.3</version.jakarta.el-api>
-        <version.jakarta.websocket-api>1.1.2</version.jakarta.websocket-api>
+        <version.jakarta.websocket-api>2.1.0</version.jakarta.websocket-api>
         <version.jakarta.servlet-api>4.0.4</version.jakarta.servlet-api>
         <version.jakarta.validation-api>2.0.2</version.jakarta.validation-api>
         <version.jakarta.interceptor-api>1.2.5</version.jakarta.interceptor-api>
