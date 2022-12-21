@@ -18,7 +18,7 @@
         <!-- JSF -->
         <version.jakarta.faces-api>2.3.2</version.jakarta.faces-api>
         <version.myfaces.api>2.3.10</version.myfaces.api>
-        <version.jsf.mojarra>2.3.18</version.jsf.mojarra>
+        <version.jsf.mojarra>4.0.0</version.jsf.mojarra>
         <version.jsf.omnifaces>3.14.1</version.jsf.omnifaces>
         <version.jsf.primefaces.>8.0</version.jsf.primefaces.>
         <!-- Servlet / EE api -->
