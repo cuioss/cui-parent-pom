@@ -8,7 +8,7 @@
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release-pom" for standard java-releases.</description>
     <properties>
-        <cui.bom.version>${project.version}</cui.bom.version>
+        <cui.bom.version>0.0.5-SNAPSHOT</cui.bom.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
