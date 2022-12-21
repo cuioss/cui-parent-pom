@@ -14,8 +14,8 @@
         <!-- Repository-Urls -->
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
-        <deploy.snapshot.repo.url>https://oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
-        <deploy.staging.repo.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</deploy.staging.repo.url>
+        <deploy.snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
+        <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
