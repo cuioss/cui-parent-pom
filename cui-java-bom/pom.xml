@@ -40,7 +40,7 @@
         <microprofile.metrics.version>3.0.1</microprofile.metrics.version>
         <microprofile.metrics.impl.smallrye.version>3.0.5</microprofile.metrics.impl.smallrye.version>
         <microprofile.config.version>2.0.1</microprofile.config.version>
-        <microprofile.config.impl.smallrye.version>2.13.0</microprofile.config.impl.smallrye.version>
+        <microprofile.config.impl.smallrye.version>3.1.1</microprofile.config.impl.smallrye.version>
         <microprofile.rest-client.version>2.0</microprofile.rest-client.version>
         <org.jboss.resteasy.client.version>4.7.7.Final</org.jboss.resteasy.client.version>
         <!-- Override transitive from REST Easy -->
