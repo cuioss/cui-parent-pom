@@ -23,7 +23,7 @@
     </dependencyManagement>
     <profiles>
         <profile>
-            <id>coverage</id>
+            <id>sonar</id>
             <build>
                 <plugins>
                     <plugin>
@@ -38,6 +38,10 @@
                             <printSummary>true</printSummary>
                             <trimStackTrace>false</trimStackTrace>
                         </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
