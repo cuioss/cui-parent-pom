@@ -13,7 +13,7 @@
     <properties>
         <version.lombok>1.18.24</version.lombok>
         <!-- Logging, need to be the same version as in repackaged-tomcat project! -->
-        <version.slf4j>2.0.5</version.slf4j>
+        <version.slf4j>2.0.6</version.slf4j>
         <version.slog4j2>2.19.0</version.slog4j2>
         <!-- JSF -->
         <version.jakarta.faces-api>2.3.2</version.jakarta.faces-api>
