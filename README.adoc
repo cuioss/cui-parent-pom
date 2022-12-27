@@ -57,7 +57,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
     <artifactId>cui-java-sample</artifactId>
     <name>cui java sample</name>
     <packaging>pom</packaging>
-    <description>Providing configuration for default maven-plugins</description>
+    <description>Sample usage of parent-pom</description>
     <dependencies>
         <!-- Provided-->
         <dependency>
