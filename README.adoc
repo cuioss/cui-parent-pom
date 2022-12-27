@@ -1,28 +1,35 @@
-# cui-parent-pom
+= cui-parent-pom
 
-## Status
-[![Java CI with Maven](https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg)](https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml)
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom)
+== Status
 
-## What is it?
+image:https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml]
+image:http://img.shields.io/:license-apache-blue.svg[License,link=http://www.apache.org/licenses/LICENSE-2.0.html]
+image:https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom]
+
+== What is it?
+
 Parent pom for cui-open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
 It aims at modules being at least Java 11. It defines the sonatype-repositories as read and deploy repositories.
 
-Maven-site result can be found [Project-Home-Page](https://cuioss.github.io/cui-parent-pom/)
+Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-Home-Page]
 
-## Maven Coordinates
-### General parent pom
-```xml
+== Maven Coordinates
+
+=== General parent pom
+
+[source,xml]
+----
 <parent>
    <groupId>io.github.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
    <version>1.0</version>
 </parent>
-```
+----
 
-### Including dependency-management
-```xml
+=== Including dependency-management
+
+[source,xml]
+----
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -34,33 +41,23 @@ Maven-site result can be found [Project-Home-Page](https://cuioss.github.io/cui-
         </dependency>
     </dependencies>
 </dependencyManagement>
-```
-## Usage for Standard java-modules
-```xml
+----
+
+== Usage for Standard java-modules
+
+[source,xml]
+----
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
-        <version>0.0.2</version>
-        <relativePath>..</relativePath>
+        <version>0.0.6</version>
     </parent>
     <artifactId>cui-java-sample</artifactId>
     <name>cui java sample</name>
     <packaging>pom</packaging>
     <description>Providing configuration for default maven-plugins</description>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.cuioss</groupId>
-                <artifactId>cui-java-bom</artifactId>
-                <!-- Defined at cui-parent-pom-->
-                <version>${cui.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <!-- Provided-->
         <dependency>
@@ -75,4 +72,4 @@ Maven-site result can be found [Project-Home-Page](https://cuioss.github.io/cui-
     </dependencies>
     </build>
 </project>
-```
+----
