@@ -16,9 +16,10 @@
         <version.junit.jupiter>5.9.1</version.junit.jupiter>
         <version.hamcrest>2.2</version.hamcrest>
         <version.javassist>3.29.2-GA</version.javassist>
-        <version.cui.java.tools>0.1.0</version.cui.java.tools>
-        <version.cui.test.juli.logger>0.1.0</version.cui.test.juli.logger>
+        <version.cui.java.tools>1.0.0</version.cui.java.tools>
+        <version.cui.test.juli.logger>1.0.0</version.cui.test.juli.logger>
         <version.cui.test.value.objects>0.1.0</version.cui.test.value.objects>
+        <version.cui.core.ui.model>1.0.0</version.cui.core.ui.model>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -34,6 +35,12 @@
                 <groupId>io.github.cuioss</groupId>
                 <artifactId>cui-java-tools</artifactId>
                 <version>${version.cui.java.tools}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.cuioss</groupId>
+                <artifactId>cui-core-ui-model</artifactId>
+                <version>${version.cui.core.ui.model}</version>
                 <scope>compile</scope>
             </dependency>
             <!-- Testing -->
