@@ -12,6 +12,7 @@
     <name>cui java parent</name>
     <description>Parent pom for simple java-projects</description>
     <properties>
+        <cui.bom.version>0.0.7-SNAPSHOT</cui.bom.version>
         <!--Javadoc-generation -->
         <delombok.output>${project.basedir}/target/delombok</delombok.output>
         <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE-->
