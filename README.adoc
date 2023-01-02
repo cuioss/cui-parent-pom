@@ -52,7 +52,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
     <parent>
         <groupId>io.github.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
-        <version>0.0.6</version>
+        <version>1.0</version>
     </parent>
     <artifactId>cui-java-sample</artifactId>
     <name>cui java sample</name>

@@ -113,4 +113,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <modules>
+        <module>cui-java-parent</module>
+    </modules>
 </project>

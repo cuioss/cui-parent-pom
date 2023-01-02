@@ -614,6 +614,5 @@
     </profiles>
     <modules>
         <module>cui-java-bom</module>
-        <module>cui-java-parent</module>
     </modules>
 </project>

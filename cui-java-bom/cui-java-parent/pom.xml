@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.cuioss</groupId>
-        <artifactId>cui-parent-pom</artifactId>
+            <artifactId>cui-java-bom</artifactId>
         <version>0.0.7-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
@@ -20,17 +20,7 @@
         <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
         <maven-javadoc-plugin.source>8</maven-javadoc-plugin.source>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.cuioss</groupId>
-                <artifactId>cui-java-bom</artifactId>
-                <version>${cui.bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
 
     <profiles>
         <profile>
