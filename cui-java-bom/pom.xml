@@ -15,10 +15,10 @@
         <!-- Test -->
         <version.junit.jupiter>5.9.2</version.junit.jupiter>
         <version.hamcrest>2.2</version.hamcrest>
-        <version.javassist>3.29.2-GA</version.javassist>
         <version.cui.java.tools>1.0.0</version.cui.java.tools>
         <version.cui.test.juli.logger>1.0.0</version.cui.test.juli.logger>
-        <version.cui.test.value.objects>0.1.0</version.cui.test.value.objects>
+        <version.cui.test.generator>1.0.0</version.cui.test.generator>
+        <version.cui.test.value.objects>1.0.0</version.cui.test.value.objects>
         <version.cui.core.ui.model>1.0.0</version.cui.core.ui.model>
     </properties>
     <dependencyManagement>
@@ -55,6 +55,12 @@
                 <groupId>io.github.cuioss.test</groupId>
                 <artifactId>cui-test-value-objects</artifactId>
                 <version>${version.cui.test.value.objects}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.cuioss.test</groupId>
+                <artifactId>cui-test-generator</artifactId>
+                <version>${version.cui.test.generator}</version>
                 <scope>test</scope>
             </dependency>
             <!-- Junit 5 -->
@@ -105,11 +111,6 @@
                 <artifactId>hamcrest-library</artifactId>
                 <version>${version.hamcrest}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>${version.javassist}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
