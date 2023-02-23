@@ -16,7 +16,7 @@
         <deploy.snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
         <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
-        <maven.assembly.plugin.version>3.4.2</maven.assembly.plugin.version>
+        <maven.assembly.plugin.version>3.5.0</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.2.0</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
         <maven.dependency.plugin.version>3.5.0</maven.dependency.plugin.version>
