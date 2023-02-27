@@ -5,7 +5,7 @@ on:
     types: [closed]
     paths:
       - '.github/project.yml'
-  workflow_dispatch:
+  workflow_dispatch:  
 
 jobs:
   release:
@@ -14,6 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        persist-credentials: false # otherwise, the token used is the PA_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
     - uses: radcortez/project-metadata-action@main
       name: Retrieve project metadata from '.github/project.yml'
@@ -45,7 +48,7 @@ jobs:
         git checkout -b release
         mvn -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
         mvn -Prelease-pom site:site site:stage
-        git checkout ${{github.base_ref}}
+        git checkout ${{github.ref_name}}
         git rebase release
         mvn -Prelease-pom -B release:perform -DskipTests
       env:
@@ -53,7 +56,7 @@ jobs:
         MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-    - name: Deploy Maven Site to cuioss.github.io🚀
+    - name: Deploy Maven Site to cuioss.github.io -> ${{steps.metadata.outputs.pages-reference}}🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: target/staging
@@ -61,18 +64,18 @@ jobs:
         target-folder: ${{steps.metadata.outputs.pages-reference}}
         branch: main
         token:  ${{ secrets.PAGES_DEPLOY_TOKEN }}
-        
-    - name: Push changes to ${{github.base_ref}}
+#        
+    - name: Push changes to ${{github.ref_name}}
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{github.base_ref}}
+        branch:  ${{github.ref_name}}
         force: true
 
-    - name: Push tags
+    - name: Push tag ${{steps.metadata.outputs.current-version}}
       uses: ad-m/github-push-action@v0.6.0
       with:
-        branch: ${{github.base_ref}}
+        branch:  ${{github.ref_name}}
         github_token: ${{ secrets.GITHUB_TOKEN }}
         tags: true
         force: true
