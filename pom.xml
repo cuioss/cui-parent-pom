@@ -4,7 +4,7 @@
     <artifactId>cui-parent-pom</artifactId>
     <name>cui parent pom</name>
     <packaging>pom</packaging>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release" for standard java-releases.</description>
     <properties>
