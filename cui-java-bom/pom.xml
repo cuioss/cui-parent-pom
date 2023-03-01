@@ -19,7 +19,10 @@
         <version.hamcrest>2.2</version.hamcrest>
         <version.cui.test.juli.logger>1.0.1</version.cui.test.juli.logger>
         <version.cui.test.generator>1.0.1</version.cui.test.generator>
+        <version.cui.test.jsf.basic>1.0.0</version.cui.test.jsf.basic>
         <version.cui.test.value.objects>1.0.1</version.cui.test.value.objects>
+        <version.easymock>5.1.0</version.easymock>
+        <version.jdom2>2.0.6.1</version.jdom2>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -29,6 +32,13 @@
                 <artifactId>lombok</artifactId>
                 <version>${version.lombok}</version>
                 <scope>provided</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom2</artifactId>
+                <version>${version.jdom2}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- CUI-standard Tools -->
             <dependency>
@@ -63,7 +73,13 @@
                 <version>${version.cui.test.generator}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Junit 5 -->
+            <dependency>
+                <groupId>io.github.cuioss.test</groupId>
+                <artifactId>cui-jsf-test-basic</artifactId>
+                <version>${version.cui.test.jsf.basic}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Junit 5 cui-jsf-test-basic-->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
@@ -110,6 +126,12 @@
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
                 <version>${version.hamcrest}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.easymock</groupId>
+                <artifactId>easymock</artifactId>
+                <version>${version.easymock}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
