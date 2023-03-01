@@ -198,15 +198,14 @@
                                         <banRelease>true</banRelease>
                                     </requirePluginVersions>
                                     <requireMavenVersion>
-                                        <version>[3.5.0,)</version>
-                                        <message>Maven 3.5.0 is the minimal requirement.</message>
+                                        <version>[3.8.0,)</version>
+                                        <message>Maven 3.8.0 is the minimal requirement.</message>
                                     </requireMavenVersion>
-                                    <!-- FIXME: owolff: Reenable if you know how to expose the correct number from MacOsX -->
-                                    <!-- <requireJavaVersion> -->
-                                    <!-- <version>[1.8.0,1.9.0)</version> -->
-                                    <!-- <message>Invalid Java Version. Make sure you have the latest patch of Java8. -->
-                                    <!-- Current version: ${java.version}</message> -->
-                                    <!-- </requireJavaVersion> -->
+                                    <requireJavaVersion>
+                                        <version>[11,)</version>
+                                        <message>Invalid Java Version. Make sure you have the latest patch of Java11. 
+                                     Current version: ${java.version}</message>
+                                    </requireJavaVersion>
                                     <requirePropertyDiverges>
                                         <message>Children must have a diverging name</message>
                                         <property>project.name</property>
@@ -352,15 +351,6 @@
                         <locales>en</locales>
                         <inputEncoding>UTF-8</inputEncoding>
                         <outputEncoding>UTF-8</outputEncoding>
-                        <asciidoc>
-                            <!-- Optional site-wide AsciiDoc attributes -->
-                            <attributes>
-                                <icons>font</icons>
-                                <!-- Add required rouge styles in '/css/site.css' -->
-                                <source-highlighter>rouge</source-highlighter>
-                                <toclevels>2</toclevels>
-                            </attributes>
-                        </asciidoc>
                     </configuration>
                     <dependencies>
                         <dependency>
