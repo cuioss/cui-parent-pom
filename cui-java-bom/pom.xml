@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.cuioss</groupId>
+        <groupId>de.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
         <version>0.2-SNAPSHOT</version>
         <relativePath>..</relativePath>
@@ -42,13 +42,13 @@
             </dependency>
             <!-- CUI-standard Tools -->
             <dependency>
-                <groupId>io.github.cuioss</groupId>
+                <groupId>de.cuioss</groupId>
                 <artifactId>cui-java-tools</artifactId>
                 <version>${version.cui.java.tools}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
-                <groupId>io.github.cuioss</groupId>
+                <groupId>de.cuioss</groupId>
                 <artifactId>cui-core-ui-model</artifactId>
                 <version>${version.cui.core.ui.model}</version>
                 <scope>compile</scope>
@@ -56,25 +56,25 @@
             <!-- Testing -->
             <!-- CUI-Testing -->
             <dependency>
-                <groupId>io.github.cuioss.test</groupId>
+                <groupId>de.cuioss.test</groupId>
                 <artifactId>cui-test-juli-logger</artifactId>
                 <version>${version.cui.test.juli.logger}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>io.github.cuioss.test</groupId>
+                <groupId>de.cuioss.test</groupId>
                 <artifactId>cui-test-value-objects</artifactId>
                 <version>${version.cui.test.value.objects}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>io.github.cuioss.test</groupId>
+                <groupId>de.cuioss.test</groupId>
                 <artifactId>cui-test-generator</artifactId>
                 <version>${version.cui.test.generator}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>io.github.cuioss.test</groupId>
+                <groupId>de.cuioss.test</groupId>
                 <artifactId>cui-jsf-test-basic</artifactId>
                 <version>${version.cui.test.jsf.basic}</version>
                 <scope>test</scope>

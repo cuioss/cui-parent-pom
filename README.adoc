@@ -4,7 +4,7 @@
 
 image:https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml]
 image:http://img.shields.io/:license-apache-blue.svg[License,link=http://www.apache.org/licenses/LICENSE-2.0.html]
-image:https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/io.github.cuioss/cui-parent-pom]
+image:https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-parent-pom/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-parent-pom]
 
 == What is it?
 
@@ -20,7 +20,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
 [source,xml]
 ----
 <parent>
-   <groupId>io.github.cuioss</groupId>
+   <groupId>de.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
    <version>1.0</version>
 </parent>
@@ -33,7 +33,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>io.github.cuioss</groupId>
+            <groupId>de.cuioss</groupId>
             <artifactId>cui-java-bom</artifactId>
             <version>${cui.bom.version}</version>
             <type>pom</type>
@@ -50,7 +50,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.cuioss</groupId>
+        <groupId>de.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
         <version>1.0</version>
     </parent>
