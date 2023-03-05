@@ -1,0 +1,255 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.cuioss</groupId>
+        <artifactId>java-ee-bom</artifactId>
+        <version>0.2-SNAPSHOT</version>
+    </parent>
+    <packaging>pom</packaging>
+    <artifactId>java-ee-8-bom</artifactId>
+    <name>java ee 8 bom</name>
+    <description>Bundles all java ee-8 related dependencies</description>
+    <properties>
+        <version.jakarta.jakartaee-web-api>8.0.0</version.jakarta.jakartaee-web-api>
+        <version.myfaces-test>1.0.8</version.myfaces-test>
+        <version.jsf.mojarra>2.3.19</version.jsf.mojarra>
+        <version.omnifaces>3.14.1</version.omnifaces>
+        <version.cui.test.jsf.basic>1.0.0</version.cui.test.jsf.basic>
+        <version.deltaspike>1.9.6</version.deltaspike>
+        <!-- MicroProfiles (https://microprofile.io/) -->
+        <version.microprofile.health>3.1</version.microprofile.health>
+        <version.microprofile.health.impl.smallrye>3.3.1</version.microprofile.health.impl.smallrye>
+        <version.microprofile.metrics>3.0.1</version.microprofile.metrics>
+        <microprofile.metrics.impl.smallrye.version>3.0.5</microprofile.metrics.impl.smallrye.version>
+        <version.microprofile.config>2.0.1</version.microprofile.config>
+        <version.microprofile.config.impl.smallrye>2.13.3</version.microprofile.config.impl.smallrye>
+        <version.microprofile.rest-client>2.0</version.microprofile.rest-client>
+        <version.org.jboss.resteasy.client>4.7.8.Final</version.org.jboss.resteasy.client>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- ################ -->
+            <!-- ### Outgoing ###-->
+            <!-- ################ -->
+            <dependency>
+                <groupId>de.cuioss.test</groupId>
+                <artifactId>cui-jsf-test-basic</artifactId>
+                <version>${version.cui.test.jsf.basic}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- ################ -->
+            <!-- ### Incoming  ###-->
+            <!-- ################ -->
+            <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api -->
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-web-api</artifactId>
+                <version>${version.jakarta.jakartaee-web-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- ###################-->
+            <!-- ### JSF ###########-->
+            <!-- ###################-->
+            <!-- JST-Testing-->
+            <!-- https://mvnrepository.com/artifact/org.apache.myfaces.test/myfaces-test23 -->
+            <dependency>
+                <groupId>org.apache.myfaces.test</groupId>
+                <artifactId>myfaces-test23</artifactId>
+                <version>${version.myfaces-test}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>jakarta.faces</artifactId>
+                <version>${version.jsf.mojarra}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.omnifaces</groupId>
+                <artifactId>omnifaces</artifactId>
+                <version>${version.omnifaces}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Weld -->
+            <!-- The actual shaded runtime for tomcat deployments -->
+            <dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                <artifactId>weld-servlet-shaded</artifactId>
+                <version>${weld.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.module</groupId>
+                <artifactId>weld-web</artifactId>
+                <version>${weld.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Need for the unit-integration tests -->
+            <dependency>
+                <groupId>org.jboss.weld.servlet</groupId>
+                <artifactId>weld-servlet-core</artifactId>
+                <version>${weld.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jboss-el-api_3.0_spec</artifactId>
+                        <groupId>org.jboss.spec.javax.el</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.probe</groupId>
+                <artifactId>weld-probe-core</artifactId>
+                <version>${weld.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld.se</groupId>
+                <artifactId>weld-se-core</artifactId>
+                <version>${weld.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.weld</groupId>
+                <artifactId>weld-junit5</artifactId>
+                <version>${weld.junit5.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                        <artifactId>hibernate-jpa-2.1-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.weld.probe</groupId>
+                        <artifactId>weld-probe-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.deltaspike.distribution</groupId>
+                <artifactId>distributions-bom</artifactId>
+                <version>${version.deltaspike}</version>
+            </dependency>
+            <!-- MicroProfile Health -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.health</groupId>
+                <artifactId>microprofile-health-api</artifactId>
+                <version>${version.microprofile.health}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.annotation.versioning</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-health</artifactId>
+                <version>${version.microprofile.health.impl.smallrye}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- MicroProfile Metrics -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.metrics</groupId>
+                <artifactId>microprofile-metrics-api</artifactId>
+                <version>${version.microprofile.metrics}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.annotation.versioning</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-metrics</artifactId>
+                <version>${microprofile.metrics.impl.smallrye.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- MicroProfile Config -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.config</groupId>
+                <artifactId>microprofile-config-api</artifactId>
+                <version>${version.microprofile.config}</version>
+                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.annotation.versioning</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.config</groupId>
+                <artifactId>smallrye-config</artifactId>
+                <version>${version.microprofile.config.impl.smallrye}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- The "core" does not contain CDI bits -->
+                <groupId>io.smallrye.config</groupId>
+                <artifactId>smallrye-config-core</artifactId>
+                <version>${version.microprofile.config.impl.smallrye}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.config</groupId>
+                <artifactId>smallrye-config-source-injection</artifactId>
+                <version>${version.microprofile.config.impl.smallrye}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- MicroProfile REST Client -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.rest.client</groupId>
+                <artifactId>microprofile-rest-client-api</artifactId>
+                <version>${version.microprofile.rest-client}</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-bom</artifactId>
+                <version>${version.org.jboss.resteasy.client}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxb-provider</artifactId>
+                <version>${version.org.jboss.resteasy.client}</version>
+                <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jvnet.staxex</groupId>
+                        <artifactId>stax-ex</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${version.org.jboss.resteasy.client}</version>
+                <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.smallrye.config</groupId>
+                        <artifactId>smallrye-config</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client-microprofile</artifactId>
+                <version>${version.org.jboss.resteasy.client}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-cdi</artifactId>
+                <version>${version.org.jboss.resteasy.client}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

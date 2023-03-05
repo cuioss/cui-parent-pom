@@ -604,5 +604,6 @@
     </profiles>
     <modules>
         <module>cui-java-bom</module>
+        <module>java-ee-bom</module>
     </modules>
 </project>
