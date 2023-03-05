@@ -129,6 +129,8 @@
                 <groupId>org.apache.deltaspike.distribution</groupId>
                 <artifactId>distributions-bom</artifactId>
                 <version>${version.deltaspike}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- MicroProfile Health -->
             <dependency>
