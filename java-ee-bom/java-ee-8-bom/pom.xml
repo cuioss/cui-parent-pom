@@ -13,7 +13,7 @@
         <version.jakarta.jakartaee-web-api>8.0.0</version.jakarta.jakartaee-web-api>
         <version.myfaces-test>1.0.8</version.myfaces-test>
         <version.jsf.mojarra>2.3.19</version.jsf.mojarra>
-        <version.omnifaces>3.14.1</version.omnifaces>
+        <version.omnifaces>4.1</version.omnifaces>
         <version.cui.test.jsf.basic>1.0.0</version.cui.test.jsf.basic>
         <version.deltaspike>1.9.6</version.deltaspike>
         <!-- MicroProfiles (https://microprofile.io/) -->
