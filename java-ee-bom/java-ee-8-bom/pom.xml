@@ -15,6 +15,20 @@
         <version.jsf.mojarra>2.3.19</version.jsf.mojarra>
         <version.omnifaces>3.14.1</version.omnifaces>
         <version.cui.test.jsf.basic>1.0.0</version.cui.test.jsf.basic>
+        <!-- Java EE-->
+        <!-- Servlet / EE api -->
+        <version.jakarta.ee.web-api>8.0.0</version.jakarta.ee.web-api>
+        <version.jakarta.el-api>3.0.3</version.jakarta.el-api>
+        <version.jakarta.websocket-api>1.1.2</version.jakarta.websocket-api>
+        <version.jakarta.servlet-api>4.0.4</version.jakarta.servlet-api>
+        <version.jakarta.validation-api>2.0.2</version.jakarta.validation-api>
+        <version.jakarta.interceptor-api>1.2.5</version.jakarta.interceptor-api>
+        <version.jakarta.annotation-api>1.3.5</version.jakarta.annotation-api>
+        <version.jakarta.inject-api>1.0.5</version.jakarta.inject-api>
+        <version.jakarta.cdi-api>2.0.2</version.jakarta.cdi-api>
+        <version.jakarta.ws.rs-api>2.1.6</version.jakarta.ws.rs-api>
+        <version.jakarta.xml.bind-api>2.3.3</version.jakarta.xml.bind-api>
+        <version.myfaces.impl>2.3.10</version.myfaces.impl>
         <version.deltaspike>1.9.6</version.deltaspike>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>3.1</version.microprofile.health>
@@ -40,13 +54,6 @@
             <!-- ################ -->
             <!-- ### Incoming  ###-->
             <!-- ################ -->
-            <!-- https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api -->
-            <dependency>
-                <groupId>jakarta.platform</groupId>
-                <artifactId>jakarta.jakartaee-web-api</artifactId>
-                <version>${version.jakarta.jakartaee-web-api}</version>
-                <scope>provided</scope>
-            </dependency>
             <!-- ###################-->
             <!-- ### JSF ###########-->
             <!-- ###################-->
@@ -59,6 +66,28 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-api</artifactId>
+                <version>${version.myfaces.impl}</version>
+                <scope>provided</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-websocket-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.geronimo.specs</groupId>
+                        <artifactId>geronimo-atinject_1.0_spec</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.myfaces.core</groupId>
+                <artifactId>myfaces-impl</artifactId>
+                <version>${version.myfaces.impl}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.glassfish</groupId>
                 <artifactId>jakarta.faces</artifactId>
                 <version>${version.jsf.mojarra}</version>
@@ -69,6 +98,153 @@
                 <artifactId>omnifaces</artifactId>
                 <version>${version.omnifaces}</version>
                 <scope>compile</scope>
+            </dependency>
+            <!-- Java EE-->
+            <!-- To be moved to parent-->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax:javaee-web-api -->
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-web-api</artifactId>
+                <version>${version.jakarta.ee.web-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.xml.bind:jaxb-api -->
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${version.jakarta.xml.bind-api}</version>
+            </dependency>
+            <!-- Servlet / ee API -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.servlet-api -->
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${version.jakarta.servlet-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Provided in all tomcats > 7, Currently needed for Omnifaces dependency -->
+            <dependency>
+                <groupId>javax.websocket</groupId>
+                <artifactId>javax.websocket-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.websocket-api -->
+                <groupId>jakarta.websocket</groupId>
+                <artifactId>jakarta.websocket-api</artifactId>
+                <version>${version.jakarta.websocket-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.validation:validation-api -->
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${version.jakarta.validation-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.el:javax.el-api -->
+                <groupId>jakarta.el</groupId>
+                <artifactId>jakarta.el-api</artifactId>
+                <version>${version.jakarta.el-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.interceptor</groupId>
+                <artifactId>javax.interceptor-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.interceptor:javax.interceptor-api -->
+                <groupId>jakarta.interceptor</groupId>
+                <artifactId>jakarta.interceptor-api</artifactId>
+                <version>${version.jakarta.interceptor-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.annotation:javax.annotation-api -->
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${version.jakarta.annotation-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.json:javax.json-api -->
+                <groupId>jakarta.json</groupId>
+                <artifactId>jakarta.json-api</artifactId>
+                <version>${version.jakarta.json-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- json-api Impl -->
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.json</artifactId>
+                <version>${javax.json.version}</version>
+            </dependency>
+            <!-- CDI / @inject -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.inject:javax.inject -->
+                <groupId>jakarta.inject</groupId>
+                <artifactId>jakarta.inject-api</artifactId>
+                <version>${version.jakarta.inject-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>use-jakarta-instead</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <!-- replaces javax.enterprise:cdi-api -->
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>jakarta.enterprise.cdi-api</artifactId>
+                <version>${version.jakarta.cdi-api}</version>
+                <scope>provided</scope>
             </dependency>
             <!-- Weld -->
             <!-- The actual shaded runtime for tomcat deployments -->
