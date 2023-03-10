@@ -28,7 +28,7 @@
         <version.jakarta.cdi-api>2.0.2</version.jakarta.cdi-api>
         <version.jakarta.ws.rs-api>2.1.6</version.jakarta.ws.rs-api>
         <version.jakarta.xml.bind-api>2.3.3</version.jakarta.xml.bind-api>
-        <version.myfaces.impl>2.3.10</version.myfaces.impl>
+        <version.myfaces.impl>4.0.0</version.myfaces.impl>
         <version.deltaspike>1.9.6</version.deltaspike>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>3.1</version.microprofile.health>
