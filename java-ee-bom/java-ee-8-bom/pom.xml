@@ -29,10 +29,11 @@
         <version.jakarta.ws.rs-api>2.1.6</version.jakarta.ws.rs-api>
         <version.jakarta.xml.bind-api>2.3.3</version.jakarta.xml.bind-api>
         <version.jakarta.json-api>2.1.1</version.jakarta.json-api>
+        <version.javax.json.impl>1.1.4</version.javax.json.impl>
         <version.myfaces.impl>2.3.10</version.myfaces.impl>
         <version.deltaspike>1.9.6</version.deltaspike>
-        <version.weld>5.0.1.Final</version.weld>
-        <version.weld.junit5>3.1.0.Final</version.weld.junit5>
+        <version.weld>3.1.9.Final</version.weld>
+        <version.weld.junit5>2.0.2.Final</version.weld.junit5>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>3.1</version.microprofile.health>
         <version.microprofile.health.impl.smallrye>3.3.1</version.microprofile.health.impl.smallrye>
@@ -221,7 +222,7 @@
                 <!-- json-api Impl -->
                 <groupId>org.glassfish</groupId>
                 <artifactId>javax.json</artifactId>
-                <version>${javax.json.version}</version>
+                <version>${version.javax.json.impl}</version>
             </dependency>
             <!-- CDI / @inject -->
             <dependency>
@@ -302,6 +303,11 @@
                     <exclusion>
                         <groupId>org.jboss.weld.probe</groupId>
                         <artifactId>weld-probe-core</artifactId>
+                    </exclusion>
+                    <!-- Always assume jakarta.jakartaee-web-api to be present-->
+                    <exclusion>
+                        <groupId>jakarta.enterprise</groupId>
+                        <artifactId>jakarta.enterprise.cdi-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
