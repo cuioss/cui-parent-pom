@@ -32,7 +32,7 @@
         <version.javax.json.impl>1.1.4</version.javax.json.impl>
         <version.myfaces.impl>2.3.10</version.myfaces.impl>
         <version.deltaspike>1.9.6</version.deltaspike>
-        <version.weld>3.1.9.Final</version.weld>
+        <version.weld>5.0.1.Final</version.weld>
         <version.weld.junit5>2.0.2.Final</version.weld.junit5>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>3.1</version.microprofile.health>
