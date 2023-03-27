@@ -1,17 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>de.cuioss</groupId>
         <artifactId>cui-parent-pom</artifactId>
         <version>0.2-SNAPSHOT</version>
-        <relativePath>..</relativePath>
     </parent>
+
     <artifactId>cui-java-bom</artifactId>
     <packaging>pom</packaging>
     <name>cui java dependency management</name>
     <description>Provides a number of standard-java dependency-declarations that can be consumed directly</description>
+
     <properties>
-        <version.lombok>1.18.26</version.lombok>
         <version.cui.core.ui.model>1.1.2</version.cui.core.ui.model>
         <version.cui.java.tools>1.1.0</version.cui.java.tools>
         <!-- Test -->
@@ -23,6 +24,7 @@
         <version.easymock>5.1.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <!-- Standard Third Parties -->
@@ -39,7 +41,7 @@
                 <version>${version.jdom2}</version>
                 <scope>compile</scope>
             </dependency>
-            
+
             <!-- CUI-standard Tools -->
             <dependency>
                 <groupId>de.cuioss</groupId>
@@ -131,6 +133,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <modules>
         <module>cui-java-parent</module>
     </modules>

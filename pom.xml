@@ -57,7 +57,7 @@
         <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
         <asciidoctor.maven.plugin.version>2.2.3</asciidoctor.maven.plugin.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <lombok.version>1.18.26</lombok.version>
+        <version.lombok>1.18.26</version.lombok>
     </properties>
 
     <inceptionYear>2022</inceptionYear>
@@ -181,13 +181,9 @@
                             <annotationProcessorPath>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version>
+                                <version>${version.lombok}</version>
                             </annotationProcessorPath>
                         </annotationProcessorPaths>
-                        <!--<compilerArguments>
-                            <AaddGeneratedAnnotation>false</AaddGeneratedAnnotation>
-                            <Adebug>true</Adebug>
-                        </compilerArguments>-->
                     </configuration>
                 </plugin>
                 <plugin>
@@ -530,6 +526,7 @@
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>release-pom</id>
@@ -620,6 +617,7 @@
             </build>
         </profile>
     </profiles>
+
     <modules>
         <module>cui-java-bom</module>
         <module>java-ee-bom</module>

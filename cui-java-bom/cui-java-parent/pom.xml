@@ -1,15 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>de.cuioss</groupId>
-            <artifactId>cui-java-bom</artifactId>
+        <artifactId>cui-java-bom</artifactId>
         <version>0.2-SNAPSHOT</version>
-        <relativePath>..</relativePath>
     </parent>
+
     <artifactId>cui-java-parent</artifactId>
     <packaging>pom</packaging>
     <name>cui java parent</name>
     <description>Parent pom for simple java-projects</description>
+
     <properties>
         <!--Javadoc-generation -->
         <delombok.output>${project.basedir}/target/delombok</delombok.output>
@@ -18,7 +20,6 @@
         <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
         <maven-javadoc-plugin.source>11</maven-javadoc-plugin.source>
     </properties>
-
 
     <profiles>
         <profile>
@@ -124,6 +125,7 @@
             </build>
         </profile>
     </profiles>
+
     <build>
         <pluginManagement>
             <plugins>
