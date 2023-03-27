@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>de.cuioss</groupId>
     <artifactId>cui-parent-pom</artifactId>
     <name>cui parent pom</name>
@@ -7,6 +8,7 @@
     <version>0.2-SNAPSHOT</version>
     <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
     In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release" for standard java-releases.</description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -55,7 +57,9 @@
         <jacoco.maven.plugin.version>0.8.8</jacoco.maven.plugin.version>
         <asciidoctor.maven.plugin.version>2.2.3</asciidoctor.maven.plugin.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
+        <lombok.version>1.18.26</lombok.version>
     </properties>
+
     <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
     <scm>
@@ -113,6 +117,7 @@
         <url>https://github.com/cuioss</url>
         <name>CUI-OpenSource-Software</name>
     </organization>
+
     <repositories>
         <repository>
             <id>sonatype-nexus-snapshots</id>
@@ -137,6 +142,7 @@
             </snapshots>
         </repository>
     </repositories>
+
     <distributionManagement>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
@@ -153,6 +159,7 @@
             <url>https://cuioss.github.io/</url>
         </site>
     </distributionManagement>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -170,6 +177,17 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+                        <annotationProcessorPaths>
+                            <annotationProcessorPath>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </annotationProcessorPath>
+                        </annotationProcessorPaths>
+                        <!--<compilerArguments>
+                            <AaddGeneratedAnnotation>false</AaddGeneratedAnnotation>
+                            <Adebug>true</Adebug>
+                        </compilerArguments>-->
                     </configuration>
                 </plugin>
                 <plugin>
@@ -203,7 +221,7 @@
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>[11,)</version>
-                                        <message>Invalid Java Version. Make sure you have the latest patch of Java11. 
+                                        <message>Invalid Java Version. Make sure you have the latest patch of Java11.
                                      Current version: ${java.version}</message>
                                     </requireJavaVersion>
                                     <requirePropertyDiverges>
@@ -543,7 +561,7 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven 
+                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven
                     build itself. -->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
