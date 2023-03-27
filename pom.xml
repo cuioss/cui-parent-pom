@@ -15,7 +15,7 @@
         <!-- Repository-Urls -->
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
-        <deploy.snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</deploy.snapshot.repo.url>
+        <snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
         <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.5.0</maven.assembly.plugin.version>
@@ -122,7 +122,7 @@
         <repository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>${staging.repo.url}</url>
+            <url>${snapshot.repo.url}</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -147,7 +147,7 @@
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
             <name>Sonatype Nexus Snapshots</name>
-            <url>${deploy.snapshot.repo.url}</url>
+            <url>${snapshot.repo.url}</url>
         </snapshotRepository>
         <repository>
             <id>sonatype-nexus-staging</id>
