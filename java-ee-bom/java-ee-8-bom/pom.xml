@@ -380,7 +380,7 @@
                 <groupId>io.smallrye.config</groupId>
                 <artifactId>smallrye-config-core</artifactId>
                 <version>${version.microprofile.config.impl.smallrye}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>io.smallrye.config</groupId>
