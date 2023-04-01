@@ -19,6 +19,7 @@
         <version.jandex>3.0.5</version.jandex>
         <version.caffeine>3.1.5</version.caffeine>
         <version.apache.httpcore>4.4.16</version.apache.httpcore>
+        <version.okhttp3>5.0.0-alpha.11</version.okhttp3>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -174,6 +175,18 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpcore</artifactId>
                 <version>${version.apache.httpcore}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>mockwebserver</artifactId>
+                <version>${version.okhttp3}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp-tls</artifactId>
+                <version>${version.okhttp3}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
