@@ -42,7 +42,7 @@
         <!-- org.codehaus plugins -->
         <enforcer.extra.rules.version>1.6.2</enforcer.extra.rules.version>
         <buildhelper.maven.plugin.version>3.3.0</buildhelper.maven.plugin.version>
-        <buildnumber.maven.plugin.version>3.0.0</buildnumber.maven.plugin.version>
+        <buildnumber.maven.plugin.version>3.1.0</buildnumber.maven.plugin.version>
         <versions.maven.plugin.version>2.15.0</versions.maven.plugin.version>
         <!-- jandex plugin -->
         <jandex.maven.plugin.version>1.2.3</jandex.maven.plugin.version>
