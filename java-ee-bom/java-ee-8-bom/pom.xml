@@ -30,7 +30,7 @@
         <version.jakarta.xml.bind-api>2.3.3</version.jakarta.xml.bind-api>
         <version.jakarta.json-api>2.1.2</version.jakarta.json-api>
         <version.javax.json.impl>1.1.4</version.javax.json.impl>
-        <version.myfaces.impl>2.3.10</version.myfaces.impl>
+        <version.myfaces.impl>4.0.1</version.myfaces.impl>
         <version.deltaspike>1.9.6</version.deltaspike>
         <version.weld>3.1.9.Final</version.weld>
         <version.weld.junit5>2.0.2.Final</version.weld.junit5>
