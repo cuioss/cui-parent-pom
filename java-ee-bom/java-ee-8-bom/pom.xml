@@ -36,7 +36,7 @@
         <version.weld.junit5>2.0.2.Final</version.weld.junit5>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>3.1</version.microprofile.health>
-        <version.microprofile.health.impl.smallrye>3.3.1</version.microprofile.health.impl.smallrye>
+        <version.microprofile.health.impl.smallrye>4.0.2</version.microprofile.health.impl.smallrye>
         <version.microprofile.metrics>5.0.1</version.microprofile.metrics>
         <version.microprofile.metrics.impl.smallrye>3.0.5</version.microprofile.metrics.impl.smallrye>
         <version.microprofile.config>2.0.1</version.microprofile.config>
