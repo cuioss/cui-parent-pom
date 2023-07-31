@@ -35,7 +35,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
         <dependency>
             <groupId>de.cuioss</groupId>
             <artifactId>cui-java-bom</artifactId>
-            <version>${cui.bom.version}</version>
+            <version>1.0<</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -51,7 +51,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.cuioss</groupId>
-        <artifactId>cui-parent-pom</artifactId>
+        <artifactId>cui-java-parent</artifactId>
         <version>1.0</version>
     </parent>
     <artifactId>cui-java-sample</artifactId>
