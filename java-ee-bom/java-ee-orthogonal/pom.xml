@@ -14,7 +14,7 @@
         <version.log4j2>2.20.0</version.log4j2>
         <version.owasp.sanitizer>20220608.1</version.owasp.sanitizer>
         <!-- Override transitive from owasp sanitizer -->
-        <version.guava>32.1.1-jre</version.guava>
+        <version.guava>32.1.2-jre</version.guava>
         <version.prettytime>5.0.7.Final</version.prettytime>
         <version.jandex>3.1.2</version.jandex>
         <version.caffeine>3.1.6</version.caffeine>
