@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -6,8 +8,10 @@
     <name>cui parent pom</name>
     <packaging>pom</packaging>
     <version>0.2-SNAPSHOT</version>
-    <description>Parent pom for all cui-oss projects. It defines the sonatype repositories and the basic maven plugins:
-    In addition it provides sensible release profiles: "release-pom" for pom-only releases and "release" for standard java-releases.</description>
+    <description>Parent pom for all cui-oss projects. It defines the sonatype
+        repositories and the basic maven plugins:
+        In addition it provides sensible release profiles: "release-pom" for
+        pom-only releases and "release" for standard java-releases.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,8 +19,10 @@
         <!-- Repository-Urls -->
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
-        <snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
-        <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
+        <snapshot.repo.url>
+            https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
+        <deploy.staging.repo.url>
+            https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.6.0</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.3.1</maven.clean.plugin.version>
@@ -58,6 +64,9 @@
         <asciidoctor.maven.plugin.version>2.2.4</asciidoctor.maven.plugin.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <version.lombok>1.18.28</version.lombok>
+        <!-- Needed for js / css -->
+        <version.frontend-maven-plugin>1.13.4</version.frontend-maven-plugin>
+        <open.rewrite.maven.plugin.version>5.3.2</open.rewrite.maven.plugin.version>
     </properties>
 
     <inceptionYear>2022</inceptionYear>
@@ -207,25 +216,30 @@
                             <configuration>
                                 <rules>
                                     <requirePluginVersions>
-                                        <message>Best Practice is to always define plugin versions!</message>
+                                        <message>Best Practice is to always
+                                            define plugin versions!</message>
                                         <banLatest>true</banLatest>
                                         <banRelease>true</banRelease>
                                     </requirePluginVersions>
                                     <requireMavenVersion>
                                         <version>[3.8.0,)</version>
-                                        <message>Maven 3.8.0 is the minimal requirement.</message>
+                                        <message>Maven 3.8.0 is the minimal
+                                            requirement.</message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>[11,)</version>
-                                        <message>Invalid Java Version. Make sure you have the latest patch of Java11.
-                                     Current version: ${java.version}</message>
+                                        <message>Invalid Java Version. Make sure
+                                            you have the latest patch of Java11.
+                                            Current version: ${java.version}</message>
                                     </requireJavaVersion>
                                     <requirePropertyDiverges>
-                                        <message>Children must have a diverging name</message>
+                                        <message>Children must have a diverging
+                                            name</message>
                                         <property>project.name</property>
                                     </requirePropertyDiverges>
                                     <requirePropertyDiverges>
-                                        <message>Children must have a diverging description</message>
+                                        <message>Children must have a diverging
+                                            description</message>
                                         <property>project.description</property>
                                     </requirePropertyDiverges>
                                     <requireSameVersions>
@@ -353,7 +367,8 @@
                     <version>${maven.site.plugin.version}</version>
                     <executions>
                         <execution>
-                            <!-- Workaround for disabling deplyoment. This will be done by a github-action-->
+                            <!-- Workaround for disabling deplyoment. This will
+                            be done by a github-action-->
                             <id>default-deploy</id>
                             <phase>never</phase>
                         </execution>
@@ -408,7 +423,8 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven.war.plugin.version}</version>
                     <configuration>
-                        <!-- since version 3.0 the default behavior changes to "false" -->
+                        <!-- since version 3.0 the default behavior changes to
+                        "false" -->
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                         <!-- Exclude eclipse workspace files -->
                         <packagingExcludes>**/log4j2.xml,**/*.jsfdia</packagingExcludes>
@@ -518,6 +534,16 @@
                     <artifactId>lombok-maven-plugin</artifactId>
                     <version>${lombok-maven-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${version.frontend-maven-plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.openrewrite.maven</groupId>
+                    <artifactId>rewrite-maven-plugin</artifactId>
+                    <version>${open.rewrite.maven.plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -597,7 +623,8 @@
                                         </pluginExecution>
                                         <pluginExecution>
                                             <pluginExecutionFilter>
-                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <groupId>
+                                                    org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-war-plugin</artifactId>
                                                 <versionRange>[3.3.2,)</versionRange>
                                                 <goals>
