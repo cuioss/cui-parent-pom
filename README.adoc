@@ -22,7 +22,6 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
 <parent>
    <groupId>de.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
-   <version>1.0</version>
 </parent>
 ----
 
