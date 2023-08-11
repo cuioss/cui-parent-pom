@@ -34,6 +34,8 @@
         <maven.gpg.plugin.version>3.1.0</maven.gpg.plugin.version>
         <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+        <!-- The automatic module name to be set. Must be corresponding to the one defined at module.info-->
+        <maven.jar.plugin.automatic.module.name>${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
         <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
         <maven.release.plugin.version>3.0.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
@@ -301,6 +303,8 @@
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             </manifest>
                             <manifestEntries>
+                                <Automatic-Module-Name>
+                                    ${maven.jar.plugin.automatic.module.name}</Automatic-Module-Name>
                                 <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Build-User>${user.name}</Build-User>
                                 <Build-Maven>Maven ${maven.version}</Build-Maven>
