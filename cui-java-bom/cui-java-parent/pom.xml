@@ -13,9 +13,6 @@
     <description>Parent pom for simple java-projects</description>
 
     <properties>
-        <!--Javadoc-generation -->
-        <delombok.output>${project.basedir}/target/delombok</delombok.output>
-        <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE-->
         <maven-javadoc-plugin.doclint>html</maven-javadoc-plugin.doclint>
         <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
         <maven-javadoc-plugin.source>11</maven-javadoc-plugin.source>
@@ -37,10 +34,6 @@
                     <plugin>
                         <groupId>org.jboss.jandex</groupId>
                         <artifactId>jandex-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -81,10 +74,6 @@
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
                     </plugin>
                     <plugin>
@@ -115,10 +104,6 @@
                     <plugin>
                         <groupId>org.jboss.jandex</groupId>
                         <artifactId>jandex-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.projectlombok</groupId>
-                        <artifactId>lombok-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
@@ -157,25 +142,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <!-- Used for correct javadoc-creation, especially regarding
-                    builder -->
-                    <groupId>org.projectlombok</groupId>
-                    <artifactId>lombok-maven-plugin</artifactId>
-                    <configuration>
-                        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-                        <outputDirectory>${delombok.output}</outputDirectory>
-                        <addOutputDirectory>false</addOutputDirectory>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>generate-sources</phase>
-                            <goals>
-                                <goal>delombok</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <configuration>
                         <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
@@ -187,7 +153,6 @@
                         <doctitle>${project.name}</doctitle>
                         <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE-->
                         <doclint>${maven-javadoc-plugin.doclint}</doclint>
-                        <sourcepath>${delombok.output}</sourcepath>
                     </configuration>
                     <executions>
                         <execution>
