@@ -53,8 +53,8 @@
         <!-- jandex plugin -->
         <jandex.maven.plugin.version>1.2.3</jandex.maven.plugin.version>
         <!-- Maven compiler Plugin -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <!-- Sonatype -->
         <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
         <sonar.organization>cuioss-github</sonar.organization>

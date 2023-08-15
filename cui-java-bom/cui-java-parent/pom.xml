@@ -14,8 +14,6 @@
 
     <properties>
         <maven-javadoc-plugin.doclint>html</maven-javadoc-plugin.doclint>
-        <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
-        <maven-javadoc-plugin.source>11</maven-javadoc-plugin.source>
     </properties>
 
     <profiles>
@@ -144,8 +142,7 @@
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <configuration>
-                        <!-- see https://bugs.openjdk.org/browse/JDK-8212233 -->
-                        <source>${maven-javadoc-plugin.source}</source>
+                        <source>${maven.compiler.source}</source>
                         <linksource>true</linksource>
                         <quiet>true</quiet>
                         <notimestamp>true</notimestamp>
