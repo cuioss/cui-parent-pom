@@ -13,14 +13,14 @@
     <description>Provides a number of standard-java dependency-declarations that can be consumed directly</description>
 
     <properties>
-        <version.cui.core.ui.model>1.1.2</version.cui.core.ui.model>
-        <version.cui.java.tools>1.1.0</version.cui.java.tools>
+        <version.cui.core.ui.model>2.0.0</version.cui.core.ui.model>
+        <version.cui.java.tools>2.0.0</version.cui.java.tools>
         <!-- Test -->
         <version.junit.jupiter>5.10.0</version.junit.jupiter>
         <version.hamcrest>2.2</version.hamcrest>
-        <version.cui.test.juli.logger>1.1.0</version.cui.test.juli.logger>
-        <version.cui.test.generator>1.1.0</version.cui.test.generator>
-        <version.cui.test.value.objects>1.1.0</version.cui.test.value.objects>
+        <version.cui.test.juli.logger>2.0.0</version.cui.test.juli.logger>
+        <version.cui.test.generator>2.0.0</version.cui.test.generator>
+        <version.cui.test.value.objects>2.0.0</version.cui.test.value.objects>
         <version.easymock>5.1.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
     </properties>
