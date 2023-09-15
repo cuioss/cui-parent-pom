@@ -27,7 +27,7 @@
         <version.jakarta.inject-api>1.0.5</version.jakarta.inject-api>
         <version.jakarta.cdi-api>2.0.2</version.jakarta.cdi-api>
         <version.jakarta.ws.rs-api>2.1.6</version.jakarta.ws.rs-api>
-        <version.jakarta.xml.bind-api>2.3.3</version.jakarta.xml.bind-api>
+        <version.jakarta.xml.bind-api>4.0.1</version.jakarta.xml.bind-api>
         <version.jakarta.json-api>2.1.2</version.jakarta.json-api>
         <version.javax.json.impl>1.1.4</version.javax.json.impl>
         <version.myfaces.impl>2.3.10</version.myfaces.impl>
