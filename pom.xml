@@ -34,7 +34,7 @@
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
         <!-- The automatic module name to be set. Must be corresponding to the one defined at module.info-->
         <maven.jar.plugin.automatic.module.name>${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
-        <maven.javadoc.plugin.version>3.5.0</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.6.0</maven.javadoc.plugin.version>
         <maven.release.plugin.version>3.0.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
