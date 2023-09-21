@@ -63,7 +63,7 @@
         <jacoco.maven.plugin.version>0.8.10</jacoco.maven.plugin.version>
         <asciidoctor.maven.plugin.version>2.2.4</asciidoctor.maven.plugin.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <version.lombok>1.18.28</version.lombok>
+        <version.lombok>1.18.30</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.13.4</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>5.5.0</open.rewrite.maven.plugin.version>
