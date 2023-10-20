@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -10,7 +12,8 @@
     <artifactId>cui-java-bom</artifactId>
     <packaging>pom</packaging>
     <name>cui java dependency management</name>
-    <description>Provides a number of standard-java dependency-declarations that can be consumed directly</description>
+    <description>Provides a number of standard-java dependency-declarations that
+        can be consumed directly</description>
 
     <properties>
         <version.cui.core.ui.model>2.0.0</version.cui.core.ui.model>
@@ -23,6 +26,7 @@
         <version.cui.test.value.objects>2.0.0</version.cui.test.value.objects>
         <version.easymock>5.2.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
+        <version.waitility>4.2.0</version.waitility>
     </properties>
 
     <dependencyManagement>
@@ -129,6 +133,12 @@
                 <groupId>org.easymock</groupId>
                 <artifactId>easymock</artifactId>
                 <version>${version.easymock}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${version.waitility}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
