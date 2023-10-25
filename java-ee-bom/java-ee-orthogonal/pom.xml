@@ -11,7 +11,7 @@
     <description>Libraries that are used in the javee-context but are agnostic to the actual version</description>
     <properties>
         <version.slf4j>2.0.9</version.slf4j>
-        <version.log4j2>2.21.0</version.log4j2>
+        <version.log4j2>2.21.1</version.log4j2>
         <version.owasp.sanitizer>20220608.1</version.owasp.sanitizer>
         <!-- Override transitive from owasp sanitizer -->
         <version.guava>32.1.3-jre</version.guava>
