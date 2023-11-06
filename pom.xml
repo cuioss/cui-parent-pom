@@ -65,7 +65,7 @@
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
         <version.lombok>1.18.30</version.lombok>
         <!-- Needed for js / css -->
-        <version.frontend-maven-plugin>1.14.1</version.frontend-maven-plugin>
+        <version.frontend-maven-plugin>1.14.2</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>5.10.0</open.rewrite.maven.plugin.version>
     </properties>
 
