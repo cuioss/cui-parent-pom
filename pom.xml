@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -10,7 +12,6 @@
         repositories and the basic maven plugins:
         In addition it provides sensible release profiles: "release-pom" for
         pom-only releases and "release" for standard java-releases.</description>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -32,8 +33,10 @@
         <maven.gpg.plugin.version>3.1.0</maven.gpg.plugin.version>
         <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
-        <!-- The automatic module name to be set. Must be corresponding to the one defined at module.info-->
-        <maven.jar.plugin.automatic.module.name>${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
+        <!-- The automatic module name to be set. Must be corresponding to the
+        one defined at module.info-->
+        <maven.jar.plugin.automatic.module.name>
+            ${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
         <maven.javadoc.plugin.version>3.6.2</maven.javadoc.plugin.version>
         <maven.release.plugin.version>3.0.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
@@ -51,7 +54,7 @@
         <buildnumber.maven.plugin.version>3.2.0</buildnumber.maven.plugin.version>
         <versions.maven.plugin.version>2.16.2</versions.maven.plugin.version>
         <!-- jandex plugin -->
-        <jandex.maven.plugin.version>1.2.3</jandex.maven.plugin.version>
+        <jandex.smallrye.maven.plugin.version>3.1.6</jandex.smallrye.maven.plugin.version>
         <!-- Maven compiler Plugin -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -489,9 +492,9 @@
                     <version>${versions.maven.plugin.version}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.jboss.jandex</groupId>
+                    <groupId>io.smallrye</groupId>
                     <artifactId>jandex-maven-plugin</artifactId>
-                    <version>${jandex.maven.plugin.version}</version>
+                    <version>${jandex.smallrye.maven.plugin.version}</version>
                     <executions>
                         <execution>
                             <id>make-index</id>
@@ -622,7 +625,7 @@
                                         </pluginExecution>
                                         <pluginExecution>
                                             <pluginExecutionFilter>
-                                                <groupId>org.jboss.jandex</groupId>
+                                                <groupId>io.smallrye</groupId>
                                                 <artifactId>jandex-maven-plugin</artifactId>
                                                 <versionRange>[1.2.3,)</versionRange>
                                                 <goals>
