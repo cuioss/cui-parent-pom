@@ -70,7 +70,7 @@
                         <artifactId>buildnumber-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.jboss.jandex</groupId>
+                        <groupId>io.smallrye</groupId>
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
@@ -102,7 +102,7 @@
                         <artifactId>buildnumber-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.jboss.jandex</groupId>
+                        <groupId>io.smallrye</groupId>
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
