@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -31,10 +33,7 @@
         <maven.gpg.plugin.version>3.1.0</maven.gpg.plugin.version>
         <maven.install.plugin.version>3.1.1</maven.install.plugin.version>
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
-        <!-- The automatic module name to be set. Must be corresponding to the
-        one defined at module.info-->
-        <maven.jar.plugin.automatic.module.name>
-            ${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
+
         <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
         <maven.release.plugin.version>3.0.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
@@ -217,29 +216,37 @@
                             <configuration>
                                 <rules>
                                     <requirePluginVersions>
-                                        <message>Best Practice is to always
-                                            define plugin versions!</message>
+                                        <message>Best Practice is to
+                                            always
+                                            define plugin
+                                            versions!</message>
                                         <banLatest>true</banLatest>
                                         <banRelease>true</banRelease>
                                     </requirePluginVersions>
                                     <requireMavenVersion>
                                         <version>[3.8.0,)</version>
-                                        <message>Maven 3.8.0 is the minimal
+                                        <message>Maven 3.8.0 is the
+                                            minimal
                                             requirement.</message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>[11,)</version>
-                                        <message>Invalid Java Version. Make sure
-                                            you have the latest patch of Java11.
-                                            Current version: ${java.version}</message>
+                                        <message>Invalid Java Version.
+                                            Make sure
+                                            you have the latest
+                                            patch of Java11.
+                                            Current
+                                            version: ${java.version}</message>
                                     </requireJavaVersion>
                                     <requirePropertyDiverges>
-                                        <message>Children must have a diverging
+                                        <message>Children must have a
+                                            diverging
                                             name</message>
                                         <property>project.name</property>
                                     </requirePropertyDiverges>
                                     <requirePropertyDiverges>
-                                        <message>Children must have a diverging
+                                        <message>Children must have a
+                                            diverging
                                             description</message>
                                         <property>project.description</property>
                                     </requirePropertyDiverges>
@@ -290,29 +297,6 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven.jar.plugin.version}</version>
-                    <configuration>
-                        <excludes>
-                            <exclude>**/log4j2.xml</exclude>
-                            <!-- Exclude eclipse workspace files -->
-                            <exclude>**/*.jsfdia</exclude>
-                        </excludes>
-                        <archive>
-                            <index>true</index>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Automatic-Module-Name>
-                                    ${maven.jar.plugin.automatic.module.name}</Automatic-Module-Name>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
-                                <Build-User>${user.name}</Build-User>
-                                <Build-Maven>Maven ${maven.version}</Build-Maven>
-                                <Build-Java>${java.version}</Build-Java>
-                                <Build-OS>${os.name}</Build-OS>
-                                <Build-Number>${buildNumber}</Build-Number>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
@@ -370,8 +354,8 @@
                     <version>${maven.site.plugin.version}</version>
                     <executions>
                         <execution>
-                            <!-- Workaround for disabling deplyoment. This will
-                            be done by a github-action-->
+                            <!-- Workaround for disabling deplyoment. This 
+                                will be done by a github-action -->
                             <id>default-deploy</id>
                             <phase>never</phase>
                         </execution>
@@ -426,8 +410,8 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven.war.plugin.version}</version>
                     <configuration>
-                        <!-- since version 3.0 the default behavior changes to
-                        "false" -->
+                        <!-- since version 3.0 the default behavior changes 
+                            to "false" -->
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                         <!-- Exclude eclipse workspace files -->
                         <packagingExcludes>**/log4j2.xml,**/*.jsfdia</packagingExcludes>
@@ -599,8 +583,8 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven
-                    build itself. -->
+                        <!--This plugin's configuration is used to store 
+                            Eclipse m2e settings only. It has no influence on the Maven build itself. -->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
                             <artifactId>lifecycle-mapping</artifactId>

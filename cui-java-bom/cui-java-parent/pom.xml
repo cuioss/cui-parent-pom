@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -14,6 +16,10 @@
 
     <properties>
         <maven-javadoc-plugin.doclint>html</maven-javadoc-plugin.doclint>
+        <!-- The automatic module name to be set. Must be corresponding to 
+            the one defined at module.info -->
+        <maven.jar.plugin.automatic.module.name>
+            ${project.groupId}.${project.artifactId}</maven.jar.plugin.automatic.module.name>
     </properties>
 
     <profiles>
@@ -148,7 +154,7 @@
                         <notimestamp>true</notimestamp>
                         <splitindex>true</splitindex>
                         <doctitle>${project.name}</doctitle>
-                        <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE-->
+                        <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
                         <doclint>${maven-javadoc-plugin.doclint}</doclint>
                     </configuration>
                     <executions>
@@ -159,6 +165,33 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/log4j2.xml</exclude>
+                            <!-- Exclude eclipse workspace files -->
+                            <exclude>**/*.jsfdia</exclude>
+                        </excludes>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Automatic-Module-Name>
+                                    ${maven.jar.plugin.automatic.module.name}</Automatic-Module-Name>
+                                <Build-Time>${maven.build.timestamp}</Build-Time>
+                                <Build-User>${user.name}</Build-User>
+                                <Build-Maven>Maven ${maven.version}</Build-Maven>
+                                <Build-Java>${java.version}</Build-Java>
+                                <Build-OS>${os.name}</Build-OS>
+                                <Build-Number>${buildNumber}</Build-Number>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
