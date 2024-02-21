@@ -40,7 +40,7 @@
         <version.microprofile.metrics>3.0.1</version.microprofile.metrics>
         <version.microprofile.metrics.impl.smallrye>3.0.5</version.microprofile.metrics.impl.smallrye>
         <version.microprofile.config>2.0.1</version.microprofile.config>
-        <version.microprofile.config.impl.smallrye>2.13.3</version.microprofile.config.impl.smallrye>
+        <version.microprofile.config.impl.smallrye>3.5.4</version.microprofile.config.impl.smallrye>
         <version.microprofile.rest-client>2.0</version.microprofile.rest-client>
         <version.org.jboss.resteasy.client>4.7.9.Final</version.org.jboss.resteasy.client>
     </properties>
