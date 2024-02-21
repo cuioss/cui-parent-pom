@@ -17,7 +17,7 @@
         <version.cui.core.ui.model>2.0.0</version.cui.core.ui.model>
         <version.cui.java.tools>2.0.1</version.cui.java.tools>
         <!-- Test -->
-        <version.junit.jupiter>5.10.1</version.junit.jupiter>
+        <version.junit.jupiter>5.10.2</version.junit.jupiter>
         <version.hamcrest>2.2</version.hamcrest>
         <version.cui.test.juli.logger>2.0.0</version.cui.test.juli.logger>
         <version.cui.test.generator>2.0.0</version.cui.test.generator>
