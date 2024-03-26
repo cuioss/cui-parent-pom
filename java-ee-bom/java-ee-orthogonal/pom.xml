@@ -15,7 +15,7 @@
         <!-- Override transitive from owasp sanitizer -->
         <version.guava>33.1.0-jre</version.guava>
         <version.prettytime>5.0.7.Final</version.prettytime>
-        <version.jandex>3.1.6</version.jandex>
+        <version.jandex>3.1.7</version.jandex>
         <version.caffeine>3.1.8</version.caffeine>
         <version.apache.httpcore>4.4.16</version.apache.httpcore>
         <version.okhttp3>5.0.0-alpha.12</version.okhttp3>
