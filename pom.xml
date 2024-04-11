@@ -64,7 +64,7 @@
         <version.lombok>1.18.32</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.15.0</version.frontend-maven-plugin>
-        <open.rewrite.maven.plugin.version>5.27.0</open.rewrite.maven.plugin.version>
+        <open.rewrite.maven.plugin.version>5.28.0</open.rewrite.maven.plugin.version>
     </properties>
 
     <inceptionYear>2022</inceptionYear>
