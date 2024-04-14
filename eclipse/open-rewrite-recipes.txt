@@ -14,3 +14,24 @@
             </plugin>
         </plugins>
     </build>
+
+   <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.openrewrite.maven</groupId>
+                    <artifactId>rewrite-maven-plugin</artifactId>
+                    <configuration>
+                      <activeRecipes>
+                        <recipe>org.openrewrite.java.migrate.jakarta.JakartaEE10</recipe>
+                      </activeRecipes>
+                    </configuration>
+                    <dependencies>
+                      <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-migrate-java</artifactId>
+                        <version>2.11.0</version>
+                      </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+    </build>
