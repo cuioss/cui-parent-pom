@@ -14,7 +14,7 @@
         <version.myfaces-test>1.0.8</version.myfaces-test>
         <version.jsf.mojarra>2.3.19</version.jsf.mojarra>
         <version.omnifaces>3.14.3</version.omnifaces>
-        <version.cui.test.jsf.basic>2.0.2</version.cui.test.jsf.basic>
+        <version.cui.test.jsf.basic>4.0.0</version.cui.test.jsf.basic>
         <!-- Java EE-->
         <!-- Servlet / EE api -->
         <version.jakarta.ee.web-api>8.0.0</version.jakarta.ee.web-api>
