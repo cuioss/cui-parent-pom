@@ -35,7 +35,7 @@
         <version.org.jboss.resteasy.client>6.2.8.Final</version.org.jboss.resteasy.client>
 
         <!-- Quarkus -->
-        <quarkus.version>3.9.3</quarkus.version>
+        <quarkus.version>3.9.4</quarkus.version>
     </properties>
     <dependencyManagement>
         <dependencies>
