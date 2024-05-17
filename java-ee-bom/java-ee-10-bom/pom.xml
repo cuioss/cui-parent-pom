@@ -22,6 +22,7 @@
         <!-- Java EE-->
         <!-- Servlet / EE api -->
         <version.jakarta.ee.web-api>10.0.0</version.jakarta.ee.web-api>
+        <version.jakarta.websocket-api>2.0.0</version.jakarta.websocket-api>
         <version.weld>5.1.2.Final</version.weld>
         <version.weld.junit5>4.0.3.Final</version.weld.junit5>
         <!-- MicroProfiles (https://microprofile.io/) -->
@@ -124,6 +125,13 @@
                 <groupId>jakarta.platform</groupId>
                 <artifactId>jakarta.jakartaee-web-api</artifactId>
                 <version>${version.jakarta.ee.web-api}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.websocket</groupId>
+                <artifactId>jakarta.websocket-api</artifactId>
+                <version>${version.jakarta.websocket-api}</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -322,13 +330,13 @@
                 <version>${version.org.jboss.resteasy.client}</version>
                 <scope>provided</scope>
             </dependency>
-                <dependency>
-                    <groupId>org.jboss.resteasy.microprofile</groupId>
-                    <artifactId>resteasy-microprofile-bom</artifactId>
-                    <version>${version.org.jboss.resteasy.microprofile}</version>
-                    <type>pom</type>
-                    <scope>import</scope>
-                </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy.microprofile</groupId>
+                <artifactId>resteasy-microprofile-bom</artifactId>
+                <version>${version.org.jboss.resteasy.microprofile}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-bom</artifactId>
