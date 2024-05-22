@@ -17,7 +17,7 @@
         <version.omnifaces.quarkus>4.4.1</version.omnifaces.quarkus>
         <version.primefaces>14.0.0</version.primefaces>
         <version.primefaces.quarkus>3.14.0.1</version.primefaces.quarkus>
-        <version.cui.test.jsf.basic>4.0.0</version.cui.test.jsf.basic>
+        <version.cui.test.jsf.basic>4.0.1</version.cui.test.jsf.basic>
 
         <!-- Java EE-->
         <!-- Servlet / EE api -->
