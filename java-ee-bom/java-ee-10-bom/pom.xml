@@ -37,7 +37,7 @@
         <version.org.jboss.resteasy.microprofile>2.1.5.Final</version.org.jboss.resteasy.microprofile>
 
         <!-- Quarkus -->
-        <quarkus.version>3.10.1</quarkus.version>
+        <version.quarkus>3.10.1</version.quarkus>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -340,7 +340,7 @@
             <dependency>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-bom</artifactId>
-                <version>${quarkus.version}</version>
+                <version>${version.quarkus}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
