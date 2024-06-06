@@ -35,9 +35,6 @@
         <version.microprofile.rest-client>3.0.1</version.microprofile.rest-client>
         <version.org.jboss.resteasy.client>6.2.8.Final</version.org.jboss.resteasy.client>
         <version.org.jboss.resteasy.microprofile>2.1.5.Final</version.org.jboss.resteasy.microprofile>
-
-        <!-- Quarkus -->
-        <version.quarkus>3.11.0</version.quarkus>
     </properties>
     <dependencyManagement>
         <dependencies>

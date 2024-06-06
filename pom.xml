@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -9,7 +10,8 @@
     <description>Parent pom for all cui-oss projects. It defines the sonatype
         repositories and the basic maven plugins:
         In addition it provides sensible release profiles: "release-pom" for
-        pom-only releases and "release" for standard java-releases.</description>
+        pom-only releases and "release" for standard java-releases.
+    </description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -17,9 +19,11 @@
         <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
         <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
         <snapshot.repo.url>
-            https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
+            https://s01.oss.sonatype.org/content/repositories/snapshots
+        </snapshot.repo.url>
         <deploy.staging.repo.url>
-            https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
+            https://s01.oss.sonatype.org/service/local/staging/deploy/maven2
+        </deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.7.1</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.3.2</maven.clean.plugin.version>
@@ -65,6 +69,10 @@
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.15.0</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>5.32.1</open.rewrite.maven.plugin.version>
+        <rewrite-testing-frameworks.version>2.10.1</rewrite-testing-frameworks.version>
+        <rewrite-migrate-java.version>2.16.0</rewrite-migrate-java.version>
+        <!-- Quarkus -->
+        <version.quarkus>3.11.1</version.quarkus>
     </properties>
 
     <inceptionYear>2022</inceptionYear>
@@ -217,7 +225,8 @@
                                         <message>Best Practice is to
                                             always
                                             define plugin
-                                            versions!</message>
+                                            versions!
+                                        </message>
                                         <banLatest>true</banLatest>
                                         <banRelease>true</banRelease>
                                     </requirePluginVersions>
@@ -225,7 +234,8 @@
                                         <version>[3.8.0,)</version>
                                         <message>Maven 3.8.0 is the
                                             minimal
-                                            requirement.</message>
+                                            requirement.
+                                        </message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
                                         <version>[11,)</version>
@@ -234,18 +244,21 @@
                                             you have the latest
                                             patch of Java11.
                                             Current
-                                            version: ${java.version}</message>
+                                            version: ${java.version}
+                                        </message>
                                     </requireJavaVersion>
                                     <requirePropertyDiverges>
                                         <message>Children must have a
                                             diverging
-                                            name</message>
+                                            name
+                                        </message>
                                         <property>project.name</property>
                                     </requirePropertyDiverges>
                                     <requirePropertyDiverges>
                                         <message>Children must have a
                                             diverging
-                                            description</message>
+                                            description
+                                        </message>
                                         <property>project.description</property>
                                     </requirePropertyDiverges>
                                     <requireSameVersions>
@@ -352,8 +365,8 @@
                     <version>${maven.site.plugin.version}</version>
                     <executions>
                         <execution>
-                            <!-- Workaround for disabling deplyoment. This 
-                                will be done by a github-action -->
+                            <!-- Workaround for disabling deployment.
+                            This will be done by a github-action -->
                             <id>default-deploy</id>
                             <phase>never</phase>
                         </execution>
@@ -408,7 +421,7 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven.war.plugin.version}</version>
                     <configuration>
-                        <!-- since version 3.0 the default behavior changes 
+                        <!-- since version 3.0 the default behavior changes
                             to "false" -->
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                         <!-- Exclude eclipse workspace files -->
@@ -532,16 +545,48 @@
                         <dependency>
                             <groupId>org.openrewrite.recipe</groupId>
                             <artifactId>rewrite-migrate-java</artifactId>
-                            <version>2.16.0</version>
+                            <version>${rewrite-migrate-java.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.openrewrite.recipe</groupId>
                             <artifactId>rewrite-testing-frameworks</artifactId>
-                            <version>2.10.1</version>
+                            <version>${rewrite-testing-frameworks.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${version.quarkus}</version>
+                    <extensions>true</extensions>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>generate-code</goal>
+                                <goal>generate-code-tests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${version.quarkus}</version>
+                    <extensions>true</extensions>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>generate-code</goal>
+                                <goal>generate-code-tests</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
+
+
         </pluginManagement>
         <plugins>
             <plugin>
@@ -581,7 +626,7 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!--This plugin's configuration is used to store 
+                        <!--This plugin's configuration is used to store
                             Eclipse m2e settings only. It has no influence on the Maven build itself. -->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
@@ -600,7 +645,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                         <pluginExecution>
@@ -621,7 +666,8 @@
                                         <pluginExecution>
                                             <pluginExecutionFilter>
                                                 <groupId>
-                                                    org.apache.maven.plugins</groupId>
+                                                    org.apache.maven.plugins
+                                                </groupId>
                                                 <artifactId>maven-war-plugin</artifactId>
                                                 <versionRange>[3.3.2,)</versionRange>
                                                 <goals>
@@ -629,7 +675,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
