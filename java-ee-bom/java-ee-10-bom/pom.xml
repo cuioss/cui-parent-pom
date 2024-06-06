@@ -37,7 +37,7 @@
         <version.org.jboss.resteasy.microprofile>2.1.5.Final</version.org.jboss.resteasy.microprofile>
 
         <!-- Quarkus -->
-        <version.quarkus>3.11.0</version.quarkus>
+        <version.quarkus>3.11.1</version.quarkus>
     </properties>
     <dependencyManagement>
         <dependencies>
