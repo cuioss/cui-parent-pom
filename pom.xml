@@ -69,7 +69,7 @@
         <version.frontend-maven-plugin>1.15.0</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>5.32.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>2.10.1</rewrite-testing-frameworks.version>
-        <rewrite-migrate-java.version>2.16.0</rewrite-migrate-java.version>
+        <rewrite-migrate-java.version>2.17.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
         <version.quarkus>3.11.1</version.quarkus>
     </properties>
