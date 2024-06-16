@@ -15,7 +15,7 @@
         <version.omnifaces>4.4.1</version.omnifaces>
         <version.omnifaces.quarkus>4.4.1</version.omnifaces.quarkus>
         <version.primefaces>14.0.1</version.primefaces>
-        <version.primefaces.quarkus>3.14.0.1</version.primefaces.quarkus>
+        <version.primefaces.quarkus>3.14.1</version.primefaces.quarkus>
         <version.cui.test.jsf.basic>4.0.1</version.cui.test.jsf.basic>
 
         <!-- Java EE-->
