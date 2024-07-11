@@ -71,7 +71,7 @@
         <rewrite-testing-frameworks.version>2.13.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>2.19.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
-        <version.quarkus>3.12.1</version.quarkus>
+        <version.quarkus>3.12.2</version.quarkus>
     </properties>
 
     <inceptionYear>2022</inceptionYear>
