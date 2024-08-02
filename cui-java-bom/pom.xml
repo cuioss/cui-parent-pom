@@ -19,7 +19,7 @@
         <version.cui.java.tools>2.1.0</version.cui.java.tools>
         <!-- Test -->
         <version.junit.jupiter>5.10.3</version.junit.jupiter>
-        <version.hamcrest>2.2</version.hamcrest>
+        <version.hamcrest>3.0</version.hamcrest>
         <version.cui.test.juli.logger>2.0.1</version.cui.test.juli.logger>
         <version.cui.test.generator>2.0.1</version.cui.test.generator>
         <version.cui.test.value.objects>2.0.1</version.cui.test.value.objects>
