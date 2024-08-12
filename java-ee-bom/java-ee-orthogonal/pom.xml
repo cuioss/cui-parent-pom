@@ -10,7 +10,7 @@
     <name>java-ee-orthogonal</name>
     <description>Libraries that are used in the javee-context but are agnostic to the actual version</description>
     <properties>
-        <version.slf4j>2.0.14</version.slf4j>
+        <version.slf4j>2.0.16</version.slf4j>
         <version.owasp.sanitizer>20240325.1</version.owasp.sanitizer>
         <!-- Override transitive from owasp sanitizer -->
         <version.guava>33.2.1-jre</version.guava>
