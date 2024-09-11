@@ -14,7 +14,7 @@
         <version.myfaces>4.0.2</version.myfaces>
         <version.omnifaces>4.4.1</version.omnifaces>
         <version.omnifaces.quarkus>4.4.1</version.omnifaces.quarkus>
-        <version.primefaces>14.0.4</version.primefaces>
+        <version.primefaces>14.0.5</version.primefaces>
         <version.primefaces.quarkus>3.14.4</version.primefaces.quarkus>
         <version.cui.test.jsf.basic>4.0.1</version.cui.test.jsf.basic>
 
