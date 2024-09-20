@@ -33,7 +33,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: ./mvnw -B package --file pom.xml
       
   deploy-snapshot:
 
@@ -55,11 +55,11 @@ jobs:
 
     - name: Extract project version
       id: project
-      run: echo ::set-output name=version::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+      run: echo ::set-output name=version::$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
 
     - name: Deploy Snapshot with Maven, version ${{ steps.project.outputs.version }}
       if: ${{endsWith(steps.project.outputs.version, '-SNAPSHOT')}}
-      run: mvn -B deploy -Dmaven.test.skip=true
+      run: ./mvnw -B deploy -Dmaven.test.skip=true
       env:
         MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
