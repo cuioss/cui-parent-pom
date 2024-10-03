@@ -19,7 +19,7 @@
         <version.okhttp3>5.0.0-alpha.14</version.okhttp3>
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
         Otherwise, it's getting messy-->
-        <version.log4j>2.23.1</version.log4j>
+        <version.log4j>2.24.1</version.log4j>
     </properties>
     <dependencyManagement>
         <dependencies>
