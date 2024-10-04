@@ -73,7 +73,6 @@
         <!-- Quarkus -->
         <version.quarkus>3.15.1</version.quarkus>
     </properties>
-
     <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
     <scm>
