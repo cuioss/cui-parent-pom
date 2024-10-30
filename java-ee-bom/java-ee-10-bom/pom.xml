@@ -27,7 +27,7 @@
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>4.0.1</version.microprofile.health>
         <version.microprofile.health.impl.smallrye>4.1.0</version.microprofile.health.impl.smallrye>
-        <version.microprofile.metrics>5.1.1</version.microprofile.metrics>
+        <version.microprofile.metrics>5.1.2</version.microprofile.metrics>
         <version.microprofile.metrics.impl.smallrye>5.1.0</version.microprofile.metrics.impl.smallrye>
         <version.microprofile.config>3.1</version.microprofile.config>
         <version.microprofile.config.impl.smallrye>3.10.0</version.microprofile.config.impl.smallrye>
