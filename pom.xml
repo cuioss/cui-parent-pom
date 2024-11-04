@@ -67,7 +67,7 @@
         <version.lombok>1.18.34</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.15.1</version.frontend-maven-plugin>
-        <open.rewrite.maven.plugin.version>5.43.3</open.rewrite.maven.plugin.version>
+        <open.rewrite.maven.plugin.version>5.43.4</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>2.21.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>2.28.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
