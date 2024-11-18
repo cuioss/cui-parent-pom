@@ -25,7 +25,7 @@
         <version.cui.test.juli.logger>2.0.1</version.cui.test.juli.logger>
         <version.cui.test.generator>2.0.1</version.cui.test.generator>
         <version.cui.test.value.objects>2.0.1</version.cui.test.value.objects>
-        <version.easymock>5.4.0</version.easymock>
+        <version.easymock>5.5.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
         <version.waitility>4.2.2</version.waitility>
     </properties>
