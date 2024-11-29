@@ -27,6 +27,13 @@ Optional, to speed things up, not strictly necessary:
 * gpg --keyserver eys.openpgp.org --send-keys D6A0*****
 * gpg --keyserver pgp.mit.edu --send-keys D6A0*****
 
+### Export Key to clipboard
+#### macOS
+gpg --armor --export-secret-key joe@foo.bar | pbcopy
+
+##### Ubuntu (assuming GNU base64)
+gpg --armor --export-secret-key joe@foo.bar -w0 | xclip
+
 ## Open Tasks / Todos
 
 * Minimize the key to a signing key
