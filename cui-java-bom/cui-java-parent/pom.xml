@@ -160,7 +160,7 @@
                             <doctitle>${project.name}</doctitle>
                             <doclint>none</doclint>
                             <links>
-                                <link>https://jakarta.ee/specifications/platform/9/apidocs/</link>
+                                <link>https://jakarta.ee/specifications/platform/10/apidocs/</link>
                             </links>
                         </configuration>
                         <executions>
