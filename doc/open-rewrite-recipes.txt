@@ -1,3 +1,11 @@
+AddApache2LicenseHeader
+
+./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.activeRecipes=org.openrewrite.java.AddApache2LicenseHeader -Drewrite.exportDatatables=true
+
+JUnit5BestPractices
+./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-testing-frameworks:RELEASE -Drewrite.activeRecipes=org.openrewrite.java.testing.junit5.JUnit5BestPractices -Drewrite.exportDatatables=true
+
+
     <build>
         <plugins>
             <plugin>

@@ -372,7 +372,6 @@
                     <configuration>
                         <generateReports>true</generateReports>
                         <generateSitemap>true</generateSitemap>
-                        <relativizeDecorationLinks>false</relativizeDecorationLinks>
                         <locales>en</locales>
                         <inputEncoding>UTF-8</inputEncoding>
                         <outputEncoding>UTF-8</outputEncoding>

@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -16,6 +17,8 @@
         <maven.javadoc.plugin.failOnError>true</maven.javadoc.plugin.failOnError>
         <!-- See https://docs.oracle.com/en/java/javase/17/docs/specs/man/javadoc.html#additional-options-provided-by-the-standard-doclet-->
         <maven.javadoc.plugin.doclint>html</maven.javadoc.plugin.doclint>
+        <!-- See https://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html#legacymode -->
+        <maven.javadoc.plugin.legacyMode>false</maven.javadoc.plugin.legacyMode>
         <!-- The automatic module name to be set. Must be corresponding to 
             the one defined at module.info -->
         <maven.jar.plugin.automatic.module.name>
@@ -159,6 +162,7 @@
                             <splitindex>true</splitindex>
                             <doctitle>${project.name}</doctitle>
                             <doclint>none</doclint>
+                            <legacyMode>${maven.javadoc.plugin.legacyMode}</legacyMode>
                             <links>
                                 <link>https://jakarta.ee/specifications/platform/10/apidocs/</link>
                             </links>
