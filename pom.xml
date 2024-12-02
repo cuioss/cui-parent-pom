@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -431,9 +432,11 @@
                             <manifestEntries>
                                 <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Build-User>${user.name}</Build-User>
+                                <!--suppress UnresolvedMavenProperty -> Provided by maven since 3.0.4 -->
                                 <Build-Maven>Maven ${maven.version}</Build-Maven>
                                 <Build-Java>${java.version}</Build-Java>
                                 <Build-OS>${os.name}</Build-OS>
+                                <!--suppress UnresolvedMavenProperty -> Provided by buildnumber-maven-plugin -->
                                 <Build-Number>${buildNumber}</Build-Number>
                             </manifestEntries>
                         </archive>
@@ -443,15 +446,6 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>${buildhelper.maven.plugin.version}</version>
-                    <!-- track and expose the maven version being used -->
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <goals>
-                                <goal>maven-version</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -625,7 +619,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                         <pluginExecution>
@@ -655,7 +649,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
