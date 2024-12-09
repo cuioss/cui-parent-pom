@@ -11,7 +11,7 @@
     <description>Bundles all java ee-10 related dependencies</description>
     <properties>
         <version.jakarta.jakartaee-web-api>10.0.0</version.jakarta.jakartaee-web-api>
-        <version.myfaces>4.0.2</version.myfaces>
+        <version.myfaces>4.1.0</version.myfaces>
         <version.omnifaces>4.6</version.omnifaces>
         <version.omnifaces.quarkus>4.6.1</version.omnifaces.quarkus>
         <version.primefaces>14.0.8</version.primefaces>
