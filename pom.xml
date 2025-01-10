@@ -72,7 +72,7 @@
         <rewrite-testing-frameworks.version>2.24.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>2.31.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
-        <version.quarkus>3.17.5</version.quarkus>
+        <version.quarkus>3.17.6</version.quarkus>
     </properties>
     <inceptionYear>2022</inceptionYear>
     <url>https://github.com/cuioss/cui-parent-pom/</url>
