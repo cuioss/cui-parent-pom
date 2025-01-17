@@ -22,7 +22,7 @@
         <version.log4j>2.24.2</version.log4j>
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.parsson>1.1.7</version.parsson>
-        <version.testcontainers-keycloak>3.5.1</version.testcontainers-keycloak>
+        <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
         <version.testcontainer>1.20.4</version.testcontainer>
         <version.rest-assured>5.5.0</version.rest-assured>
     </properties>
