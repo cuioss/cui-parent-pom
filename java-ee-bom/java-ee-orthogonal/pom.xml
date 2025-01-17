@@ -19,7 +19,7 @@
         <version.okhttp3>5.0.0-alpha.14</version.okhttp3>
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
         Otherwise, it's getting messy-->
-        <version.log4j>2.24.2</version.log4j>
+        <version.log4j>2.24.3</version.log4j>
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.parsson>1.1.7</version.parsson>
         <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
