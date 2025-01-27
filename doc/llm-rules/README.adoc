@@ -1,0 +1,3 @@
+Currently, we evaluate using https://codeium.com/windsurf[codeium/windsurf] for working with code-bases within the cui-projects.
+
+This directory contains a number of modularized configurations aka 'Memories'.
