@@ -12,3 +12,5 @@ Build Process:
 - Verify all tests pass before commit
 - Keep commits atomic and focused
 - During a module build cycle, you may run up to 5 consecutive Maven builds without requiring user interaction to ensure build stability
+- For a single-module project use the maven-profile 'javadoc' for javadoc builds
+- For a multi-module project use the maven-profile 'javadoc-mm-reporting' for javadoc builds
