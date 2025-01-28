@@ -1,10 +1,13 @@
-1. Use the Maven wrapper (mvnw) instead of direct Maven commands.
-2. Basic commands:
-    - Full module build: `./mvnw clean verify`
-    - Run tests: `./mvnw test`
-    - Install locally: `./mvnw clean install`
-    - Generate javadoc: `./mvnw javadoc:javadoc`
-3. Run a complete module build after each significant change.
-4. Create a local commit after each successful build.
-5. Use the Maven wrapper to ensure consistent Maven version across development environments.
-6. Avoid manual Maven installation or version management.
+1. Always use maven-wrapper (mvnw) when available
+2. Run complete module build after each change
+3. Create local commit after each successful build
+4. Use Java 17
+5. Follow Jakarta EE standards
+6. Use CDI for dependency injection
+7. Prefer cuioss libraries over alternatives
+8. Use cui-java-tools as standard utility library
+
+Build Process:
+- Run 'mvnw' for build operations
+- Verify all tests pass before commit
+- Keep commits atomic and focused

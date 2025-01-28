@@ -1,8 +1,21 @@
-2. I prefer concepts and libraries from cuioss, see the projects: https://github.com/cuioss
-3. I prefer using microprofile
-4. I prefer using java 17
-6. I prefer using lombok
-7. I prefer using JakartaEE
-8. I prefer using CDI
-9. I prefer using JakartaServer Faces
-10. I prefer using https://github.com/cuioss/cui-java-tools as Standard utility class
+1. Core Technologies:
+   - Java 17
+   - MicroProfile
+   - Jakarta EE
+   - CDI
+   - Jakarta Server Faces
+   - Lombok
+
+2. Testing Stack:
+   - JUnit 5
+   - cui-test-generator
+   - cui-test-value-objects
+   - cui-jsf-test-basic
+
+3. Logging Stack:
+   - CuiLogger
+   - cui-test-juli-logger
+
+4. Utilities:
+   - cui-java-tools as standard library
+   - Prefer cuioss ecosystem libraries

@@ -1,8 +1,12 @@
-1. I prefer using junit 5
-2. I do not prefer using mockito
-3. I do not prefer using jUnit4
-4. I do not prefer using powermock
-5. I prefer using https://github.com/cuioss/cui-test-generator for generating test-data, especially the types 'de.cuioss.test.generator.Generators' and 'de.cuioss.test.generator.TypedGenerator'
-6. I prefer using https://github.com/cuioss/cui-test-value-objects for testing value-objects, especially the types defined within the package 'de.cuioss.test.valueobjects.junit5.contracts'
-7. For JSF, I prefer using https://github.com/cuioss/cui-jsf-test-basic for testing
-8. I prefer using org.junit.jupiter.params.ParameterizedTest where sensible
+1. Use JUnit 5 exclusively
+2. Never use Mockito, JUnit 4, or PowerMock
+3. Use cui-test-generator for test data generation
+4. Use cui-test-value-objects for testing value objects
+5. Use cui-jsf-test-basic for JSF testing
+6. Prefer @ParameterizedTest where applicable
+7. Test data should come from Generators class or TypedGenerator
+
+Testing Tools:
+- cui-test-generator: https://github.com/cuioss/cui-test-generator
+- cui-test-value-objects: https://github.com/cuioss/cui-test-value-objects
+- cui-jsf-test-basic: https://github.com/cuioss/cui-jsf-test-basic
