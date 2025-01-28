@@ -11,3 +11,4 @@ Build Process:
 - Run 'mvnw' for build operations
 - Verify all tests pass before commit
 - Keep commits atomic and focused
+- During a module build cycle, you may run up to 5 consecutive Maven builds without requiring user interaction to ensure build stability
