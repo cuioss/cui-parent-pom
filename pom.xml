@@ -3,14 +3,93 @@
 
     <groupId>de.cuioss</groupId>
     <artifactId>cui-parent-pom</artifactId>
-    <name>cui parent pom</name>
-    <packaging>pom</packaging>
     <version>0.8-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>cui parent pom</name>
     <description>Parent pom for all cui-oss projects. It defines the sonatype
         repositories and the basic maven plugins:
         In addition, it provides sensible release profiles: "release-pom" for
         pom-only releases and "release" for standard java-releases.
     </description>
+    <url>https://github.com/cuioss/cui-parent-pom/</url>
+    <inceptionYear>2022</inceptionYear>
+    <organization>
+        <url>https://github.com/cuioss</url>
+        <name>CUI-OpenSource-Software</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Oliver Wolff</name>
+            <url>https://github.com/cuioss</url>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Matthias Walliczek</name>
+            <url>https://github.com/mwalliczek</url>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Eugen Fischer</name>
+            <url>https://github.com/EugenFischer</url>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Sven Haag</name>
+            <url>https://github.com/svenhaag</url>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <modules>
+        <module>cui-java-bom</module>
+        <module>java-ee-bom</module>
+    </modules>
+    <scm>
+        <url>https://github.com/cuioss/cui-parent-pom/</url>
+        <connection>scm:git:https://github.com/cuioss/cui-parent-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/cuioss/cui-parent-pom/</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/cuioss/cui-parent-pom/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>${snapshot.repo.url}</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Nexus Public Repo</name>
+            <url>${deploy.staging.repo.url}</url>
+        </repository>
+        <site>
+            <id>cuioss-home</id>
+            <url>https://cuioss.github.io/</url>
+        </site>
+    </distributionManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -74,63 +153,6 @@
         <!-- Quarkus -->
         <version.quarkus>3.18.0</version.quarkus>
     </properties>
-    <inceptionYear>2022</inceptionYear>
-    <url>https://github.com/cuioss/cui-parent-pom/</url>
-    <scm>
-        <url>https://github.com/cuioss/cui-parent-pom/</url>
-        <connection>scm:git:https://github.com/cuioss/cui-parent-pom.git</connection>
-        <developerConnection>scm:git:https://github.com/cuioss/cui-parent-pom/</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-    <issueManagement>
-        <url>https://github.com/cuioss/cui-parent-pom/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>Oliver Wolff</name>
-            <url>https://github.com/cuioss</url>
-            <roles>
-                <role>owner</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <name>Matthias Walliczek</name>
-            <url>https://github.com/mwalliczek</url>
-            <roles>
-                <role>owner</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <name>Eugen Fischer</name>
-            <url>https://github.com/EugenFischer</url>
-            <roles>
-                <role>owner</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <name>Sven Haag</name>
-            <url>https://github.com/svenhaag</url>
-            <roles>
-                <role>owner</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
-    <organization>
-        <url>https://github.com/cuioss</url>
-        <name>CUI-OpenSource-Software</name>
-    </organization>
 
     <repositories>
         <repository>
@@ -157,35 +179,21 @@
         </repository>
     </repositories>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>${snapshot.repo.url}</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Sonatype Nexus Public Repo</name>
-            <url>${deploy.staging.repo.url}</url>
-        </repository>
-        <site>
-            <id>cuioss-home</id>
-            <url>https://cuioss.github.io/</url>
-        </site>
-    </distributionManagement>
-
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${maven.assembly.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven.clean.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.plugin.version}</version>
                     <configuration>
@@ -201,14 +209,17 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${maven.dependency.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven.deploy.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>${maven.enforcer.plugin.version}</version>
                     <executions>
@@ -278,10 +289,12 @@
                     </dependencies>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven.failsafe.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven.gpg.plugin.version}</version>
                     <configuration>
@@ -301,14 +314,17 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven.install.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven.jar.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven.javadoc.plugin.version}</version>
                     <configuration>
@@ -332,6 +348,7 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${maven.release.plugin.version}</version>
                     <configuration>
@@ -356,10 +373,12 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven.resources.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${maven.site.plugin.version}</version>
                     <executions>
@@ -386,10 +405,12 @@
                     </dependencies>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>${maven.project.info.reports.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven.source.plugin.version}</version>
                     <executions>
@@ -402,6 +423,7 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.plugin.version}</version>
                     <configuration>
@@ -412,10 +434,12 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-report-plugin</artifactId>
                     <version>${maven.surefire_report.plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>${maven.war.plugin.version}</version>
                     <configuration>
@@ -564,6 +588,7 @@
         </pluginManagement>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
         </plugins>
@@ -575,9 +600,11 @@
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
                     </plugin>
                     <plugin>
@@ -585,6 +612,7 @@
                         <artifactId>nexus-staging-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>
                     </plugin>
                 </plugins>
@@ -661,9 +689,4 @@
             </build>
         </profile>
     </profiles>
-
-    <modules>
-        <module>cui-java-bom</module>
-        <module>java-ee-bom</module>
-    </modules>
 </project>

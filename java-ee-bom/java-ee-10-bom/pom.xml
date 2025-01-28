@@ -5,8 +5,8 @@
         <artifactId>java-ee-bom</artifactId>
         <version>0.8-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
     <artifactId>java-ee-10-bom</artifactId>
+    <packaging>pom</packaging>
     <name>java ee-10-bom</name>
     <description>Bundles all java ee-10 related dependencies</description>
     <properties>

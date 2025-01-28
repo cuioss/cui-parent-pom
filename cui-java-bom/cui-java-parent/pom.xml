@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -26,6 +26,66 @@
         </maven.jar.plugin.automatic.module.name>
     </properties>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <linksource>true</linksource>
+                        <quiet>true</quiet>
+                        <notimestamp>true</notimestamp>
+                        <splitindex>true</splitindex>
+                        <doctitle>${project.name}</doctitle>
+                        <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
+                        <doclint>${maven.javadoc.plugin.doclint}</doclint>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/log4j2.xml</exclude>
+                            <!-- Exclude eclipse workspace files -->
+                            <exclude>**/*.jsfdia</exclude>
+                        </excludes>
+                        <archive>
+                            <index>true</index>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <Automatic-Module-Name>
+                                    ${maven.jar.plugin.automatic.module.name}
+                                </Automatic-Module-Name>
+                                <Build-Time>${maven.build.timestamp}</Build-Time>
+                                <Build-User>${user.name}</Build-User>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <Build-Maven>Maven ${maven.version}</Build-Maven>
+                                <Build-Java>${java.version}</Build-Java>
+                                <Build-OS>${os.name}</Build-OS>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <Build-Number>${buildNumber}</Build-Number>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
     <profiles>
         <profile>
             <id>release</id>
@@ -44,15 +104,19 @@
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
                     </plugin>
                     <plugin>
@@ -60,6 +124,7 @@
                         <artifactId>nexus-staging-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>
                     </plugin>
                 </plugins>
@@ -82,12 +147,15 @@
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
                     <plugin>
@@ -114,6 +182,7 @@
                         <artifactId>jandex-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                     </plugin>
 
@@ -129,6 +198,7 @@
                         <artifactId>jacoco-maven-plugin</artifactId>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <argLine>@{argLine} -Xms64m -Xmx1024m</argLine>
@@ -266,64 +336,5 @@
             </build>
         </profile>
     </profiles>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <linksource>true</linksource>
-                        <quiet>true</quiet>
-                        <notimestamp>true</notimestamp>
-                        <splitindex>true</splitindex>
-                        <doctitle>${project.name}</doctitle>
-                        <!--https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#BEJEFABE -->
-                        <doclint>${maven.javadoc.plugin.doclint}</doclint>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven.jar.plugin.version}</version>
-                    <configuration>
-                        <excludes>
-                            <exclude>**/log4j2.xml</exclude>
-                            <!-- Exclude eclipse workspace files -->
-                            <exclude>**/*.jsfdia</exclude>
-                        </excludes>
-                        <archive>
-                            <index>true</index>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Automatic-Module-Name>
-                                    ${maven.jar.plugin.automatic.module.name}
-                                </Automatic-Module-Name>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
-                                <Build-User>${user.name}</Build-User>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <Build-Maven>Maven ${maven.version}</Build-Maven>
-                                <Build-Java>${java.version}</Build-Java>
-                                <Build-OS>${os.name}</Build-OS>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <Build-Number>${buildNumber}</Build-Number>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-    </build>
 </project>
 
