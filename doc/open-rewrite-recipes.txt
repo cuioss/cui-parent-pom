@@ -1,46 +1,23 @@
-AddApache2LicenseHeader
+./mvnw -Prewrite-prepare-release rewrite:run
 
-./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.activeRecipes=org.openrewrite.java.AddApache2LicenseHeader -Drewrite.exportDatatables=true
+->
+<activeRecipes>
+    <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
+    <recipe>org.openrewrite.java.format.AutoFormat</recipe>
+    <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+    <recipe>org.openrewrite.java.OrderImports</recipe>
+</activeRecipes>
 
-JUnit5BestPractices
-./mvnw -U org.openrewrite.maven:rewrite-maven-plugin:run -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-testing-frameworks:RELEASE -Drewrite.activeRecipes=org.openrewrite.java.testing.junit5.JUnit5BestPractices -Drewrite.exportDatatables=true
+/mvnw -Prewrite-modernize rewrite:run
 
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openrewrite.maven</groupId>
-                <artifactId>rewrite-maven-plugin</artifactId>
-                <configuration>
-                    <activeRecipes>
-						<recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>					
-						<recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
-						<recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
-                        <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-                    </activeRecipes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-   <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.openrewrite.maven</groupId>
-                    <artifactId>rewrite-maven-plugin</artifactId>
-                    <configuration>
-                      <activeRecipes>
-                        <recipe>org.openrewrite.java.migrate.jakarta.JakartaEE10</recipe>
-                      </activeRecipes>
-                    </configuration>
-                    <dependencies>
-                      <dependency>
-                        <groupId>org.openrewrite.recipe</groupId>
-                        <artifactId>rewrite-migrate-java</artifactId>
-                      </dependency>
-                    </dependencies>
-                </plugin>
-            </plugins>
-    </build>
-
-    -> mvn rewrite:run
+->
+<activeRecipes>
+    <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+    <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+    <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+    <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
+    <recipe>org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty</recipe>
+    <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
+    <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
+    <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
+</activeRecipes>

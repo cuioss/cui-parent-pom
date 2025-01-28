@@ -232,6 +232,39 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <!-- Usage: ./mvnw -Prewrite-modernize rewrite:run -->
+            <!-- Modifies the codebase to Best-Practices -->
+            <id>rewrite-modernize</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openrewrite.maven</groupId>
+                        <artifactId>rewrite-maven-plugin</artifactId>
+                        <configuration>
+                            <activeRecipes>
+                                <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+                                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
+                            </activeRecipes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>rewrite</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>
