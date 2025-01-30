@@ -33,19 +33,22 @@ This directory contains a number of modularized configurations aka 'Memories' th
 
 [cols="2,4"]
 |===
-|File |Purpose
+|File |Description
 
 |`documentation.md`
-|Documentation standards and rules for code documentation, JavaDoc, and general documentation practices
+|Standards and guidelines for documentation across all project types
 
 |`logging.md`
-|Guidelines for logging implementation and best practices
+|Logging conventions and configuration guidelines
 
 |`maintenance.md`
 |Standardized maintenance processes including project preparation, verification steps, and success criteria
 
 |`project.md`
 |Project configuration standards, build processes, and technology stack requirements
+
+|`sonar.md`
+|SonarCloud analysis process, review guidelines, and quality criteria
 
 |`technologies.md`
 |Technology stack definitions and usage guidelines
