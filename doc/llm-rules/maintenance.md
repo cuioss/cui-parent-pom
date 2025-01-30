@@ -41,6 +41,86 @@ When triggered by the command "prepare project for maintenance", follow these st
        
        Applied rewrite-prepare-release profile changes"
 
+## Execute Java Maintenance
+
+When triggered by the command "execute java maintenance", follow these steps:
+
+1. Precondition Verification
+   - Verify current branch is a feature branch
+   - Run `./mvnw clean verify` to ensure successful build
+   - Check for uncommitted changes (must be none)
+   - Only proceed if all preconditions are met
+
+2. Project Analysis
+   - Analyze overall project structure
+   - Identify all modules
+   - Document dependencies and relationships
+   - Note areas needing special attention
+
+3. Module-by-Module Maintenance
+   For each module, perform these steps:
+
+   a. Module Analysis
+      - Review module structure and purpose
+      - Identify all Java packages
+      - Document module-specific requirements
+
+   b. Package-Level Maintenance
+      For each Java package:
+
+      1. Test Refactoring
+         - Refactor unit tests to CUI standards:
+           * Use JUnit 5 exclusively
+           * Use cui-test-generator for test data
+           * Use cui-test-value-objects for value objects
+           * Use cui-jsf-test-basic for JSF testing
+           * Implement @ParameterizedTest where applicable
+         - Add/extend tests for better coverage:
+           * Focus on error scenarios
+           * Test all log levels
+           * Verify edge cases
+         - Build and verify:
+           * Run `./mvnw clean verify`
+           * Fix any issues
+           * Commit with message:
+             "Refactor tests in [package] to CUI standards
+             
+             - Updated to JUnit 5
+             - Enhanced test coverage
+             - Added error scenario tests"
+
+      2. Code Refactoring
+         - Apply CUI coding standards:
+           * Use CuiLogger with constant name 'LOGGER'
+           * Follow Java Bean standards
+           * Apply proper exception handling
+           * Use cui-java-tools utilities
+         - Build and verify:
+           * Run `./mvnw clean verify`
+           * Fix any issues
+           * Commit with message:
+             "Refactor code in [package] to CUI standards
+             
+             - Updated logging implementation
+             - Enhanced error handling
+             - Applied coding standards"
+
+      3. Documentation Update
+         - Update documentation to CUI standards:
+           * Verify all references exist
+           * Use proper linking
+           * Include code examples from tests
+           * Document all parameters and returns
+         - Build javadoc:
+           * Run `./mvnw javadoc:javadoc`
+           * Fix any warnings/errors
+           * Commit with message:
+             "Update documentation in [package] to CUI standards
+             
+             - Enhanced javadoc
+             - Added code examples
+             - Fixed references"
+
 ## Success Criteria
 
 Each step must meet these criteria before proceeding:
@@ -80,4 +160,40 @@ Applied [profile-name] profile changes
 - [Major change 2]
 
 All tests passing
+```
+
+3. Test Refactoring:
+```
+Refactor tests in [package] to CUI standards
+
+- Updated to JUnit 5
+- Enhanced test coverage for [areas]
+- Added error scenario tests for [components]
+- Improved assertions and validations
+
+Coverage increased to XX%
+```
+
+4. Code Refactoring:
+```
+Refactor code in [package] to CUI standards
+
+- Updated logging implementation
+- Enhanced error handling for [scenarios]
+- Applied coding standards
+- Improved [specific improvements]
+
+All tests passing
+```
+
+5. Documentation Updates:
+```
+Update documentation in [package] to CUI standards
+
+- Enhanced javadoc for [classes/methods]
+- Added code examples from unit tests
+- Fixed and verified all references
+- Added missing parameter documentation
+
+Javadoc builds without warnings
 ```
