@@ -11,3 +11,23 @@ Implementation Notes:
 - Use LogRecord#format for parameterized log messages
 - For LogAsserts testing, use LogRecord#resolveIdentifierString()
 - Use de.cuioss.test.juli.TestLogLevel for log levels in tests
+
+Testing Guidelines:
+1. Test Coverage Requirements:
+   - Verify all log levels: INFO, WARN, ERROR, FATAL
+   - Test parameter substitution
+   - Test exception logging
+   - Test template-based logging with LogRecord
+
+2. LogAsserts Usage:
+   - First argument must be TestLogLevel
+   - Only assertNoLogMessagePresent needs Logger parameter
+   - Use appropriate assertion methods:
+     * assertLogMessagePresent
+     * assertNoLogMessagePresent
+     * assertSingleLogMessagePresent
+
+3. Test Data:
+   - Use LogRecord#resolveIdentifierString for message verification
+   - Test both successful and error scenarios
+   - Verify correct log level usage
