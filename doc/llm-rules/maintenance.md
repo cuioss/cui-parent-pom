@@ -56,25 +56,42 @@ When triggered by the command "execute java maintenance", follow these steps:
    - Identify all modules
    - Document dependencies and relationships
    - Note areas needing special attention
+   - Document current API surface
+   - Review existing dependencies
 
-3. Module-by-Module Maintenance
+3. Critical Constraints
+   - API Stability:
+     * Must preserve existing public API
+     * No changes to method signatures
+     * No changes to class hierarchies
+     * No changes to package structure
+     * No removal or modification of public methods
+     * No changes to method return types or parameters
+   
+   - Dependency Management:
+     * No new dependencies may be added
+     * This constraint takes precedence over CUI standards
+     * Must work within existing dependency set
+     * Cannot add CUI dependencies if not already present
+
+4. Module-by-Module Maintenance
    For each module, perform these steps:
 
    a. Module Analysis
       - Review module structure and purpose
       - Identify all Java packages
       - Document module-specific requirements
+      - Document current dependencies
+      - Map public API surface
 
    b. Package-Level Maintenance
       For each Java package:
 
       1. Test Refactoring
-         - Refactor unit tests to CUI standards:
-           * Use JUnit 5 exclusively
-           * Use cui-test-generator for test data
-           * Use cui-test-value-objects for value objects
-           * Use cui-jsf-test-basic for JSF testing
-           * Implement @ParameterizedTest where applicable
+         - Refactor unit tests to CUI standards where possible within dependency constraints:
+           * Use JUnit 5 if already available
+           * Use existing test utilities
+           * Implement @ParameterizedTest where possible with existing dependencies
          - Add/extend tests for better coverage:
            * Focus on error scenarios
            * Test all log levels
@@ -85,25 +102,26 @@ When triggered by the command "execute java maintenance", follow these steps:
            * Commit with message:
              "Refactor tests in [package] to CUI standards
              
-             - Updated to JUnit 5
              - Enhanced test coverage
-             - Added error scenario tests"
+             - Added error scenario tests
+             - Maintained existing dependencies"
 
       2. Code Refactoring
-         - Apply CUI coding standards:
-           * Use CuiLogger with constant name 'LOGGER'
-           * Follow Java Bean standards
+         - Apply CUI coding standards within constraints:
+           * Use CuiLogger only if already available
+           * Maintain existing API contracts
            * Apply proper exception handling
-           * Use cui-java-tools utilities
+           * Use only existing utility classes
          - Build and verify:
            * Run `./mvnw clean verify`
            * Fix any issues
            * Commit with message:
              "Refactor code in [package] to CUI standards
              
-             - Updated logging implementation
              - Enhanced error handling
-             - Applied coding standards"
+             - Applied coding standards
+             - Maintained API stability
+             - No dependency changes"
 
       3. Documentation Update
          - Update documentation to CUI standards:
@@ -119,7 +137,8 @@ When triggered by the command "execute java maintenance", follow these steps:
              
              - Enhanced javadoc
              - Added code examples
-             - Fixed references"
+             - Fixed references
+             - Maintained API documentation"
 
 ## Success Criteria
 
@@ -166,10 +185,11 @@ All tests passing
 ```
 Refactor tests in [package] to CUI standards
 
-- Updated to JUnit 5
 - Enhanced test coverage for [areas]
 - Added error scenario tests for [components]
 - Improved assertions and validations
+- Maintained existing dependencies
+- No new dependencies added
 
 Coverage increased to XX%
 ```
@@ -178,9 +198,10 @@ Coverage increased to XX%
 ```
 Refactor code in [package] to CUI standards
 
-- Updated logging implementation
 - Enhanced error handling for [scenarios]
-- Applied coding standards
+- Applied coding standards within constraints
+- Maintained API stability
+- No dependency changes
 - Improved [specific improvements]
 
 All tests passing
@@ -194,6 +215,7 @@ Update documentation in [package] to CUI standards
 - Added code examples from unit tests
 - Fixed and verified all references
 - Added missing parameter documentation
+- Maintained API documentation
 
 Javadoc builds without warnings
 ```
