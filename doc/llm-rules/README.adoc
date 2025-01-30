@@ -19,6 +19,9 @@ This directory contains a number of modularized configurations aka 'Memories' th
 |`persist memory to repo`
 |Updates documentation in the repository to reflect new or modified AI memory rules. Automatically updates this README with new commands and memory files.
 
+|`execute java maintenance`
+|Performs standardized Java code maintenance tasks including code cleanup, dependency updates, and code quality improvements according to project standards.
+
 |Additional prompts will be documented as they are added...
 |
 |===
