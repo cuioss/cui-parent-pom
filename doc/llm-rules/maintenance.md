@@ -140,6 +140,128 @@ When triggered by the command "execute java maintenance", follow these steps:
              - Fixed references
              - Maintained API documentation"
 
+## SonarQube Integration
+
+SonarQube analysis is integrated into the maintenance process to ensure code quality and identify potential issues.
+
+### Configuration
+
+1. Project Setup
+   - Ensure sonar-maven-plugin is configured in pom.xml:
+     ```xml
+     <plugin>
+       <groupId>org.sonarsource.scanner.maven</groupId>
+       <artifactId>sonar-maven-plugin</artifactId>
+       <version>${sonar-maven-plugin.version}</version>
+     </plugin>
+     ```
+   - Configure sonar properties in pom.xml or settings.xml:
+     ```xml
+     <properties>
+       <sonar.host.url>https://sonarqube.server.url</sonar.host.url>
+       <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
+       <sonar.java.source>${maven.compiler.source}</sonar.java.source>
+       <sonar.java.target>${maven.compiler.target}</sonar.java.target>
+     </properties>
+     ```
+
+2. Authentication
+   - Use environment variables for authentication:
+     * SONAR_TOKEN for authentication token
+     * SONAR_HOST_URL for server URL (if not in pom.xml)
+
+### Analysis Process
+
+1. Initial Analysis
+   ```bash
+   ./mvnw clean verify sonar:sonar
+   ```
+
+2. Quality Gate Check
+   ```bash
+   ./mvnw sonar:sonar -Dsonar.qualitygate.wait=true
+   ```
+
+3. Branch Analysis
+   ```bash
+   ./mvnw sonar:sonar -Dsonar.branch.name=${branch_name}
+   ```
+
+### Integration with Maintenance Process
+
+During the "execute java maintenance" command, add these steps:
+
+1. After Project Analysis:
+   - Run initial SonarQube analysis
+   - Review results
+   - Document quality issues to address
+
+2. During Module-by-Module Maintenance:
+   a. Before starting module work:
+      - Run module-specific analysis
+      - Review module's quality metrics
+      - Note issues to address
+
+   b. After completing module work:
+      - Run analysis to verify improvements
+      - Ensure no new issues introduced
+      - Document remaining technical debt
+
+3. Final Verification:
+   - Run full project analysis
+   - Wait for quality gate
+   - Document improvements made
+   - Create technical debt report
+
+### Quality Metrics
+
+Monitor these key metrics:
+1. Code Coverage
+2. Duplicate Code
+3. Code Smells
+4. Technical Debt
+5. Bugs and Vulnerabilities
+6. Maintainability Rating
+7. Reliability Rating
+8. Security Rating
+
+### Handling Issues
+
+1. Critical Issues
+   - Must be fixed immediately
+   - Includes:
+     * Security vulnerabilities
+     * Bugs with high probability
+     * Critical code smells
+
+2. Major Issues
+   - Should be fixed during maintenance
+   - Includes:
+     * Code duplication
+     * Complex methods
+     * Insufficient coverage
+
+3. Minor Issues
+   - Fix if time permits
+   - Document if not fixed
+   - Create technical debt tickets
+
+### Commit Message Template for SonarQube Fixes
+
+```
+Fix SonarQube issues in [component]
+
+Issues resolved:
+- [Issue key] [Issue description]
+- [Issue key] [Issue description]
+
+Quality metrics improved:
+- [Metric] from XX to YY
+- [Metric] from XX to YY
+
+All quality gates passing
+```
+
 ## Success Criteria
 
 Each step must meet these criteria before proceeding:
