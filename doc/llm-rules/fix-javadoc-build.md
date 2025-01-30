@@ -32,4 +32,11 @@ Use the appropriate command based on project type:
 - Content rewrites
 - Style changes beyond error fixes
 
+## Validation
+- Verify all references exist
+- No speculative features added
+- Consistent terminology used
+- Documentation structure maintained
+- Changes are focused and minimal
+
 **Note**: These strict rules only apply within the "fix javadoc build" context.
