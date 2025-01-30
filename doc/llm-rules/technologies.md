@@ -1,21 +1,47 @@
-1. Core Technologies:
-   - Java 17
-   - MicroProfile
-   - Jakarta EE
-   - CDI
-   - Jakarta Server Faces
-   - Lombok
+# Technology Stack and Framework Guidelines
 
-2. Testing Stack:
-   - JUnit 5
-   - cui-test-generator
-   - cui-test-value-objects
-   - cui-jsf-test-basic
+## Core Technologies
 
-3. Logging Stack:
-   - CuiLogger
-   - cui-test-juli-logger
+### Java Platform
+- Java 17 LTS or higher
+- Jakarta EE compatible
+- Maven-based build system
 
-4. Utilities:
-   - cui-java-tools as standard library
-   - Prefer cuioss ecosystem libraries
+### Build Tools
+- Maven wrapper (mvnw) required
+- Maven plugins must be version-locked
+- Standardized plugin configurations
+
+### Testing Framework
+- JUnit 5 for unit testing
+- JaCoCo for code coverage
+
+### Quality Tools
+- SonarCloud for code analysis
+- Checkstyle for code style
+- SpotBugs for bug detection
+- PMD for code review
+
+## Framework Guidelines
+
+### Dependency Management
+1. Use managed dependencies via parent POM
+2. Explicit versioning in dependency management
+3. Regular dependency updates and audits
+4. Security vulnerability monitoring
+
+### Code Style
+1. Follow Java coding conventions
+2. Maintain consistent formatting
+3. Apply clean code principles
+
+### Documentation
+1. JavaDoc for public APIs
+2. README.md for project documentation
+3. CHANGELOG.md for version history
+
+### Version Control
+1. Git for source control
+2. Feature branch workflow
+3. Semantic versioning
+4. Conventional commits
