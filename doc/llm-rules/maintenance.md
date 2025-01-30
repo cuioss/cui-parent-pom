@@ -151,7 +151,6 @@ When triggered by the command "verify sonar", follow these steps:
 
 2. Access SonarCloud Analysis
    - URL format: https://sonarcloud.io/dashboard?id=cuioss_<project-name>&branch=<current_branch_name>
-   - For this project: https://sonarcloud.io/dashboard?id=cuioss_cui-java-tools&branch=<current_branch_name>
 
 3. Review Results:
    - Check quality gate status
