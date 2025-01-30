@@ -35,6 +35,9 @@ This directory contains a number of modularized configurations aka 'Memories' th
 |===
 |File |Description
 
+|`commit-policy.md`
+|Automated commit policy for Cascade Prompts
+
 |`documentation.md`
 |Standards and guidelines for documentation across all project types
 
