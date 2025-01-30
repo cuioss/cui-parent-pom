@@ -47,14 +47,11 @@ This directory contains a number of modularized configurations aka 'Memories' th
 |`project.md`
 |Project configuration standards, build processes, and technology stack requirements
 
-|`sonar.md`
-|SonarCloud analysis process, review guidelines, and quality criteria
-
 |`technologies.md`
 |Technology stack definitions and usage guidelines
 
 |`testing.md`
-|Testing standards, practices, and requirements
+|Testing frameworks, patterns and best practices
 
 |===
 
