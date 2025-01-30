@@ -1,3 +1,72 @@
+# LLM Rules for CUI OSS Projects
+
 Currently, we evaluate using https://codeium.com/windsurf[codeium/windsurf] for working with code-bases within the cui-projects.
 
-This directory contains a number of modularized configurations aka 'Memories'.
+This directory contains a number of modularized configurations aka 'Memories' that guide AI assistants in maintaining and developing CUI OSS projects.
+
+## Available Cascade Prompts
+
+[cols="2,4"]
+|===
+|Cascade Prompt |Description
+
+|`prepare project for maintenance`
+|Initiates standardized maintenance process including branch creation and initial verification
+
+|`verify sonar`
+|Accesses and reviews SonarCloud analysis for the current branch via direct URL
+
+|`persist memory to repo`
+|Updates documentation in the repository to reflect new or modified AI memory rules. Automatically updates this README with new commands and memory files.
+
+|Additional prompts will be documented as they are added...
+|
+|===
+
+## Memory Files Overview
+
+[cols="2,4"]
+|===
+|File |Purpose
+
+|`documentation.md`
+|Documentation standards and rules for code documentation, JavaDoc, and general documentation practices
+
+|`logging.md`
+|Guidelines for logging implementation and best practices
+
+|`maintenance.md`
+|Standardized maintenance processes including project preparation, verification steps, and success criteria
+
+|`project.md`
+|Project configuration standards, build processes, and technology stack requirements
+
+|`technologies.md`
+|Technology stack definitions and usage guidelines
+
+|`testing.md`
+|Testing standards, practices, and requirements
+
+|===
+
+## File Descriptions
+
+=== Documentation Rules (`documentation.md`)
+* Ensures accurate documentation of existing code
+* Enforces verified references and consistent terminology
+* Requires code examples from actual unit tests
+* Maintains zero-error javadoc builds
+
+=== Maintenance Processes (`maintenance.md`)
+* Defines standardized maintenance workflows
+* Includes branch management procedures
+* Specifies verification steps including SonarCloud analysis
+* Establishes success criteria for changes
+
+=== Project Standards (`project.md`)
+* Mandates maven-wrapper usage
+* Defines build and commit processes
+* Specifies technology requirements (Java 17, Jakarta EE)
+* Establishes library preferences
+
+NOTE: This document is automatically updated when new memories are persisted to the repository.
