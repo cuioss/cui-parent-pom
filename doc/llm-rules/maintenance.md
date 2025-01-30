@@ -140,6 +140,55 @@ When triggered by the command "execute java maintenance", follow these steps:
              - Fixed references
              - Maintained API documentation"
 
+## Finalize Java Maintenance
+
+When triggered by the command "finalize java maintenance", follow these steps:
+
+### 1. Precondition Verification
+Before proceeding, verify all preconditions are met:
+- Current branch is a feature branch (not master/main)
+- Project builds successfully with `./mvnw clean verify`
+- No uncommitted changes exist in the working directory
+
+If any precondition fails:
+- Report the specific failure
+- Provide guidance for resolution
+- Do not proceed until all conditions are met
+
+### 2. OpenRewrite Cleanup
+Execute extended cleanup using OpenRewrite:
+```bash
+./mvnw -Prewrite-prepare-release rewrite:run
+```
+
+### 3. Build Verification
+- Run full build: `./mvnw clean verify`
+- If build fails:
+  * Analyze build logs
+  * Fix identified issues
+  * Repeat build until successful
+- Do not proceed if build cannot be fixed
+
+### 4. Change Management
+If OpenRewrite made changes:
+- Review changes for correctness
+- Create descriptive commit message
+- Commit all changes
+
+### 5. Pull Request Creation
+- Create pull request from feature branch to master
+- Include in PR description:
+  * Summary of OpenRewrite changes
+  * Build verification results
+  * Any manual fixes applied
+
+### Success Criteria
+- All preconditions met
+- OpenRewrite cleanup completed
+- Build passes successfully
+- Changes (if any) committed
+- Pull request created
+
 ## SonarCloud Verification
 
 When triggered by the command "verify sonar", follow these steps:

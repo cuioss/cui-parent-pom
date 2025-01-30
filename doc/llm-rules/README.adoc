@@ -22,6 +22,9 @@ This directory contains a number of modularized configurations aka 'Memories' th
 |`execute java maintenance`
 |Performs standardized Java code maintenance tasks including code cleanup, dependency updates, and code quality improvements according to project standards.
 
+|`finalize java maintenance`
+|Executes final cleanup and verification steps using OpenRewrite, ensures build stability, and prepares changes for review via pull request.
+
 |Additional prompts will be documented as they are added...
 |
 |===
