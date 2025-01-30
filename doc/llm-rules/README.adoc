@@ -2,7 +2,16 @@
 
 Currently, we evaluate using https://codeium.com/windsurf[codeium/windsurf] for working with code-bases within the cui-projects.
 
-This directory contains a number of modularized configurations aka 'Memories' that guide AI assistants in maintaining and developing CUI OSS projects.
+This directory contains modularized configurations ('Memories') that guide AI assistants in maintaining and developing CUI OSS projects.
+
+## Purpose and Scope
+
+These rules ensure:
+
+1. Consistent code quality
+2. Standardized maintenance processes
+3. Uniform documentation practices
+4. Reliable testing approaches
 
 ## Available Cascade Prompts
 
@@ -10,63 +19,150 @@ This directory contains a number of modularized configurations aka 'Memories' th
 |===
 |Cascade Prompt |Description
 
+|`fix javadoc build`
+|Fixes Javadoc build errors and warnings:
+- Verifies build preconditions
+- Fixes only Javadoc errors/warnings
+- Makes minimal modifications
+- Preserves documentation content
+- No code changes allowed
+
 |`prepare project for maintenance`
-|Initiates standardized maintenance process including branch creation and initial verification
+|Initiates standardized maintenance process:
+- Creates feature branch
+- Performs initial verification
+- Sets up maintenance context
 
 |`verify sonar`
-|Accesses and reviews SonarCloud analysis for the current branch via direct URL
+|Performs SonarCloud analysis:
+- Accesses current branch analysis
+- Reviews quality gates
+- Examines new issues
+- Verifies coverage metrics
 
 |`persist memory to repo`
-|Updates documentation in the repository to reflect new or modified AI memory rules. Automatically updates this README with new commands and memory files.
+|Updates documentation:
+- Adds new memory rules
+- Updates README.adoc
+- Maintains documentation structure
+- Ensures consistency
 
-|Additional prompts will be documented as they are added...
-|
+|`execute java maintenance`
+|Performs code maintenance:
+- Updates dependencies
+- Applies code cleanup
+- Improves code quality
+- Follows project standards
+
+|`finalize java maintenance`
+|Completes maintenance:
+- Runs OpenRewrite recipes
+- Verifies build stability
+- Prepares pull request
+- Updates documentation
+
+|`verify llm-rules`
+|Reviews and updates rules:
+- Checks consistency
+- Updates documentation
+- Refactors as needed
+- Ensures completeness
+
 |===
 
 ## Memory Files Overview
 
 [cols="2,4"]
 |===
-|File |Purpose
+|File |Description
+
+|`commit-policy.md`
+|Automated commit policy for Cascade Prompts:
+- Defines when auto-commits are allowed
+- Specifies user confirmation requirements
+- Documents commit message standards
 
 |`documentation.md`
-|Documentation standards and rules for code documentation, JavaDoc, and general documentation practices
+|Documentation standards:
+- Code documentation rules
+- JavaDoc requirements
+- Example guidelines
+- Reference management
 
 |`logging.md`
-|Guidelines for logging implementation and best practices
+|Logging framework rules:
+- Configuration standards
+- Best practices
+- Tool integration
+- Testing approaches
 
 |`maintenance.md`
-|Standardized maintenance processes including project preparation, verification steps, and success criteria
+|Maintenance workflows:
+- Process definitions
+- Quality checks
+- Verification steps
+- Success criteria
 
 |`project.md`
-|Project configuration standards, build processes, and technology stack requirements
+|Project configuration:
+- Build requirements
+- Technology standards
+- Library guidelines
+- Process definitions
 
 |`technologies.md`
-|Technology stack definitions and usage guidelines
+|Technology standards:
+- Core platforms
+- Framework choices
+- Tool requirements
+- Version specifications
 
 |`testing.md`
-|Testing standards, practices, and requirements
+|Testing guidelines:
+- Framework usage
+- Coverage requirements
+- Best practices
+- Tool integration
 
 |===
 
-## File Descriptions
+## Implementation Notes
 
 === Documentation Rules (`documentation.md`)
-* Ensures accurate documentation of existing code
-* Enforces verified references and consistent terminology
-* Requires code examples from actual unit tests
-* Maintains zero-error javadoc builds
+* Ensures accurate API documentation
+* Maintains verified references
+* Requires test-based examples
+* Enforces zero-error builds
 
 === Maintenance Processes (`maintenance.md`)
-* Defines standardized maintenance workflows
-* Includes branch management procedures
-* Specifies verification steps including SonarCloud analysis
-* Establishes success criteria for changes
+* Defines workflow standards
+* Manages code quality
+* Integrates verification
+* Ensures consistency
 
 === Project Standards (`project.md`)
-* Mandates maven-wrapper usage
-* Defines build and commit processes
-* Specifies technology requirements (Java 17, Jakarta EE)
-* Establishes library preferences
+* Enforces build practices
+* Manages dependencies
+* Defines requirements
+* Maintains compatibility
 
 NOTE: This document is automatically updated when new memories are persisted to the repository.
+
+## Contributing
+
+When adding new rules:
+
+1. Follow existing structure
+2. Update README.adoc
+3. Maintain consistency
+4. Include clear examples
+5. Document rationale
+
+## Version Control
+
+This documentation follows:
+
+1. Semantic versioning
+2. Conventional commits
+3. Feature branch workflow
+4. Pull request reviews
