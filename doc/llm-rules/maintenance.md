@@ -140,6 +140,25 @@ When triggered by the command "execute java maintenance", follow these steps:
              - Fixed references
              - Maintained API documentation"
 
+## SonarCloud Verification
+
+When triggered by the command "verify sonar", follow these steps:
+
+1. Identify Current Branch
+   ```bash
+   git rev-parse --abbrev-ref HEAD
+   ```
+
+2. Access SonarCloud Analysis
+   - URL format: https://sonarcloud.io/dashboard?id=cuioss_<project-name>&branch=<current_branch_name>
+   - For this project: https://sonarcloud.io/dashboard?id=cuioss_cui-java-tools&branch=<current_branch_name>
+
+3. Review Results:
+   - Check quality gate status
+   - Review any new issues
+   - Verify code coverage metrics
+   - Examine security vulnerabilities
+
 ## Success Criteria
 
 Each step must meet these criteria before proceeding:
