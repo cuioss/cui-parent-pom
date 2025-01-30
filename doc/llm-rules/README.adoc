@@ -19,6 +19,14 @@ These rules ensure:
 |===
 |Cascade Prompt |Description
 
+|`fix javadoc build`
+|Fixes Javadoc build errors and warnings:
+- Verifies build preconditions
+- Fixes only Javadoc errors/warnings
+- Makes minimal modifications
+- Preserves documentation content
+- No code changes allowed
+
 |`prepare project for maintenance`
 |Initiates standardized maintenance process:
 - Creates feature branch
