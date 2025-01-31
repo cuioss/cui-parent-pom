@@ -62,10 +62,6 @@ When triggered by the command "cp: execute java maintenance", follow these steps
      * Initialize with current timestamp
      * Set status to "In Progress"
      * Record current branch
-   - Note: java-maintenance.md is local-only and excluded from git
-     * File is listed in .gitignore
-     * Never commit this file
-     * Each developer maintains their own progress
 
 3. Project Analysis
    - Analyze overall project structure
@@ -98,7 +94,6 @@ When triggered by the command "cp: execute java maintenance", follow these steps
       - Review module structure and purpose
       - Identify all Java packages
       - Document module-specific requirements
-      - Document current dependencies
       - Map public API surface
 
    b. Package-Level Maintenance
