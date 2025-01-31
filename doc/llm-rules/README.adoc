@@ -19,6 +19,13 @@ These rules ensure:
 |===
 |Cascade Prompt |Description
 
+|`cp`
+|Lists all available prompts:
+- Displays numbered prompt list
+- Enables prompt selection by number
+- Executes selected prompt
+- Maintains consistent workflow
+
 |`cp: fix javadoc`
 |Fixes Javadoc build errors and warnings:
 - Verifies build preconditions
@@ -75,6 +82,13 @@ These rules ensure:
 [cols="2,4"]
 |===
 |File |Description
+
+|`prompt-list.md`
+|Cascade Prompt list command:
+- Defines numbered prompt listing
+- Documents prompt selection process
+- Provides usage guidelines
+- Maintains prompt consistency
 
 |`commit-policy.md`
 |Automated commit policy for Cascade Prompts:
