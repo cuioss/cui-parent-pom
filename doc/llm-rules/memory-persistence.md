@@ -29,7 +29,12 @@ When triggered by the prompt "cp: persist memory", follow these steps:
    - Include overview of changes
    - Reference related documentation
 
-5. Create Pull Request (if needed)
+5. Push Changes
+   - Push feature branch to remote
+   - Command: git push -u origin <branch_name>
+   - Verify push was successful
+
+6. Create Pull Request (if needed)
    - Title: Clear description of memory updates
    - Body should include:
      * Overview of changes
