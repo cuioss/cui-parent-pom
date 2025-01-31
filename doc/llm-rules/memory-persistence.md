@@ -4,7 +4,7 @@ This document outlines the process for persisting and updating memory rules in t
 
 ## Process Overview
 
-When triggered by the prompt "persist memory to repo", follow these steps:
+When triggered by the prompt "cp: persist memory", follow these steps:
 
 1. Create Feature Branch (if needed)
    - Branch name format: `/feature/memory_<descriptive_name>`
@@ -89,7 +89,7 @@ Before submitting changes:
 
 ## Cascade Prompt Structure
 
-The "persist memory to repo" prompt ensures:
+The "cp: persist memory" prompt ensures:
 1. Documentation is properly organized and maintained
 2. README.adoc reflects all available prompts and memory files
 3. Changes are properly tracked and reviewed

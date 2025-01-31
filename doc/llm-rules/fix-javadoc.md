@@ -1,13 +1,13 @@
-# Fix Javadoc Build Rules
+# Fix Javadoc Rules
 
-When asked to "fix javadoc build", follow these strict rules:
+When asked to "cp: fix javadoc", follow these strict rules:
 
 ## 1. Preconditions
 Verify all before proceeding:
 - Project builds successfully: `./mvnw clean verify`
 - No uncommitted changes exist in the repository
 
-## 2. Verify Javadoc Build
+## 2. Verify Javadoc Generation
 Use the appropriate command based on project type:
 - Single module projects: `./mvnw clean verify -Pjavadoc`
 - Multi-module projects: `./mvnw clean verify -Pjavadoc-mm-reporting`
@@ -39,4 +39,4 @@ Use the appropriate command based on project type:
 - Documentation structure maintained
 - Changes are focused and minimal
 
-**Note**: These strict rules only apply within the "fix javadoc build" context.
+**Note**: These strict rules only apply within the "cp: fix javadoc" context.

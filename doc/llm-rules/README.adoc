@@ -19,7 +19,7 @@ These rules ensure:
 |===
 |Cascade Prompt |Description
 
-|`fix javadoc build`
+|`cp: fix javadoc`
 |Fixes Javadoc build errors and warnings:
 - Verifies build preconditions
 - Fixes only Javadoc errors/warnings
@@ -27,41 +27,41 @@ These rules ensure:
 - Preserves documentation content
 - No code changes allowed
 
-|`prepare project for maintenance`
+|`cp: prepare project maintenance`
 |Initiates standardized maintenance process:
 - Creates feature branch
 - Performs initial verification
 - Sets up maintenance context
 
-|`verify sonar`
+|`cp: verify sonar`
 |Performs SonarCloud analysis:
 - Accesses current branch analysis
 - Reviews quality gates
 - Examines new issues
 - Verifies coverage metrics
 
-|`persist memory to repo`
+|`cp: persist memory`
 |Updates documentation:
 - Adds new memory rules
 - Updates README.adoc
 - Maintains documentation structure
 - Ensures consistency
 
-|`execute java maintenance`
+|`cp: execute java maintenance`
 |Performs code maintenance:
 - Updates dependencies
 - Applies code cleanup
 - Improves code quality
 - Follows project standards
 
-|`finalize java maintenance`
+|`cp: finalize java maintenance`
 |Completes maintenance:
 - Runs OpenRewrite recipes
 - Verifies build stability
 - Prepares pull request
 - Updates documentation
 
-|`verify llm-rules`
+|`cp: verify llm-rules`
 |Reviews and updates rules:
 - Checks consistency
 - Updates documentation

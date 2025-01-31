@@ -2,9 +2,9 @@
 
 This document outlines standardized maintenance processes for cuioss projects.
 
-## Prepare Project for Maintenance
+## Prepare Project for Maintenance Preparation
 
-When triggered by the command "prepare project for maintenance", follow these steps:
+When triggered by the command "cp: prepare project maintenance", follow these steps:
 
 1. Create and Push Feature Branch
    - Branch name format: `/feature/maintenance_<descriptive_name>`
@@ -43,7 +43,7 @@ When triggered by the command "prepare project for maintenance", follow these st
 
 ## Execute Java Maintenance
 
-When triggered by the command "execute java maintenance", follow these steps:
+When triggered by the command "cp: execute java maintenance", follow these steps:
 
 1. Precondition Verification
    - Verify current branch is a feature branch
@@ -142,7 +142,7 @@ When triggered by the command "execute java maintenance", follow these steps:
 
 ## SonarCloud Verification
 
-When triggered by the command "verify sonar", follow these steps:
+When triggered by the command "cp: verify sonar", follow these steps:
 
 ### 1. Access Process
 
@@ -221,7 +221,7 @@ A successful SonarCloud review should:
 
 ## Finalize Java Maintenance
 
-When triggered by the command "finalize java maintenance", follow these steps:
+When triggered by the command "cp: finalize java maintenance", follow these steps:
 
 ### 1. Precondition Verification
 Before proceeding, verify all preconditions are met:
