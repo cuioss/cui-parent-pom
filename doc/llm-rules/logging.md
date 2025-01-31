@@ -1,10 +1,11 @@
 1. Use CuiLogger with constant name 'LOGGER'
 2. Never use log4j or slf4j
-3. Exception parameter always comes first in log methods
-4. Use '%s' for string substitutions (not '{}')
-5. Use de.cuioss.tools.logging.LogRecord for template logging
-6. Use cui-test-juli-logger for testing
-7. Use de.cuioss.test.juli.TestLogLevel for log levels in tests
+3. Never use System.out or System.err - always use appropriate logger level
+4. Exception parameter always comes first in log methods
+5. Use '%s' for string substitutions (not '{}')
+6. Use de.cuioss.tools.logging.LogRecord for template logging
+7. Use cui-test-juli-logger for testing
+8. Use de.cuioss.test.juli.TestLogLevel for log levels in tests
 
 Implementation Notes:
 - LogRecord API: https://github.com/cuioss/cui-java-tools/tree/master/src/main/java/de/cuioss/tools/logging
