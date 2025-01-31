@@ -1,3 +1,18 @@
+# Project Configuration and Build Rules
+
+## Type: Rules
+## Related Files: 
+- `java-maintenance.md`: For Java-specific configurations
+- `technologies.md`: For technology standards
+- `memory-persistence.md`: For documentation updates
+
+## Commands: 
+- `cp: prepare project maintenance`
+- `cp: execute java maintenance`
+
+## Overview
+This document defines the core project configuration and build rules for CUI OSS projects.
+
 1. Always use maven-wrapper (mvnw) when available
 2. Run complete module build after each change
 3. Create local commit after each successful build
