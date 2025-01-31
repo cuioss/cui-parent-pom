@@ -118,11 +118,12 @@ These rules ensure:
 - Success criteria
 
 |`project.md`
-|Project configuration:
-- Build requirements
+|Project structure and build rules:
+- Maven wrapper usage
+- Build process guidelines
+- Build optimization techniques
 - Technology standards
-- Library guidelines
-- Process definitions
+- Dependency management
 
 |`technologies.md`
 |Technology standards:
