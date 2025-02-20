@@ -23,7 +23,7 @@
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.parsson>1.1.7</version.parsson>
         <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
-        <version.testcontainer>1.20.4</version.testcontainer>
+        <version.testcontainer>1.20.5</version.testcontainer>
         <version.rest-assured>5.5.1</version.rest-assured>
     </properties>
     <dependencyManagement>
