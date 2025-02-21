@@ -688,5 +688,31 @@
                 </pluginManagement>
             </build>
         </profile>
+        <profile>
+            <!-- Usage: ./mvnw -Prewrite-maven-clean rewrite:run -->
+            <!-- Unifies / cleans the maven-poms-->
+            <id>rewrite-maven-clean</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openrewrite.maven</groupId>
+                        <artifactId>rewrite-maven-plugin</artifactId>
+                        <configuration>
+                            <activeRecipes>
+                                <recipe>org.openrewrite.maven.BestPractices</recipe>
+                            </activeRecipes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>rewrite</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

@@ -8,7 +8,7 @@
     <recipe>org.openrewrite.java.OrderImports</recipe>
 </activeRecipes>
 
-/mvnw -Prewrite-modernize rewrite:run
+./mvnw -Prewrite-modernize rewrite:run
 
 ->
 <activeRecipes>
@@ -20,4 +20,11 @@
     <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
     <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
     <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
+</activeRecipes>
+
+./mvnw -Prewrite-maven-clean rewrite:run
+
+->
+<activeRecipes>
+    <recipe>org.openrewrite.maven.BestPractices</recipe>
 </activeRecipes>
