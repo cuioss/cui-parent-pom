@@ -42,21 +42,6 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
 </dependencyManagement>
 ----
 
-== Available Cascade Prompts
-
-=== fix javadoc build
-Fixes Javadoc build errors and warnings while maintaining strict rules about minimal modifications.
-See link:doc/llm-rules/fix-javadoc-build.md[rules].
-
-=== logging standards
-Clarified and enhanced logging standards, including:
-- Logger naming and configuration
-- String substitution patterns
-- Test coverage requirements
-- Clear distinction between production and test logging
-
-See link:doc/llm-rules/logging.md[rules].
-
 == Usage for Standard java-modules
 
 [source,xml]
