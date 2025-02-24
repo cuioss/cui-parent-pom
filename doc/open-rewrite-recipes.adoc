@@ -1,16 +1,23 @@
+[source,shell]
+----
 ./mvnw -Prewrite-prepare-release rewrite:run
+----
 
-->
+[source,xml]
+----
 <activeRecipes>
     <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
     <recipe>org.openrewrite.java.format.AutoFormat</recipe>
     <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
     <recipe>org.openrewrite.java.OrderImports</recipe>
 </activeRecipes>
-
+----
+[source,shell]
+----
 ./mvnw -Prewrite-modernize rewrite:run
-
-->
+----
+[source,xml]
+----
 <activeRecipes>
     <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
     <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
@@ -21,10 +28,14 @@
     <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
     <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
 </activeRecipes>
-
+----
+[source,shell]
+----
 ./mvnw -Prewrite-maven-clean rewrite:run
-
-->
+----
+[source,xml]
+----
 <activeRecipes>
     <recipe>org.openrewrite.maven.BestPractices</recipe>
 </activeRecipes>
+----
