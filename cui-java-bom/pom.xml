@@ -19,7 +19,7 @@
     </modules>
 
     <properties>
-        <version.cui.core.ui.model>2.1.0</version.cui.core.ui.model>
+        <version.cui.core.ui.model>2.2.0</version.cui.core.ui.model>
         <version.cui.java.tools>2.2.1</version.cui.java.tools>
         <!-- Test -->
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
