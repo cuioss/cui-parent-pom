@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.cuioss</groupId>
@@ -22,12 +23,24 @@
         <version.log4j>2.24.3</version.log4j>
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.parsson>1.1.7</version.parsson>
-        <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
-        <version.testcontainer>1.20.5</version.testcontainer>
         <version.rest-assured>5.5.1</version.rest-assured>
+        <version.cui-jwt-token-handling>1.0.0</version.cui-jwt-token-handling>
+        <version.cui.test.keycloak.integration>1.0.0</version.cui.test.keycloak.integration>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>de.cuioss</groupId>
+                <artifactId>cui-jwt-token-handling</artifactId>
+                <scope>compile</scope>
+                <version>${version.cui-jwt-token-handling}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.cuioss.test</groupId>
+                <artifactId>cui-test-keycloak-integration</artifactId>
+                <version>${version.cui.test.keycloak.integration}</version>
+                <scope>test</scope>
+            </dependency>
             <!-- Logging -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -141,28 +154,6 @@
                 <groupId>org.eclipse.parsson</groupId>
                 <artifactId>parsson</artifactId>
                 <version>${version.parsson}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>testcontainers</artifactId>
-                <version>${version.testcontainer}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>junit</groupId>
-                        <artifactId>junit</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.github.dasniko</groupId>
-                <artifactId>testcontainers-keycloak</artifactId>
-                <version>${version.testcontainers-keycloak}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.testcontainers</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>${version.testcontainer}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
