@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -21,6 +22,7 @@
     <properties>
         <version.cui.core.ui.model>2.1.0</version.cui.core.ui.model>
         <version.cui.java.tools>2.2.1</version.cui.java.tools>
+        <version.cui.test.mockwebserver>1.0.0</version.cui.test.mockwebserver>
         <!-- Test -->
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
         Otherwise, it's getting messy-->
@@ -82,6 +84,12 @@
                 <groupId>de.cuioss.test</groupId>
                 <artifactId>cui-test-generator</artifactId>
                 <version>${version.cui.test.generator}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.cuioss.test</groupId>
+                <artifactId>cui-test-mockwebserver-junit5</artifactId>
+                <version>${version.cui.test.mockwebserver}</version>
                 <scope>test</scope>
             </dependency>
 
