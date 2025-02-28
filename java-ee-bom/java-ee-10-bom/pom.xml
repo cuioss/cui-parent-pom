@@ -37,7 +37,6 @@
         <version.microprofile.context-propagation.impl.smallrye>2.2.0
         </version.microprofile.context-propagation.impl.smallrye>
         <version.org.jboss.resteasy.client>6.2.10.Final</version.org.jboss.resteasy.client>
-        <version.smallrye-jwt>4.5.2</version.smallrye-jwt>
         <version.org.jboss.resteasy.microprofile>3.0.1.Final</version.org.jboss.resteasy.microprofile>
     </properties>
     <dependencyManagement>
