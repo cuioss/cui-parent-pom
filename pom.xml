@@ -148,7 +148,7 @@
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.15.1</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>6.3.0</open.rewrite.maven.plugin.version>
-        <rewrite-testing-frameworks.version>3.3.0</rewrite-testing-frameworks.version>
+        <rewrite-testing-frameworks.version>3.4.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.4.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
         <version.quarkus>3.19.3</version.quarkus>
