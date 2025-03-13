@@ -1,0 +1,40 @@
+= cui java dependency management
+
+Provides a number of standard-java dependency-declarations that can be consumed directly. This Bill of Materials (BOM) defines versions for common Java libraries and CUI tools to ensure consistency across projects.
+
+== Modules
+
+* link:cui-java-parent/README.adoc[cui-java-parent] - Parent POM for simple Java projects
+
+== Usage
+
+To use this BOM in your project, add it to your dependencyManagement section:
+
+[source, xml]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>de.cuioss</groupId>
+            <artifactId>cui-java-bom</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+----
+
+This BOM includes managed dependencies for:
+
+* Standard Java libraries
+* Project Lombok
+* JDOM2
+* CUI Java Tools
+* CUI Core UI Model
+* Testing frameworks:
+  * JUnit 5
+  * Hamcrest
+  * EasyMock
+  * CUI Test utilities
+  * Awaitility

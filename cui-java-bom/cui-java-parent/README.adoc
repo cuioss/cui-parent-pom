@@ -1,0 +1,84 @@
+= cui java parent
+
+Parent pom for simple java-projects. Provides configuration for Java projects with standard Maven plugins and profiles.
+
+== Usage
+
+To use this parent POM in your project, add it to your pom.xml:
+
+[source, xml]
+----
+<parent>
+    <groupId>de.cuioss</groupId>
+    <artifactId>cui-java-parent</artifactId>
+    <version>${version}</version>
+</parent>
+----
+
+This parent POM is part of the link:../README.adoc[cui-java-bom] module.
+
+== Profiles
+
+=== release
+Configures the project for a release build with all necessary plugins for deployment to Maven Central.
+
+[source,shell]
+----
+./mvnw -Prelease clean install
+----
+
+=== release-snapshot
+Configures the project for a snapshot release build.
+
+[source,shell]
+----
+./mvnw -Prelease-snapshot clean install
+----
+
+=== javadoc
+Generates Javadoc documentation.
+
+[source,shell]
+----
+./mvnw -Pjavadoc javadoc:javadoc
+----
+
+=== sonar
+Configures the project for Sonar analysis.
+
+[source,shell]
+----
+./mvnw -Psonar sonar:sonar
+----
+
+=== javadoc-mm-reporting
+Generates aggregated Javadoc for multi-module projects.
+
+[source,shell]
+----
+./mvnw -Pjavadoc-mm-reporting site
+----
+
+=== rewrite-prepare-release
+Unifies code aspects like formatting, headers, and imports.
+
+[source,shell]
+----
+./mvnw -Prewrite-prepare-release rewrite:run
+----
+
+=== rewrite-modernize
+Modifies the codebase to follow Java best practices.
+
+[source,shell]
+----
+./mvnw -Prewrite-modernize rewrite:run
+----
+
+=== coverage
+Configures the project for local code coverage analysis.
+
+[source,shell]
+----
+./mvnw -Pcoverage verify
+----

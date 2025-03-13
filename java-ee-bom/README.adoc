@@ -1,0 +1,33 @@
+= java ee parent
+
+Aggregates the different java-ee versions. This module serves as a parent for Jakarta EE related Bill of Materials (BOM) modules, providing a unified entry point for Jakarta EE dependencies.
+
+This module is part of the link:../README.adoc[cui-parent-pom] project.
+
+== Submodules
+
+This parent module includes the following submodules:
+
+* link:java-ee-10-bom/README.adoc[java-ee-10-bom]: Bundles all Java EE 10 related dependencies
+* link:java-ee-orthogonal/README.adoc[java-ee-orthogonal]: Libraries that are used in the Jakarta EE context but are agnostic to the actual version
+
+== Usage
+
+To use this BOM in your project, add it to your dependencyManagement section:
+
+[source, xml]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>de.cuioss</groupId>
+            <artifactId>java-ee-bom</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+----
+
+This will import all the managed dependencies from both the java-ee-10-bom and java-ee-orthogonal modules.

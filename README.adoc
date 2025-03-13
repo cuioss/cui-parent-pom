@@ -13,19 +13,25 @@ It aims at modules being at least Java 17. It defines the sonatype-repositories 
 
 Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-Home-Page]
 
-== Maven Coordinates
+== Modules
 
-=== General parent pom
+* link:cui-java-bom/README.adoc[cui-java-bom] - Java dependency management
+* link:java-ee-bom/README.adoc[java-ee-bom] - Jakarta EE dependency management
+
+== Usage
+
+=== As a parent POM
 
 [source,xml]
 ----
 <parent>
    <groupId>de.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
+   <version>${version}</version>
 </parent>
 ----
 
-=== Including dependency-management
+=== Including dependency management
 
 [source,xml]
 ----
@@ -34,7 +40,7 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
         <dependency>
             <groupId>de.cuioss</groupId>
             <artifactId>cui-java-bom</artifactId>
-            <version>1.0</version>
+            <version>${version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -69,6 +75,5 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
             <artifactId>junit-jupiter</artifactId>
         </dependency>
     </dependencies>
-    </build>
 </project>
 ----

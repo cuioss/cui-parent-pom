@@ -1,0 +1,39 @@
+= java-ee-orthogonal
+
+Libraries that are used in the jakarta-ee-context but are agnostic to the actual version. This module provides dependency management for common utilities and libraries that work across different Jakarta EE versions.
+
+This module is part of the link:../README.adoc[java-ee-bom] module.
+
+== Usage
+
+To use this BOM in your project, add it to your dependencyManagement section:
+
+[source, xml]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>de.cuioss</groupId>
+            <artifactId>java-ee-orthogonal</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+----
+
+This BOM includes managed dependencies for:
+
+* SLF4J Logging
+* OWASP HTML Sanitizer
+* PrettyTime
+* Jandex (for CDI scanning)
+* Caffeine Cache
+* Apache HttpCore
+* Log4j
+* SmallRye JWT
+* Parsson (JSON implementation)
+* REST Assured
+* CUI JWT Token Handling
+* CUI Test Keycloak Integration

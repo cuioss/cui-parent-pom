@@ -1,0 +1,35 @@
+= java ee-10-bom
+
+Bundles all Java EE 10 related dependencies. This Bill of Materials (BOM) provides managed dependencies for Jakarta EE 10 applications, including JSF components, MicroProfile implementations, and related libraries.
+
+This module is part of the link:../README.adoc[java-ee-bom] module.
+
+== Usage
+
+To use this BOM in your project, add it to your dependencyManagement section:
+
+[source, xml]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>de.cuioss</groupId>
+            <artifactId>java-ee-10-bom</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+----
+
+This BOM includes managed dependencies for:
+
+* Jakarta EE 10 Web API
+* MyFaces JSF Implementation
+* OmniFaces
+* PrimeFaces
+* Weld (CDI Implementation)
+* MicroProfile APIs and implementations
+* RESTEasy
+* Quarkus integration components
