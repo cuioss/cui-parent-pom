@@ -31,7 +31,7 @@
         <version.microprofile.metrics.impl.smallrye>5.1.0</version.microprofile.metrics.impl.smallrye>
         <version.microprofile.config>3.1</version.microprofile.config>
         <!-- There seems to an internal problem with 3.12.2 -->
-        <version.microprofile.config.impl.smallrye>3.11.3</version.microprofile.config.impl.smallrye>
+        <version.microprofile.config.impl.smallrye>3.12.3</version.microprofile.config.impl.smallrye>
         <version.microprofile.rest-client>3.0.1</version.microprofile.rest-client>
         <version.microprofile.context-propagation>1.3</version.microprofile.context-propagation>
         <version.microprofile.context-propagation.impl.smallrye>2.2.0
