@@ -24,7 +24,7 @@
         <!-- Test -->
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
         Otherwise, it's getting messy-->
-        <version.junit.jupiter>5.10.5</version.junit.jupiter>
+        <version.junit.jupiter>5.12.1</version.junit.jupiter>
         <version.hamcrest>3.0</version.hamcrest>
         <version.cui.test.juli.logger>2.0.1</version.cui.test.juli.logger>
         <version.cui.test.generator>2.2.0</version.cui.test.generator>
