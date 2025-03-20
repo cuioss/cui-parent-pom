@@ -151,7 +151,7 @@
         <rewrite-testing-frameworks.version>3.4.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.4.0</rewrite-migrate-java.version>
         <!-- Quarkus -->
-        <version.quarkus>3.19.3</version.quarkus>
+        <version.quarkus>3.21.0</version.quarkus>
     </properties>
 
     <repositories>
