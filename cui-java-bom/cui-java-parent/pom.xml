@@ -289,6 +289,10 @@
                                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                                 <recipe>org.openrewrite.java.OrderImports</recipe>
                                 <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.AssertTrueInstanceofToAssertInstanceOf</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.UseAssertSame</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.CleanupAssertions</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.AssertTrueInstanceofToAssertInstanceOf</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
@@ -322,6 +326,7 @@
                                 <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
