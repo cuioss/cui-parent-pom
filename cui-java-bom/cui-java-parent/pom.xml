@@ -288,6 +288,7 @@
                                 <recipe>org.openrewrite.java.format.AutoFormat</recipe>
                                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                                 <recipe>org.openrewrite.java.OrderImports</recipe>
+                                <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
