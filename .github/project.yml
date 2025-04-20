@@ -1,4 +1,4 @@
-.name: cui parent pom
+name: cui parent pom
 pages-reference: cui-parent-pom
 release:
   current-version: 0.9.4
