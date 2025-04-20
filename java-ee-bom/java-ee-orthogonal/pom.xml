@@ -20,6 +20,7 @@
         Otherwise, it's getting messy-->
         <version.log4j>2.24.3</version.log4j>
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
+        <version.bouncycastle>1.80</version.bouncycastle>
         <version.parsson>1.1.7</version.parsson>
         <version.rest-assured>5.5.1</version.rest-assured>
         <version.cui-jwt-token-handling>1.0.0</version.cui-jwt-token-handling>
@@ -127,6 +128,16 @@
                 <groupId>io.smallrye</groupId>
                 <artifactId>smallrye-jwt</artifactId>
                 <version>${version.smallrye-jwt}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk18on</artifactId>
+                <version>${version.bouncycastle}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk18on</artifactId>
+                <version>${version.bouncycastle}</version>
             </dependency>
             <!-- Test: Create jwt-tokens -->
             <dependency>
