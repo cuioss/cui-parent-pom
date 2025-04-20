@@ -77,3 +77,14 @@ Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-
     </dependencies>
 </project>
 ----
+
+== Updating the Maven Wrapper
+
+To update the Maven Wrapper scripts (mvnw, mvnw.cmd, .mvn/wrapper), run the following command:
+
+[source,shell]
+----
+./mvnw wrapper:wrapper
+----
+
+This will update the Maven Wrapper to the latest version provided by the takari-maven-wrapper-plugin.
