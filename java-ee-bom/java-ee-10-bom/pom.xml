@@ -24,6 +24,8 @@
         <version.jakarta.websocket-api>2.0.0</version.jakarta.websocket-api>
         <version.weld>5.1.2.Final</version.weld>
         <version.weld.junit5>4.0.3.Final</version.weld.junit5>
+        <version.json-api>2.1.3</version.json-api>
+        <version.parsson>1.1.7</version.parsson>
         <!-- MicroProfiles (https://microprofile.io/) -->
         <version.microprofile.health>4.0.1</version.microprofile.health>
         <version.microprofile.health.impl.smallrye>4.2.0</version.microprofile.health.impl.smallrye>
@@ -194,6 +196,19 @@
                         <artifactId>jakarta.enterprise.cdi-api</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.json</groupId>
+                <artifactId>jakarta.json-api</artifactId>
+                <version>${version.json-api}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Implementation of jakarta.json-api: Currently test only for oauth-token-module-->
+            <dependency>
+                <groupId>org.eclipse.parsson</groupId>
+                <artifactId>parsson</artifactId>
+                <version>${version.parsson}</version>
+                <scope>test</scope>
             </dependency>
             <!-- MicroProfile Health -->
             <dependency>
