@@ -52,10 +52,10 @@ jobs:
         run: |
           git checkout -b release
           ./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} -Dreproducible.build.outputTimestamp=${{steps.metadata.outputs.reproducible-outputTimestamp}}
-          ./mvnw -Prelease-pom site:site site:stage -Dreproducible.build.outputTimestamp=${{steps.metadata.outputs.reproducible-outputTimestamp}}
+          ./mvnw -Prelease-pom site:site site:stage
           git checkout ${{vars.GITHUB_BASE_REF}}
           git rebase release
-          ./mvnw -Prelease-pom -B release:perform -DskipTests -Dreproducible.build.outputTimestamp=${{steps.metadata.outputs.reproducible-outputTimestamp}}
+          ./mvnw -Prelease-pom -B release:perform -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
