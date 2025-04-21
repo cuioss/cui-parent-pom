@@ -91,6 +91,7 @@
     </distributionManagement>
 
     <properties>
+        <version.cui.parent>0.9-SNAPSHOT</version.cui.parent>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->

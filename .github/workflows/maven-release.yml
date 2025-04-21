@@ -48,6 +48,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "Cuioss Robot Action"
 
+      - name: Update version.cui.parent in pom.xml
+        run: ./mvnw versions:set-property -Dproperty=version.cui.parent -DnewVersion=${{steps.metadata.outputs.current-version}} -DgenerateBackupPoms=false
+
       - name: Maven release ${{steps.metadata.outputs.current-version}}
         run: |
           git checkout -b release
