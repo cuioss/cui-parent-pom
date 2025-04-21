@@ -112,9 +112,7 @@
         <maven.failsafe.plugin.version>3.5.3</maven.failsafe.plugin.version>
         <maven.gpg.plugin.version>3.2.7</maven.gpg.plugin.version>
         <maven.install.plugin.version>3.1.4</maven.install.plugin.version>
-        <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
-
-        <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
+      
         <maven.release.plugin.version>3.1.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
@@ -150,6 +148,7 @@
         <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.7.0</rewrite-migrate-java.version>
+        <reproducible.build.outputTimestamp>2025-04-20T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
@@ -316,36 +315,7 @@
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven.install.plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven.jar.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven.javadoc.plugin.version}</version>
-                    <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <sourcepath>src/main/java</sourcepath>
-                        <linksource>true</linksource>
-                        <quiet>true</quiet>
-                        <notimestamp>true</notimestamp>
-                        <splitindex>true</splitindex>
-                        <doctitle>CUIOSS-Documentation</doctitle>
-                        <links>
-                            <link>https://javaee.github.io/javaee-spec/javadocs/</link>
-                        </links>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+                <!-- Removed maven-jar-plugin configuration as it is now handled in cui-java-parent -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
@@ -463,6 +433,8 @@
                                 <Build-Number>${buildNumber}</Build-Number>
                             </manifestEntries>
                         </archive>
+                        <reproducible>true</reproducible>
+                        <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                     </configuration>
                 </plugin>
                 <plugin>

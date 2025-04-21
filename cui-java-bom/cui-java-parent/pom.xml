@@ -13,6 +13,8 @@
     <description>Parent pom for simple java-projects</description>
 
     <properties>
+        <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
+        <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
         <maven.javadoc.plugin.failOnError>true</maven.javadoc.plugin.failOnError>
         <!-- See https://docs.oracle.com/en/java/javase/17/docs/specs/man/javadoc.html#additional-options-provided-by-the-standard-doclet-->
         <maven.javadoc.plugin.doclint>html</maven.javadoc.plugin.doclint>
@@ -23,6 +25,7 @@
         <maven.jar.plugin.automatic.module.name>
             ${project.groupId}.${project.artifactId}
         </maven.jar.plugin.automatic.module.name>
+        <reproducible.build.outputTimestamp>2025-04-20T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <build>
@@ -79,6 +82,8 @@
                                 <Build-Number>${buildNumber}</Build-Number>
                             </manifestEntries>
                         </archive>
+                        <reproducible>true</reproducible>
+                        <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                     </configuration>
                 </plugin>
             </plugins>
