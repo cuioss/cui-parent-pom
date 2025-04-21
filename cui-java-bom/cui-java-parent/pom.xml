@@ -25,7 +25,6 @@
         <maven.jar.plugin.automatic.module.name>
             ${project.groupId}.${project.artifactId}
         </maven.jar.plugin.automatic.module.name>
-        <reproducible.build.outputTimestamp>2025-04-20T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <build>
