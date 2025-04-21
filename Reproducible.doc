@@ -13,7 +13,7 @@ This document lists all concrete, actionable steps to achieve reproducible build
   - mvnw and mvnw.cmd are present and committed.
 - [x] **Java version set explicitly**
   - <maven.compiler.source>17</maven.compiler.source> and <maven.compiler.target>17</maven.compiler.target> are set in the root pom.xml and inherited by modules.
-- [ ] **Reproducibility configuration in JAR/WAR plugins**
+- [x] **Reproducibility configuration in JAR/WAR plugins**
   - Add to every maven-jar-plugin and maven-war-plugin in all modules:
     <configuration>
       <reproducible>true</reproducible>

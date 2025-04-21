@@ -112,7 +112,7 @@
         <maven.failsafe.plugin.version>3.5.3</maven.failsafe.plugin.version>
         <maven.gpg.plugin.version>3.2.7</maven.gpg.plugin.version>
         <maven.install.plugin.version>3.1.4</maven.install.plugin.version>
-      
+    
         <maven.release.plugin.version>3.1.1</maven.release.plugin.version>
         <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
         <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
@@ -122,7 +122,6 @@
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.surefire.plugin.version>3.5.3</maven.surefire.plugin.version>
         <maven.surefire_report.plugin.version>3.5.3</maven.surefire_report.plugin.version>
-        <maven.war.plugin.version>3.4.0</maven.war.plugin.version>
         <!-- Plugin Configuration -->
         <!-- org.codehaus plugins -->
         <enforcer.extra.rules.version>1.10.0</enforcer.extra.rules.version>
@@ -406,36 +405,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-report-plugin</artifactId>
                     <version>${maven.surefire_report.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven.war.plugin.version}</version>
-                    <configuration>
-                        <!-- since version 3.0 the default behavior changes
-                            to "false" -->
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                        <!-- Exclude eclipse workspace files -->
-                        <packagingExcludes>**/log4j2.xml,**/*.jsfdia</packagingExcludes>
-                        <archive>
-                            <index>true</index>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                            <manifestEntries>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
-                                <Build-User>${user.name}</Build-User>
-                                <!--suppress UnresolvedMavenProperty -> Provided by maven since 3.0.4 -->
-                                <Build-Maven>Maven ${maven.version}</Build-Maven>
-                                <Build-Java>${java.version}</Build-Java>
-                                <Build-OS>${os.name}</Build-OS>
-                                <!--suppress UnresolvedMavenProperty -> Provided by buildnumber-maven-plugin -->
-                                <Build-Number>${buildNumber}</Build-Number>
-                            </manifestEntries>
-                        </archive>
-                        <reproducible>true</reproducible>
-                        <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
