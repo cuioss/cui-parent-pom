@@ -101,11 +101,16 @@ This project implements several measures to ensure reproducible builds. The foll
  
 * All plugin and dependency versions are pinned in all pom.xml files. No LATEST, RELEASE, or version ranges are used.
 * The Maven Wrapper is present (mvnw, mvnw.cmd, .mvn/wrapper/maven-wrapper.properties) and pins Maven 3.9.6.
-* Java version is set explicitly: <maven.compiler.source>17</maven.compiler.source> and <maven.compiler.target>17</maven.compiler.target> in the root pom.xml, inherited by all modules.
+* Java version is set explicitly: 
+[source,xml]
+----
+<maven.compiler.source>17</maven.compiler.source> 
+<maven.compiler.target>17</maven.compiler.target> 
+----
+in the root pom.xml, inherited by all modules.
 * Reproducibility configuration is set for JAR/WAR plugins in all modules:
  
 [source,xml]
- 
 ----
 <configuration>
   <reproducible>true</reproducible>
