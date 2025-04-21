@@ -51,6 +51,14 @@ jobs:
       - name: Update version.cui.parent in pom.xml
         run: ./mvnw versions:set-property -Dproperty=version.cui.parent -DnewVersion=${{steps.metadata.outputs.current-version}} -DgenerateBackupPoms=false
 
+      - name: Update reproducible.build.outputTimestamp in pom.xml
+        run: ./mvnw versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${{steps.metadata.outputs.reproducible-outputTimestamp}} -DgenerateBackupPoms=false
+
+      - name: Commit property updates
+        run: |
+          git add pom.xml
+          git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp"
+
       - name: Maven release ${{steps.metadata.outputs.current-version}}
         run: |
           git checkout -b release
