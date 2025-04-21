@@ -108,8 +108,8 @@ This project implements several measures to ensure reproducible builds. The foll
 <maven.compiler.target>17</maven.compiler.target> 
 ----
 in the root pom.xml, inherited by all modules.
-* Reproducibility configuration is set for JAR/WAR plugins in all modules:
- 
+
+* Reproducibility configuration is set for JAR/WAR plugins in all modules: 
 [source,xml]
 ----
 <configuration>
