@@ -56,7 +56,7 @@ jobs:
 
       - name: Commit property updates
         run: |
-          git add pom.xml
+          git add '**/pom.xml'
           git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp"
 
       - name: Maven release ${{steps.metadata.outputs.current-version}}
