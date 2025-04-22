@@ -541,8 +541,8 @@
                                 </goals>
                                 <configuration>
                                     <prepareGoals>
-                                        versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false
-                                        versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${reproducible.build.outputTimestamp} -DgenerateBackupPoms=false
+                                        versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false -DprocessAllModules=true
+                                        versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${reproducible.build.outputTimestamp} -DgenerateBackupPoms=false -DprocessAllModules=true
                                         clean verify
                                     </prepareGoals>
                                 </configuration>

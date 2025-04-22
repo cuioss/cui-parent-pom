@@ -48,6 +48,15 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "Cuioss Robot Action"
 
+      - name: Show version.cui.parent and reproducible.build.outputTimestamp before release
+        run: |
+          echo 'Root pom.xml:'
+          grep version.cui.parent pom.xml || true
+          grep reproducible.build.outputTimestamp pom.xml || true
+          echo 'cui-java-parent/pom.xml:'
+          grep version.cui.parent cui-java-bom/cui-java-parent/pom.xml || true
+          grep reproducible.build.outputTimestamp cui-java-bom/cui-java-parent/pom.xml || true
+
       - name: Maven release ${{steps.metadata.outputs.current-version}}
         run: |
           git checkout -b release
@@ -60,6 +69,15 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Show version.cui.parent and reproducible.build.outputTimestamp after release
+        run: |
+          echo 'Root pom.xml:'
+          grep version.cui.parent pom.xml || true
+          grep reproducible.build.outputTimestamp pom.xml || true
+          echo 'cui-java-parent/pom.xml:'
+          grep version.cui.parent cui-java-bom/cui-java-parent/pom.xml || true
+          grep reproducible.build.outputTimestamp cui-java-bom/cui-java-parent/pom.xml || true
 
       - name: Deploy Maven Site to cuioss.github.io -> ${{steps.metadata.outputs.pages-reference}}🚀
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3
