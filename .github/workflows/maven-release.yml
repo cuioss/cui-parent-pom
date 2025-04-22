@@ -57,8 +57,8 @@ jobs:
           export OUTPUT_TIMESTAMP="$(date -u +'%Y-%m-%dT00:00:00Z')"
           echo "Updating version.cui.parent to: $CURRENT_VERSION"
           echo "Updating reproducible.build.outputTimestamp to: $OUTPUT_TIMESTAMP"
-          ./mvnw versions:set-property -Dproperty=version.cui.parent -DnewVersion="${CURRENT_VERSION}" -DgenerateBackupPoms=false
-          ./mvnw versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion="${OUTPUT_TIMESTAMP}" -DgenerateBackupPoms=false
+          ./mvnw -q -N versions:set-property -Dproperty=version.cui.parent -DnewVersion="${CURRENT_VERSION}" -DgenerateBackupPoms=false
+          ./mvnw -q -N versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion="${OUTPUT_TIMESTAMP}" -DgenerateBackupPoms=false
 
       - name: Commit property updates
         run: |
@@ -66,6 +66,10 @@ jobs:
           git config --local user.name "Cuioss Robot Action"
           git add pom.xml
           git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp for release"
+
+      - name: Push property updates
+        run: |
+          git push origin HEAD
 
       - name: Checkout (fresh) for Maven release
         uses: actions/checkout@v4
