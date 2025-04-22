@@ -91,7 +91,7 @@
     </distributionManagement>
 
     <properties>
-        <version.cui.parent>0.9.7.10</version.cui.parent>
+        <version.cui.parent>0.9.7.11</version.cui.parent>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
@@ -148,7 +148,7 @@
         <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.7.0</rewrite-migrate-java.version>
-        <reproducible.build.outputTimestamp>2025-04-20T00:00:00Z</reproducible.build.outputTimestamp>
+        <reproducible.build.outputTimestamp>2025-04-22T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
