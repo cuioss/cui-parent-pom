@@ -62,8 +62,10 @@ jobs:
 
       - name: Update version.cui.parent and reproducible.build.outputTimestamp in all pom.xml files
         run: |
-          find . -name pom.xml -exec sed -i 's|<version.cui.parent>.*</version.cui.parent>|<version.cui.parent>${{ steps.metadata.outputs.current-version }}</version.cui.parent>|' {} +
-          find . -name pom.xml -exec sed -i 's|<reproducible.build.outputTimestamp>.*</reproducible.build.outputTimestamp>|<reproducible.build.outputTimestamp>${{ steps.metadata.outputs.reproducible-outputTimestamp }}</reproducible.build.outputTimestamp>|' {} +
+          export CURRENT_VERSION="${{ steps.metadata.outputs.current-version }}"
+          export OUTPUT_TIMESTAMP="${{ steps.metadata.outputs.reproducible-outputTimestamp }}"
+          find . -name pom.xml -exec sed -i'' -e "s|<version.cui.parent>.*</version.cui.parent>|<version.cui.parent>${CURRENT_VERSION}</version.cui.parent>|" {} +
+          find . -name pom.xml -exec sed -i'' -e "s|<reproducible.build.outputTimestamp>.*</reproducible.build.outputTimestamp>|<reproducible.build.outputTimestamp>${OUTPUT_TIMESTAMP}</reproducible.build.outputTimestamp>|" {} +
 
       - name: Commit property updates
         run: |
