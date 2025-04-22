@@ -59,10 +59,22 @@ jobs:
           git add '**/pom.xml'
           git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp"
 
-      - name: Maven release ${{steps.metadata.outputs.current-version}}
+      - name: Maven release prepare ${{steps.metadata.outputs.current-version}}
         run: |
           git checkout -b release
           ./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Commit changes after release:prepare
+        run: |
+          git add '**/pom.xml'
+          git commit -m "chore: commit changes after release:prepare"
+
+      - name: Continue Maven release ${{steps.metadata.outputs.current-version}}
+        run: |
           ./mvnw -Prelease-pom site:site site:stage
           git checkout ${{vars.GITHUB_BASE_REF}}
           git rebase release
