@@ -48,35 +48,23 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "Cuioss Robot Action"
 
-      - name: Show version.cui.parent and reproducible.build.outputTimestamp before release
-        run: |
-          echo 'Root pom.xml:'
-          grep -A 1 '<version.cui.parent>' pom.xml || true
-          grep -A 1 '<reproducible.build.outputTimestamp>' pom.xml || true
-          echo 'cui-java-parent/pom.xml:'
-          grep -A 1 '<version.cui.parent>' cui-java-bom/cui-java-parent/pom.xml || true
-          grep -A 1 '<reproducible.build.outputTimestamp>' cui-java-bom/cui-java-parent/pom.xml || true
-
       - name: Checkout (for property update)
         uses: actions/checkout@v4
 
-      - name: Update version.cui.parent and reproducible.build.outputTimestamp in all pom.xml files
+      - name: Update version.cui.parent and reproducible.build.outputTimestamp in root pom.xml
         run: |
           export CURRENT_VERSION="${{ steps.metadata.outputs.current-version }}"
           export OUTPUT_TIMESTAMP="$(date -u +'%Y-%m-%dT00:00:00Z')"
           echo "Updating version.cui.parent to: $CURRENT_VERSION"
           echo "Updating reproducible.build.outputTimestamp to: $OUTPUT_TIMESTAMP"
-          find . -name pom.xml -exec sed -i'' -E "s|<version.cui.parent>.*</version.cui.parent>|<version.cui.parent>${CURRENT_VERSION}</version.cui.parent>|g" {} +
-          find . -name pom.xml -exec sed -i'' -E "s|<reproducible.build.outputTimestamp>.*</reproducible.build.outputTimestamp>|<reproducible.build.outputTimestamp>${OUTPUT_TIMESTAMP}</reproducible.build.outputTimestamp>|g" {} +
-        env:
-          CURRENT_VERSION: ${{ steps.metadata.outputs.current-version }}
-          OUTPUT_TIMESTAMP: ${{ steps.metadata.outputs.reproducible-outputTimestamp }}
+          ./mvnw versions:set-property -Dproperty=version.cui.parent -DnewVersion="${CURRENT_VERSION}" -DgenerateBackupPoms=false
+          ./mvnw versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion="${OUTPUT_TIMESTAMP}" -DgenerateBackupPoms=false
 
       - name: Commit property updates
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Cuioss Robot Action"
-          git add '**/pom.xml'
+          git add pom.xml
           git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp for release"
 
       - name: Checkout (fresh) for Maven release
@@ -100,9 +88,6 @@ jobs:
           echo 'Root pom.xml:'
           grep -A 1 '<version.cui.parent>' pom.xml || true
           grep -A 1 '<reproducible.build.outputTimestamp>' pom.xml || true
-          echo 'cui-java-parent/pom.xml:'
-          grep -A 1 '<version.cui.parent>' cui-java-bom/cui-java-parent/pom.xml || true
-          grep -A 1 '<reproducible.build.outputTimestamp>' cui-java-bom/cui-java-parent/pom.xml || true
 
       - name: Deploy Maven Site to cuioss.github.io -> ${{steps.metadata.outputs.pages-reference}}🚀
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3

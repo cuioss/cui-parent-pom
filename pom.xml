@@ -148,6 +148,7 @@
         <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.7.0</rewrite-migrate-java.version>
+        <reproducible.build.outputTimestamp>2025-04-22T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
