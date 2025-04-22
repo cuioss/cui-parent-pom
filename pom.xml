@@ -541,7 +541,9 @@
                             <remoteTagging>false</remoteTagging>
                             <arguments>-DskipTests=true</arguments>
                             <prepareGoals>
-                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${reproducible-outputTimestamp} -DgenerateBackupPoms=false clean verify
+                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false
+                                versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${reproducible.build.outputTimestamp} -DgenerateBackupPoms=false
+                                clean verify
                             </prepareGoals>
                         </configuration>
                     </plugin>
