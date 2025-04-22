@@ -64,8 +64,13 @@ jobs:
         run: |
           export CURRENT_VERSION="${{ steps.metadata.outputs.current-version }}"
           export OUTPUT_TIMESTAMP="${{ steps.metadata.outputs.reproducible-outputTimestamp }}"
+          echo "Updating version.cui.parent to: $CURRENT_VERSION"
+          echo "Updating reproducible.build.outputTimestamp to: $OUTPUT_TIMESTAMP"
           find . -name pom.xml -exec sed -i'' -e "s|<version.cui.parent>.*</version.cui.parent>|<version.cui.parent>${CURRENT_VERSION}</version.cui.parent>|" {} +
           find . -name pom.xml -exec sed -i'' -e "s|<reproducible.build.outputTimestamp>.*</reproducible.build.outputTimestamp>|<reproducible.build.outputTimestamp>${OUTPUT_TIMESTAMP}</reproducible.build.outputTimestamp>|" {} +
+        env:
+          CURRENT_VERSION: ${{ steps.metadata.outputs.current-version }}
+          OUTPUT_TIMESTAMP: ${{ steps.metadata.outputs.reproducible-outputTimestamp }}
 
       - name: Commit property updates
         run: |

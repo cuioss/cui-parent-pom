@@ -1,6 +1,6 @@
 name: cui parent pom
 pages-reference: cui-parent-pom
 release:
-  current-version: 0.9.7.4
+  current-version: 0.9.7.5
   next-version: 0.9-SNAPSHOT
 reproducible-outputTimestamp: 2025-04-22T00:00:00Z
