@@ -532,6 +532,18 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
+                        <version>${maven.release.plugin.version}</version>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <tagNameFormat>@{project.version}</tagNameFormat>
+                            <pushChanges>false</pushChanges>
+                            <localCheckout>true</localCheckout>
+                            <remoteTagging>false</remoteTagging>
+                            <arguments>-DskipTests=true</arguments>
+                            <prepareGoals>
+                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${reproducible-outputTimestamp} -DgenerateBackupPoms=false clean verify
+                            </prepareGoals>
+                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
