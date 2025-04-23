@@ -148,7 +148,7 @@
         <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.7.0</rewrite-migrate-java.version>
-        <reproducible.build.outputTimestamp>2025-04-23T00:00:00Z</reproducible.build.outputTimestamp>
+        <reproducible.build.outputTimestamp>2025-04-20T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
@@ -327,6 +327,9 @@
                         <localCheckout>true</localCheckout>
                         <remoteTagging>false</remoteTagging>
                         <arguments>-DskipTests=true</arguments>
+                        <prepareGoals>
+                            versions:set-property -Dproperty=version.cui.parent -DnewVersion=@{project.version} -DgenerateBackupPoms=false versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false
+                        </prepareGoals>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -510,6 +513,24 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>timestamp-property</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>timestamp-property</goal>
+                            </goals>
+                            <configuration>
+                                <name>maven.build.timestamp</name>
+                                <pattern>yyyy-MM-dd'T'HH:mm:ss'Z'</pattern>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -533,7 +554,6 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-release-plugin</artifactId>
                         <version>${maven.release.plugin.version}</version>
-                        <!-- Removed prepareGoals and executions for property update -->
                         <configuration>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
                             <tagNameFormat>@{project.version}</tagNameFormat>
@@ -541,6 +561,9 @@
                             <localCheckout>true</localCheckout>
                             <remoteTagging>false</remoteTagging>
                             <arguments>-DskipTests=true</arguments>
+                            <prepareGoals>
+                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=@{project.version} -DgenerateBackupPoms=false versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false
+                            </prepareGoals>
                         </configuration>
                     </plugin>
                     <plugin>

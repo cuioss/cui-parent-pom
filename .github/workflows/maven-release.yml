@@ -31,18 +31,8 @@ jobs:
           metadata-file-path: '.github/project.yml'
           local-file: true
 
-      - name: Configure Git author
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Cuioss Robot Action"
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
           java-version: '17'
           distribution: 'temurin'
@@ -53,36 +43,23 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: maven
 
-      - name: Update version.cui.parent and reproducible.build.outputTimestamp in root pom.xml
+      - name: Configure Git author
         run: |
-          export CURRENT_VERSION="${{ steps.metadata.outputs.current-version }}"
-          export OUTPUT_TIMESTAMP="$(date -u +'%Y-%m-%dT00:00:00Z')"
-          echo "Updating version.cui.parent to: $CURRENT_VERSION"
-          echo "Updating reproducible.build.outputTimestamp to: $OUTPUT_TIMESTAMP"
-          ./mvnw -q versions:set-property -Dproperty=version.cui.parent -DnewVersion="$CURRENT_VERSION" -DgenerateBackupPoms=false
-          ./mvnw -q versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion="$OUTPUT_TIMESTAMP" -DgenerateBackupPoms=false
-
-      - name: Commit and push property updates
-        run: |
-          git add pom.xml
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update version.cui.parent and reproducible.build.outputTimestamp for release"
-            git pull --rebase origin ${{ github.ref_name }}
-            git push origin ${{ github.ref_name }}
-          else
-            echo "No changes to commit."
-          fi
+          git config --local user.email "action@github.com"
+          git config --local user.name "Cuioss Robot Action"
 
       - name: Maven release ${{steps.metadata.outputs.current-version}}
         run: |
+          git checkout -b release
           ./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
           ./mvnw -Prelease-pom site:site site:stage
+          git checkout ${{vars.GITHUB_BASE_REF}}
+          git rebase release
           ./mvnw -Prelease-pom -B release:perform -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.OSS_SONATYPE_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.OSS_SONATYPE_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-
       - name: Deploy Maven Site to cuioss.github.io -> ${{steps.metadata.outputs.pages-reference}}🚀
         uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4.7.3
         with:
@@ -91,10 +68,16 @@ jobs:
           target-folder: ${{steps.metadata.outputs.pages-reference}}
           branch: main
           token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-
-      - name: Push release branch and tags
-        run: |
-          git pull --rebase origin ${{ github.ref_name }}
-          git fetch --tags
-          git push origin ${{ github.ref_name }}
-          git push --tags
+      - name: Push changes to ${{github.ref_name}}
+        uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{github.ref_name}}
+          force: true
+      - name: Push tag ${{steps.metadata.outputs.current-version}}
+        uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
+        with:
+          branch: ${{github.ref_name}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tags: true
+          force: true
