@@ -21,7 +21,7 @@ The maven-release-plugin is configured with preparationGoals in the release-pom 
 
 ```xml
 <preparationGoals>
-    versions:set-property -Dproperty=version.cui.parent -DnewVersion=@{project.version} -DgenerateBackupPoms=false
+    versions:set-property -Dproperty=version.cui.parent -DnewVersion=${project.version} -DgenerateBackupPoms=false
     versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false
 </preparationGoals>
 ```
@@ -31,6 +31,21 @@ The maven-release-plugin is configured with preparationGoals in the release-pom 
 When running the release:prepare command with dryRun=true, the maven-release-plugin simulates the release process but doesn't actually update the pom.xml.tag file with the changes from the preparationGoals. This is expected behavior for dry-run mode.
 
 The issue is not with the configuration itself, but with the expectation that the properties would be updated in dry-run mode. The maven-release-plugin's dry-run mode is designed to simulate the release process without making actual changes to the files.
+
+=== Understanding Dry Run Mode
+
+The maven-release-plugin's dry run mode (activated with `-DdryRun=true`) is designed to simulate the release process without making permanent changes to the repository. It performs the following actions:
+
+1. Creates temporary files (like pom.xml.tag, pom.xml.next, etc.)
+2. Simulates the SCM operations (tag, commit, etc.)
+3. Generates a release.properties file with information about the release
+
+However, it does not:
+1. Actually execute the preparationGoals on the temporary files
+2. Make permanent changes to the repository
+3. Provide detailed output about what changes would be made to specific properties
+
+The release.properties file contains information about the release, including the preparationGoals that would be executed, but it doesn't show what the actual values would be after executing those goals.
 
 === Verification Method
 
@@ -52,18 +67,58 @@ After running the release process (or simulation), the pom.xml.tag file should h
 
 == Conclusion
 
-Our investigation confirms that the maven-release-plugin configuration is correct. The preparationGoals are properly set to update both the version.cui.parent and reproducible.build.outputTimestamp properties during the release process.
+Our investigation identified an issue with the maven-release-plugin configuration. The preparationGoals were using `@{project.version}` to set the version.cui.parent property, but this syntax was not being properly resolved in the CI environment.
 
-The issue is that when running with dryRun=true, the maven-release-plugin doesn't actually execute the preparationGoals or update the pom.xml.tag file. This is expected behavior for dry-run mode.
+We tried changing `@{project.version}` to `${project.version}` in the preparationGoals configuration, but this didn't resolve the issue. The `${project.version}` was being resolved to the current project version (0.9-SNAPSHOT) before the release process starts, rather than being resolved to the release version (1.0) during the release process.
 
-We verified this by manually simulating what the maven-release-plugin does:
+After further investigation, we found a dynamic solution that uses a new property called given.parent.version to update the version.cui.parent property during the release process. We made the following changes:
+
+1. Added a new property called given.parent.version with a default value of ${project.version}:
+```xml
+<properties>
+    <version.cui.parent>0.9-SNAPSHOT</version.cui.parent>
+    <given.parent.version>${project.version}</given.parent.version>
+    <!-- other properties -->
+</properties>
+```
+
+2. Modified the preparationGoals configuration to use this property:
+```xml
+<preparationGoals>
+    versions:set-property -Dproperty=version.cui.parent -DnewVersion=${given.parent.version} -DgenerateBackupPoms=false
+    versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false
+</preparationGoals>
+```
+
+3. Updated the maven-release.yml file to pass the given.parent.version parameter during the CI/CD process:
+```yaml
+./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} -Dgiven.parent.version=${{steps.metadata.outputs.current-version}}
+```
+
+This solution works by:
+1. Defining a new property called given.parent.version that can be overridden from the command line
+2. Using this property in the preparationGoals configuration to update the version.cui.parent property
+3. Passing the release version as the value of given.parent.version during the release process
+
+We tested this solution by manually simulating the release process:
 1. Created a copy of the pom.xml file
-2. Updated the version to 1.0
-3. Ran the versions:set-property commands manually
-4. Confirmed that both properties were updated correctly
+2. Ran the versions:set-property command with the given.parent.version parameter set to 1.0
+3. Confirmed that the version.cui.parent property was updated correctly to 1.0
+
+This approach ensures that the version.cui.parent property will be dynamically updated to match the release version during the release process, without requiring manual updates to the pom.xml file or complex shell commands.
 
 To properly verify the configuration in a real release scenario, we would need to:
 1. Run the Maven build without the dry-run mode, or
 2. Create a test branch and run the release process there
 
-No changes to the configuration are needed, as it is already set up correctly.
+== Interpreting Dry Run Output
+
+When running the maven-release-plugin in dry run mode, you should look for the following indicators to confirm that the process would work correctly:
+
+1. The release.properties file should contain the preparationGoals that would be executed
+2. The temporary files (pom.xml.tag, pom.xml.next, etc.) should be created
+3. The build should complete successfully without errors
+
+If you want to see exactly what changes would be made to the properties, you can manually simulate the release process as described in the Verification Method section.
+
+Alternatively, you can add debug logging to the maven command by adding `-X` or `--debug` to see more detailed output about what the maven-release-plugin is doing during the dry run.

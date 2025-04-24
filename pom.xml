@@ -91,7 +91,8 @@
     </distributionManagement>
 
     <properties>
-        <version.cui.parent>0.9.7.12</version.cui.parent>
+        <version.cui.parent>0.9-SNAPSHOT</version.cui.parent>
+        <given.parent.version>${project.version}</given.parent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
@@ -148,7 +149,7 @@
         <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.7.0</rewrite-migrate-java.version>
-        <reproducible.build.outputTimestamp>2025-04-24T15:45:27Z</reproducible.build.outputTimestamp>
+        <reproducible.build.outputTimestamp>2025-04-25T06:49:50Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
@@ -559,7 +560,7 @@
                             <remoteTagging>false</remoteTagging>
                             <arguments>-DskipTests=true</arguments>
                             <preparationGoals>
-                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=@{project.version} -DgenerateBackupPoms=false
+                                versions:set-property -Dproperty=version.cui.parent -DnewVersion=${given.parent.version} -DgenerateBackupPoms=false
                                 versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false
                             </preparationGoals>
                         </configuration>
