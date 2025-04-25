@@ -146,7 +146,7 @@
         <version.lombok>1.18.38</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>1.15.1</version.frontend-maven-plugin>
-        <open.rewrite.maven.plugin.version>6.6.1</open.rewrite.maven.plugin.version>
+        <open.rewrite.maven.plugin.version>6.7.0</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.6.1</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.8.0</rewrite-migrate-java.version>
         <reproducible.build.outputTimestamp>2025-04-25T10:01:05Z</reproducible.build.outputTimestamp>
