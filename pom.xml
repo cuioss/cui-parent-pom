@@ -559,7 +559,7 @@
                             <localCheckout>true</localCheckout>
                             <remoteTagging>false</remoteTagging>
                             <arguments>-DskipTests=true</arguments>
-                            <preparationGoals>versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false</preparationGoals>
+                            <preparationGoals>versions:set-property -Dproperty=version.cui.parent -DnewVersion=${releaseVersion} -DgenerateBackupPoms=false versions:set-property -Dproperty=reproducible.build.outputTimestamp -DnewVersion=${maven.build.timestamp} -DgenerateBackupPoms=false</preparationGoals>
                         </configuration>
                     </plugin>
                     <plugin>
