@@ -56,6 +56,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.plugin.version}</version>
                     <configuration>
                         <excludes>
                             <exclude>**/log4j2.xml</exclude>
@@ -81,7 +82,6 @@
                                 <Build-Number>${buildNumber}</Build-Number>
                             </manifestEntries>
                         </archive>
-                        <reproducible>true</reproducible>
                         <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                     </configuration>
                 </plugin>

@@ -316,7 +316,6 @@
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven.install.plugin.version}</version>
                 </plugin>
-                <!-- Removed maven-jar-plugin configuration as it is now handled in cui-java-parent -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
