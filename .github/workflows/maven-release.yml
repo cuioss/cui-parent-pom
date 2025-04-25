@@ -51,7 +51,7 @@ jobs:
       - name: Maven release ${{steps.metadata.outputs.current-version}}
         run: |
           git checkout -b release
-          ./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}} -Dgiven.parent.version=${{steps.metadata.outputs.current-version}}
+          ./mvnw -Prelease-pom -B release:clean release:prepare -DreleaseVersion=${{steps.metadata.outputs.current-version}} -DdevelopmentVersion=${{steps.metadata.outputs.next-version}}
           ./mvnw -Prelease-pom site:site site:stage
           git checkout ${{vars.GITHUB_BASE_REF}}
           git rebase release
