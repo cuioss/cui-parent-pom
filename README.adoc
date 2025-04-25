@@ -45,8 +45,9 @@ toc::[]
     <dependencies>
         <dependency>
             <groupId>de.cuioss</groupId>
-            <artifactId>cui-java-bom</artifactId>
-            <version>${version}</version>
+            <artifactId>java-ee-10-bom</artifactId>
+            <!-- Starting with 0.9.8 version.cui.parent will be implicitly set by cui-parent-pom -->
+            <version>${version.cui.parent}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
