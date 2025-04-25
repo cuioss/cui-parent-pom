@@ -100,15 +100,17 @@ This will update the Maven Wrapper to the latest version provided by the takari-
 This project implements several measures to ensure reproducible builds. The following practices are already in place:
  
 * All plugin and dependency versions are pinned in all `pom.xml` files. No LATEST, RELEASE, or version ranges are used.
-* The Maven Wrapper is present (mvnw, mvnw.cmd, .mvn/wrapper/maven-wrapper.properties) and pins Maven `3.9.6`.
-* Java version is set explicitly in the root `pom.xml`, inherited by all modules.: 
+* The Maven Wrapper is present (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties`) and pins Maven `3.9.6`.
+* Java version is set explicitly in the root `pom.xml`, inherited by all modules.:
+
 [source,xml]
 ----
 <maven.compiler.source>17</maven.compiler.source> 
 <maven.compiler.target>17</maven.compiler.target> 
 ----
 
-* Reproducibility configuration is set for JAR/WAR plugins in all modules: 
+* Reproducibility configuration is set for JAR/WAR plugins in all modules:
+
 [source,xml]
 ----
 <configuration>
@@ -120,3 +122,44 @@ This project implements several measures to ensure reproducible builds. The foll
 * No non-deterministic resource filtering is used (no timestamp, hostname, or environment injection in resources).
 * All GitHub Actions in `.github/workflows/` are pinned by commit hash (uses: `...@<commit-sha>`).
 * The build environment is documented: builds are tested on Linux with `Java 17` and Maven `3.9.6` using `./mvnw`.
+
+== PlantUML Diagrams
+
+This project uses PlantUML for creating diagrams in the documentation. To ensure compatibility with GitHub's rendering capabilities, we follow these practices:
+
+=== PlantUML File Structure
+
+All PlantUML diagrams are stored in separate files under the `/doc/plantuml/` directory with the `.puml` extension. This separation allows for:
+
+* Better version control of diagrams
+* Easier maintenance and updates
+* Compatibility with GitHub's rendering limitations
+* Generation of PNG images for documentation
+
+Each PlantUML file should include the following directive at the beginning to ensure it can be rendered without requiring a local Graphviz installation:
+
+[source]
+----
+@startuml
+' Configure PlantUML to use its own rendering engine
+!pragma layout smetana
+...
+@enduml
+----
+
+The `!pragma layout smetana` directive tells PlantUML to use its own internal rendering engine (Smetana) instead of relying on Graphviz, which eliminates the dependency on the local filesystem.
+
+=== Generating PNG Images
+
+To generate PNG images from PlantUML files, use the `build-plantuml` Maven profile:
+
+[source,bash]
+----
+./mvnw generate-resources -Pbuild-plantuml
+----
+
+This command will:
+
+1. Process all `.puml` files in the `/doc/plantuml/` directory
+2. Generate corresponding PNG images with the same base name
+3. Place the generated images in the same directory

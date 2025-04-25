@@ -149,7 +149,7 @@
         <open.rewrite.maven.plugin.version>6.7.0</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.7.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.8.0</rewrite-migrate-java.version>
-        <reproducible.build.outputTimestamp>2025-04-25T10:01:05Z</reproducible.build.outputTimestamp>
+        <reproducible.build.outputTimestamp>2025-04-25T00:00:00Z</reproducible.build.outputTimestamp>
     </properties>
 
     <repositories>
@@ -662,6 +662,50 @@
                                 <id>rewrite</id>
                                 <goals>
                                     <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- Usage ./mvnw generate-resources -Pbuild-plantuml-->
+            <id>build-plantuml</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.jeluard</groupId>
+                        <artifactId>plantuml-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <configuration>
+                            <sourceFiles>
+                                <directory>${project.basedir}/doc/plantuml</directory>
+                                <includes>
+                                    <include>**/*.puml</include>
+                                </includes>
+                            </sourceFiles>
+                            <outputDirectory>${project.basedir}/doc/plantuml</outputDirectory>
+                            <format>png</format>
+                            <!-- Enable verbose output for more detailed processing information -->
+                            <verbose>false</verbose>
+                            <!-- For even more detailed debug output, run Maven with the debug flag:
+                                 ./mvnw generate-resources -Pbuild-plantuml -X
+                            -->
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.sourceforge.plantuml</groupId>
+                                <artifactId>plantuml</artifactId>
+                                <version>1.2023.10</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>generate-plantuml-diagrams</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>generate</goal>
                                 </goals>
                             </execution>
                         </executions>
