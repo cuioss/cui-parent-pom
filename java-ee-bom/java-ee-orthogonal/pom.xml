@@ -22,16 +22,16 @@
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.bouncycastle>1.80</version.bouncycastle>
         <version.rest-assured>5.5.1</version.rest-assured>
-        <version.cui-jwt-token-validation>1.0.0</version.cui-jwt-token-validation>
+        <version.cui-jwt-validation>1.0.0</version.cui-jwt-validation>
         <version.cui.test.keycloak.integration>1.0.0</version.cui.test.keycloak.integration>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>de.cuioss</groupId>
-                <artifactId>cui-jwt-token-validation</artifactId>
+                <artifactId>cui-jwt-validation</artifactId>
                 <scope>compile</scope>
-                <version>${version.cui-jwt-token-validation}</version>
+                <version>${version.cui-jwt-validation}</version>
             </dependency>
             <dependency>
                 <groupId>de.cuioss.test</groupId>
