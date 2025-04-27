@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.cuioss</groupId>
@@ -22,16 +23,16 @@
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.bouncycastle>1.80</version.bouncycastle>
         <version.rest-assured>5.5.1</version.rest-assured>
-        <version.cui-jwt-token-handling>1.0.0</version.cui-jwt-token-handling>
+        <version.cui-jwt-token-validation>1.0.0</version.cui-jwt-token-validation>
         <version.cui.test.keycloak.integration>1.0.0</version.cui.test.keycloak.integration>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>de.cuioss</groupId>
-                <artifactId>cui-jwt-token-handling</artifactId>
+                <artifactId>cui-jwt-token-validation</artifactId>
                 <scope>compile</scope>
-                <version>${version.cui-jwt-token-handling}</version>
+                <version>${version.cui-jwt-token-validation}</version>
             </dependency>
             <dependency>
                 <groupId>de.cuioss.test</groupId>
