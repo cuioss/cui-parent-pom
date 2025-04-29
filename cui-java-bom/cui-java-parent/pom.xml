@@ -81,9 +81,9 @@
                                 <Build-OS>${os.name}</Build-OS>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <Build-Number>${buildNumber}</Build-Number>
+                                <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                             </manifestEntries>
                         </archive>
-                        <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                     </configuration>
                 </plugin>
             </plugins>
