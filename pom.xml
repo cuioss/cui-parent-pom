@@ -3,7 +3,7 @@
 
     <groupId>de.cuioss</groupId>
     <artifactId>cui-parent-pom</artifactId>
-    <version>0.9-SNAPSHOT</version>
+    <version>0.9.9.3</version>
     <packaging>pom</packaging>
     <name>cui parent pom</name>
     <description>Parent pom for all cui-oss projects. It defines the sonatype
@@ -66,7 +66,7 @@
         <url>https://github.com/cuioss/cui-parent-pom/</url>
         <connection>scm:git:https://github.com/cuioss/cui-parent-pom.git</connection>
         <developerConnection>scm:git:https://github.com/cuioss/cui-parent-pom/</developerConnection>
-        <tag>HEAD</tag>
+        <tag>0.9.9.3</tag>
     </scm>
     <issueManagement>
         <url>https://github.com/cuioss/cui-parent-pom/issues</url>
@@ -91,7 +91,7 @@
     </distributionManagement>
 
     <properties>
-        <version.cui.parent>0.9.9.2</version.cui.parent>
+        <version.cui.parent>0.9.9.3</version.cui.parent>
         <given.parent.version>${project.version}</given.parent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -149,7 +149,7 @@
         <open.rewrite.maven.plugin.version>6.7.0</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.7.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.8.0</rewrite-migrate-java.version>
-        <project.build.outputTimestamp>2025-04-25T00:00:00Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2025-04-30T06:58:40Z</project.build.outputTimestamp>
     </properties>
 
     <repositories>
