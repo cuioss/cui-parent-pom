@@ -36,9 +36,7 @@ This project implements several measures to ensure reproducible builds. The foll
 
 [source,xml]
 ----
-<configuration>
-    <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
-</configuration>
+ <Build-Time>${project.build.outputTimestamp}</Build-Time>
 ----
  
 * No non-deterministic resource filtering is used (no timestamp, hostname, or environment injection in resources).

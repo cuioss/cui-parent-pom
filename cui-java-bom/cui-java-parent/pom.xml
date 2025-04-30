@@ -74,7 +74,7 @@
                                 <Automatic-Module-Name>
                                     ${maven.jar.plugin.automatic.module.name}
                                 </Automatic-Module-Name>
-                                <Build-Time>${reproducible.build.outputTimestamp}</Build-Time>
+                                <Build-Time>${project.build.outputTimestamp}</Build-Time>
                                 <Build-User>${user.name}</Build-User>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <Build-Maven>Maven ${maven.version}</Build-Maven>
