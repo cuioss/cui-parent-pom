@@ -9,6 +9,9 @@
     <packaging>pom</packaging>
     <name>java ee-10-bom</name>
     <description>Bundles all java ee-10 related dependencies</description>
+    <modules>
+        <module>quarkus-bom</module>
+    </modules>
     <properties>
         <version.jakarta.jakartaee-web-api>10.0.0</version.jakarta.jakartaee-web-api>
         <version.myfaces>4.1.1</version.myfaces>
@@ -104,7 +107,7 @@
             <!-- ###################-->
             <!-- ### Java EE########-->
             <!-- ###################-->
-             <dependency>
+            <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
                 <version>${version.jakarta.servlet-api}</version>
@@ -361,7 +364,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <modules>
-        <module>quarkus-bom</module>
-    </modules>
 </project>

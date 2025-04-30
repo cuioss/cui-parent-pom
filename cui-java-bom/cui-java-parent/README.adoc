@@ -59,20 +59,12 @@ Generates aggregated Javadoc for multi-module projects.
 ./mvnw -Pjavadoc-mm-reporting site
 ----
 
-=== rewrite-prepare-release
-Unifies code aspects like formatting, headers, and imports.
+=== rewrite
+Unifies all OpenRewrite modernization and preparation recipes. Use this profile to apply formatting, header, import, and modernization best practices in one step.
 
 [source,shell]
 ----
-./mvnw -Prewrite-prepare-release rewrite:run
-----
-
-=== rewrite-modernize
-Modifies the codebase to follow Java best practices.
-
-[source,shell]
-----
-./mvnw -Prewrite-modernize rewrite:run
+./mvnw -Prewrite rewrite:run
 ----
 
 === coverage

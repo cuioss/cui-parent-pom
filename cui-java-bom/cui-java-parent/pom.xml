@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -25,7 +26,7 @@
         <maven.jar.plugin.automatic.module.name>
             ${project.groupId}.${project.artifactId}
         </maven.jar.plugin.automatic.module.name>
-     </properties>
+    </properties>
 
     <build>
         <pluginManagement>
@@ -73,7 +74,7 @@
                                 <Automatic-Module-Name>
                                     ${maven.jar.plugin.automatic.module.name}
                                 </Automatic-Module-Name>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
+                                <Build-Time>${reproducible.build.outputTimestamp}</Build-Time>
                                 <Build-User>${user.name}</Build-User>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <Build-Maven>Maven ${maven.version}</Build-Maven>
@@ -81,7 +82,6 @@
                                 <Build-OS>${os.name}</Build-OS>
                                 <!--suppress UnresolvedMavenProperty -->
                                 <Build-Number>${buildNumber}</Build-Number>
-                                <outputTimestamp>${reproducible.build.outputTimestamp}</outputTimestamp>
                             </manifestEntries>
                         </archive>
                     </configuration>
@@ -220,68 +220,9 @@
             </build>
         </profile>
         <profile>
-            <!-- This profile is needed for multi-module-projects, -->
-            <id>javadoc-mm-reporting</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            <source>${maven.compiler.source}</source>
-                            <linksource>true</linksource>
-                            <quiet>true</quiet>
-                            <notimestamp>true</notimestamp>
-                            <failOnError>${maven.javadoc.plugin.failOnError}</failOnError>
-                            <doclint>${maven.javadoc.plugin.doclint}</doclint>
-                            <splitindex>true</splitindex>
-                            <doctitle>${project.name}</doctitle>
-                            <doclint>none</doclint>
-                            <legacyMode>${maven.javadoc.plugin.legacyMode}</legacyMode>
-                            <links>
-                                <link>https://jakarta.ee/specifications/platform/10/apidocs/</link>
-                            </links>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>aggregate</id>
-                                <goals>
-                                    <goal>aggregate</goal>
-                                </goals>
-                                <phase>site</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <reportSets>
-                            <reportSet>
-                                <id>aggregate</id>
-                                <inherited>false</inherited>
-                                <reports>
-                                    <report>aggregate</report>
-                                </reports>
-                            </reportSet>
-                            <reportSet>
-                                <id>default</id>
-                                <reports>
-                                    <report>javadoc</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
-        <profile>
-            <!-- Usage: ./mvnw -Prewrite-prepare-release rewrite:run -->
-            <!-- Unifies some aspect like coding, formatting, and header-->
-            <id>rewrite-prepare-release</id>
+            <!-- Usage: ./mvnw -Prewrite rewrite:run -->
+            <!-- Unifies all OpenRewrite modernization and preparation recipes -->
+            <id>rewrite</id>
             <build>
                 <plugins>
                     <plugin>
@@ -291,47 +232,22 @@
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
                                 <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-                                <recipe>org.openrewrite.java.OrderImports</recipe>
-                                <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
-                                <recipe>org.openrewrite.java.testing.junit5.AssertTrueInstanceofToAssertInstanceOf</recipe>
-                                <recipe>org.openrewrite.java.testing.junit5.UseAssertSame</recipe>
-                                <recipe>org.openrewrite.java.testing.junit5.CleanupAssertions</recipe>
-                                <recipe>org.openrewrite.java.testing.junit5.AssertTrueInstanceofToAssertInstanceOf</recipe>
-                            </activeRecipes>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>rewrite</id>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <!-- Usage: ./mvnw -Prewrite-modernize rewrite:run -->
-            <!-- Modifies the codebase to Best-Practices -->
-            <id>rewrite-modernize</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.openrewrite.maven</groupId>
-                        <artifactId>rewrite-maven-plugin</artifactId>
-                        <configuration>
-                            <activeRecipes>
-                                <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+                                <recipe>org.openrewrite.java.format.NormalizeLineBreaks</recipe>
+                                <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
                                 <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-                                <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+                                <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
+                                <recipe>org.openrewrite.java.OrderImports</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                                <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
+                                <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
                                 <recipe>org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks</recipe>
+                                <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
+                                <recipe>org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
