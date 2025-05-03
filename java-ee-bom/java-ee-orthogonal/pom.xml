@@ -16,8 +16,6 @@
         <version.jandex>3.3.0</version.jandex>
         <version.caffeine>3.2.0</version.caffeine>
         <version.apache.httpcore>4.4.16</version.apache.httpcore>
-        <!-- The version needs to be aligned with the one defined within the quarkus boms.
-        Otherwise, it's getting messy-->
         <version.log4j>2.24.3</version.log4j>
         <version.smallrye-jwt>4.6.1</version.smallrye-jwt>
         <version.bouncycastle>1.80</version.bouncycastle>

@@ -29,7 +29,7 @@
         <version.cui.test.juli.logger>2.0.1</version.cui.test.juli.logger>
         <version.cui.test.generator>2.2.0</version.cui.test.generator>
         <version.cui.test.value.objects>2.0.1</version.cui.test.value.objects>
-        <version.cui.test.mockwebserver>1.1.0</version.cui.test.mockwebserver>
+        <version.cui.test.mockwebserver>1.3.0</version.cui.test.mockwebserver>
 
         <version.easymock>5.5.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
