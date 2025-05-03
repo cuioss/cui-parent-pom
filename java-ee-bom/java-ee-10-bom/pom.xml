@@ -48,6 +48,7 @@
         <version.org.jboss.resteasy.client>6.2.10.Final</version.org.jboss.resteasy.client>
         <version.org.jboss.resteasy.microprofile>3.0.1.Final</version.org.jboss.resteasy.microprofile>
         <version.jboss-logging>3.6.1.Final</version.jboss-logging>
+        <version.jakarta.annotation-api>2.1.0</version.jakarta.annotation-api>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -173,6 +174,12 @@
                 <groupId>jakarta.enterprise</groupId>
                 <artifactId>jakarta.enterprise.cdi-api</artifactId>
                 <version>${version.jakarta.enterprise.cdi}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${version.jakarta.annotation-api}</version>
                 <scope>provided</scope>
             </dependency>
 
