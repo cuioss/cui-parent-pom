@@ -24,7 +24,7 @@
         <version.jakarta.ee.web-api>11.0.0</version.jakarta.ee.web-api>
         <version.jakarta.servlet-api>6.1.0</version.jakarta.servlet-api>
         <version.jakarta.websocket-api>2.0.0</version.jakarta.websocket-api>
-        <version.jakarta.inject>2.0.1</version.jakarta.inject>
+        <version.jakarta.inject>2.0.1.MR</version.jakarta.inject>
         <version.jakarta.ws.rs>3.1.0</version.jakarta.ws.rs>
         <version.interceptor-api>2.0.1</version.interceptor-api>
         <version.jakarta.validation>3.1.1</version.jakarta.validation>
