@@ -28,7 +28,7 @@
         <version.jakarta.ws.rs>3.1.0</version.jakarta.ws.rs>
         <version.interceptor-api>2.0.1</version.interceptor-api>
         <version.jakarta.validation>3.1.1</version.jakarta.validation>
-        <version.jakarta.el>5.0.1</version.jakarta.el>
+        <version.jakarta.el>6.0.1</version.jakarta.el>
         <version.jakarta.enterprise.cdi>4.0.1</version.jakarta.enterprise.cdi>
         <version.weld>5.1.2.Final</version.weld>
         <version.weld.junit5>4.0.3.Final</version.weld.junit5>
