@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://www.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.cuioss</groupId>
@@ -97,14 +97,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Repository-Urls -->
-        <public.repo.url>https://oss.sonatype.org/content/groups/public</public.repo.url>
-        <staging.repo.url>https://oss.sonatype.org/content/groups/staging</staging.repo.url>
-        <snapshot.repo.url>
-            https://s01.oss.sonatype.org/content/repositories/snapshots
-        </snapshot.repo.url>
-        <deploy.staging.repo.url>
-            https://s01.oss.sonatype.org/service/local/staging/deploy/maven2
-        </deploy.staging.repo.url>
+        <public.repo.url>https://repo1.maven.org/maven2</public.repo.url>
+        <staging.repo.url>https://s01.oss.sonatype.org/content/groups/staging</staging.repo.url>
+        <snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
+        <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
         <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.7.1</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.4.1</maven.clean.plugin.version>
@@ -336,7 +332,8 @@
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <publishingServerId>central</publishingServerId>
+                        <publishingServerId>sonatype-nexus-staging</publishingServerId>
+                        <tokenAuth>true</tokenAuth>
                         <autoPublish>true</autoPublish>
                         <waitUntil>published</waitUntil>
                     </configuration>
