@@ -75,16 +75,6 @@
     </issueManagement>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>${snapshot.repo.url}</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Sonatype Nexus Public Repo</name>
-            <url>${deploy.staging.repo.url}</url>
-        </repository>
         <site>
             <id>cuioss-home</id>
             <url>https://cuioss.github.io/</url>
@@ -96,12 +86,6 @@
         <given.parent.version>${project.version}</given.parent.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Repository-Urls -->
-        <public.repo.url>https://repo1.maven.org/maven2</public.repo.url>
-        <staging.repo.url>https://s01.oss.sonatype.org/content/groups/staging</staging.repo.url>
-        <snapshot.repo.url>https://s01.oss.sonatype.org/content/repositories/snapshots</snapshot.repo.url>
-        <deploy.staging.repo.url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</deploy.staging.repo.url>
-        <!-- Standard maven plugins: org.apache.maven. -->
         <maven.assembly.plugin.version>3.7.1</maven.assembly.plugin.version>
         <maven.clean.plugin.version>3.4.1</maven.clean.plugin.version>
         <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
@@ -148,31 +132,6 @@
         <project.build.outputTimestamp>2025-05-03T13:16:21Z</project.build.outputTimestamp>
         <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>${snapshot.repo.url}</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>sonatype-nexus-public</id>
-            <name>Sonatype Nexus Public Repo</name>
-            <url>${public.repo.url}</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <build>
         <pluginManagement>
@@ -335,11 +294,7 @@
                     <version>${central-publishing-maven-plugin.version}</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <publishingServerId>sonatype-nexus-staging</publishingServerId>
-                        <snapshotPublishingServerId>sonatype-nexus-snapshots</snapshotPublishingServerId>
-                        <centralUrl>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</centralUrl>
-                        <centralSnapshotUrl>https://s01.oss.sonatype.org/content/repositories/snapshots</centralSnapshotUrl>
-                        <tokenAuth>true</tokenAuth>
+                        <publishingServerId>central</publishingServerId>
                         <autoPublish>true</autoPublish>
                         <waitUntil>published</waitUntil>
                     </configuration>
