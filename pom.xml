@@ -75,6 +75,16 @@
     </issueManagement>
 
     <distributionManagement>
+        <snapshotRepository>
+            <id>central</id>
+            <name>Maven Central Snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>central</id>
+            <name>Maven Central Releases</name>
+            <url>https://central.sonatype.com/repository/maven-releases/</url>
+        </repository>
         <site>
             <id>cuioss-home</id>
             <url>https://cuioss.github.io/</url>
@@ -295,6 +305,7 @@
                     <extensions>true</extensions>
                     <configuration>
                         <publishingServerId>central</publishingServerId>
+                        <centralUrl>https://central.sonatype.com/</centralUrl>
                         <autoPublish>true</autoPublish>
                         <waitUntil>published</waitUntil>
                     </configuration>
