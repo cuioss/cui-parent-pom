@@ -29,6 +29,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: maven
       - name: Build with Maven
         run: ./mvnw -B verify --file pom.xml
@@ -48,6 +53,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
           cache: maven
 
       - name: Extract project version
