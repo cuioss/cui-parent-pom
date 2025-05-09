@@ -10,3 +10,5 @@ pom.xml.versionsBackup
 .asciidoctorconfig.adoc
 .qodo
 .vscode
+/deploy-setup.sh
+/settings.xml
