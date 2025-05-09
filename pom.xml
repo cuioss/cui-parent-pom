@@ -336,6 +336,9 @@
                     <extensions>true</extensions>
                     <configuration>
                         <publishingServerId>sonatype-nexus-staging</publishingServerId>
+                        <snapshotPublishingServerId>sonatype-nexus-snapshots</snapshotPublishingServerId>
+                        <centralUrl>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</centralUrl>
+                        <centralSnapshotUrl>https://s01.oss.sonatype.org/content/repositories/snapshots</centralSnapshotUrl>
                         <tokenAuth>true</tokenAuth>
                         <autoPublish>true</autoPublish>
                         <waitUntil>published</waitUntil>
