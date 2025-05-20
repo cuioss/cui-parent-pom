@@ -8,8 +8,6 @@
 
 image:https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml]
 image:http://img.shields.io/:license-apache-blue.svg[License,link=http://www.apache.org/licenses/LICENSE-2.0.html]
-image:https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-parent-pom/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-parent-pom]
-
 image:https://img.shields.io/maven-central/v/de.cuioss/cui-parent-pom.svg?label=Maven%20Central["Maven Central", link="https://search.maven.org/artifact/de.cuioss/cui-parent-pom"]
 
 == What is it?
