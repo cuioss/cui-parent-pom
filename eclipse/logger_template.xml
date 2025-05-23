@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java" deleted="false" description="" enabled="true" name="logger">private static final CuiLogger LOGGER = new CuiLogger(${enclosing_type}.class);</template></templates>
