@@ -219,17 +219,49 @@
             </build>
         </profile>
         <profile>
-            <!-- Usage: ./mvnw -Prewrite rewrite:run -->
-            <!-- Unifies all OpenRewrite modernization and preparation recipes -->
-            <id>rewrite</id>
+            <!-- Usage: ./mvnw -Ppre-commit -->
+            <!-- Combined profile that handles license headers, code formatting with OpenRewrite recipes, and javadoc creation -->
+            <id>pre-commit</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>4.3</version>
+                        <configuration>
+                            <properties>
+                                <year>2025</year>
+                                <owner>CUI-OpenSource-Software</owner>
+                                <email>info@cuioss.de</email>
+                            </properties>
+                            <mapping>
+                                <java>JAVADOC_STYLE</java>
+                            </mapping>
+                            <licenseSets>
+                                <licenseSet>
+                                    <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+                                    <includes>
+                                        <include>src/main/java/**</include>
+                                        <include>src/test/java/**</include>
+                                    </includes>
+                                </licenseSet>
+                            </licenseSets>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>format-license-headers</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.openrewrite.maven</groupId>
                         <artifactId>rewrite-maven-plugin</artifactId>
                         <configuration>
                             <activeRecipes>
-                                <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
                                 <recipe>org.openrewrite.java.format.AutoFormat</recipe>
                                 <recipe>org.openrewrite.java.format.NormalizeLineBreaks</recipe>
                                 <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
@@ -254,6 +286,19 @@
                                 <id>rewrite</id>
                                 <goals>
                                     <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs-pre-commit</id>
+                                <goals>
+                                    <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>

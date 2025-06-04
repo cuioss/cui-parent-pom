@@ -43,6 +43,20 @@ This project implements several measures to ensure reproducible builds. The foll
 * All GitHub Actions in `.github/workflows/` are pinned by commit hash (uses: `...@<commit-sha>`).
 * The build environment is documented: builds are tested on Linux with `Java 17` and Maven `3.9.6` using `./mvnw`.
 
+== Pre-Commit Profile
+
+The project includes a convenient `pre-commit` profile that combines license header management and code formatting using OpenRewrite in a single command:
+
+[source,shell]
+----
+./mvnw -Ppre-commit
+----
+
+This profile performs the following tasks:
+
+1. Adds or updates Apache 2.0 license headers to source files
+2. Applies all configured OpenRewrite recipes for code modernization and formatting
+
 == PlantUML Diagrams
 
 This project uses PlantUML for creating diagrams in the documentation. To ensure compatibility with GitHub's rendering capabilities, we follow these practices:

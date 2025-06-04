@@ -1,41 +1,37 @@
+= OpenRewrite Recipes
+
+This document describes the OpenRewrite recipes used in the project for code modernization and formatting.
+
+== Pre-Commit Profile
+
+The project includes a `pre-commit` profile that combines license header management and code formatting in a single command:
+
 [source,shell]
 ----
-./mvnw -Prewrite-prepare-release rewrite:run
+./mvnw -Ppre-commit
 ----
+
+This profile applies all the recipes listed below and also manages license headers.
 
 [source,xml]
 ----
 <activeRecipes>
-    <recipe>org.openrewrite.java.AddApache2LicenseHeader</recipe>
     <recipe>org.openrewrite.java.format.AutoFormat</recipe>
-    <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-    <recipe>org.openrewrite.java.OrderImports</recipe>
-</activeRecipes>
-----
-[source,shell]
-----
-./mvnw -Prewrite-modernize rewrite:run
-----
-[source,xml]
-----
-<activeRecipes>
-    <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+    <recipe>org.openrewrite.java.format.NormalizeLineBreaks</recipe>
+    <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
     <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-    <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+    <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
     <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
     <recipe>org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty</recipe>
     <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
     <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
     <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
-</activeRecipes>
-----
-[source,shell]
-----
-./mvnw -Prewrite-maven-clean rewrite:run
-----
-[source,xml]
-----
-<activeRecipes>
-    <recipe>org.openrewrite.maven.BestPractices</recipe>
+    <recipe>org.openrewrite.java.OrderImports</recipe>
+    <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+    <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
+    <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
+    <recipe>org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks</recipe>
+    <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
+    <recipe>org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo</recipe>
 </activeRecipes>
 ----
