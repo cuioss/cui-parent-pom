@@ -19,6 +19,14 @@ This parent POM is part of the link:../README.adoc[cui-java-bom] module.
 
 == Profiles
 
+=== cleanup
+Integrates a number of cleanup tasks to ensure the project is in a clean state before building.
+
+[source,shell]
+----
+./mvnw -Prewrite,rewrite-maven-clean,javadoc rewrite:run verify
+----
+
 === release
 Configures the project for a release build with all necessary plugins for deployment to Maven Central.
 
@@ -40,23 +48,16 @@ Generates Javadoc documentation.
 
 [source,shell]
 ----
-./mvnw -Pjavadoc javadoc:javadoc
+./mvnw -Pjavadoc
 ----
 
 === sonar
 Configures the project for Sonar analysis.
+Caution: You need to pass credentials for SonarQube to the command line or set them in your environment variables.
 
 [source,shell]
 ----
 ./mvnw -Psonar sonar:sonar
-----
-
-=== javadoc-mm-reporting
-Generates aggregated Javadoc for multi-module projects.
-
-[source,shell]
-----
-./mvnw -Pjavadoc-mm-reporting site
 ----
 
 === rewrite
