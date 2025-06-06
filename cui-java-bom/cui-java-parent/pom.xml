@@ -26,6 +26,7 @@
         <maven.jar.plugin.automatic.module.name>
             ${project.groupId}.${project.artifactId}
         </maven.jar.plugin.automatic.module.name>
+        <license-maven-plugin.version>5.0.0</license-maven-plugin.version>
     </properties>
 
     <build>
@@ -228,7 +229,7 @@
                     <plugin>
                         <groupId>com.mycila</groupId>
                         <artifactId>license-maven-plugin</artifactId>
-                        <version>5.0.0</version>
+                        <version>${license-maven-plugin.version}</version>
                         <configuration>
                             <properties>
                                 <year>2025</year>
