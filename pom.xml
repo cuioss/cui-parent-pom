@@ -133,8 +133,10 @@
         <!-- jandex plugin -->
         <jandex.smallrye.maven.plugin.version>3.3.1</jandex.smallrye.maven.plugin.version>
         <!-- Maven compiler Plugin -->
+        <!-- Use release instead of source/target to properly handle modules. This will be removed soon -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler-plugin.release>17</maven.compiler-plugin.release>
         <!-- Sonatype -->
         <sonar.organization>cuioss-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -150,6 +152,7 @@
         <rewrite-migrate-java.version>3.11.0</rewrite-migrate-java.version>
         <project.build.outputTimestamp>2025-06-06T10:19:42Z</project.build.outputTimestamp>
         <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+
     </properties>
 
     <build>
@@ -179,6 +182,8 @@
                                 <version>${version.lombok}</version>
                             </annotationProcessorPath>
                         </annotationProcessorPaths>
+                        <!-- Use release instead of source/target to properly handle modules -->
+                        <release>${maven.compiler-plugin.release}</release>
                     </configuration>
                 </plugin>
                 <plugin>
