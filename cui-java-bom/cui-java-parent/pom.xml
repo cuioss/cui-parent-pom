@@ -20,7 +20,7 @@
         <maven.javadoc.plugin.doclint>html</maven.javadoc.plugin.doclint>
         <!-- See https://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html#legacymode -->
         <maven.javadoc.plugin.legacyMode>false</maven.javadoc.plugin.legacyMode>
-        <!-- The automatic module name to be set. Must be corresponding to 
+        <!-- The automatic module name to be set. Must be corresponding to
             the one defined at module.info -->
         <maven.jar.plugin.automatic.module.name>
             ${project.groupId}.${project.artifactId}
@@ -286,6 +286,7 @@
                             <exclusions>
                                 <exclusion>target/**</exclusion>
                             </exclusions>
+                            <runPerSubmodule>true</runPerSubmodule>
                         </configuration>
                         <executions>
                             <execution>
