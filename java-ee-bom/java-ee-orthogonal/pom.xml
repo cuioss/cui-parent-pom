@@ -16,7 +16,7 @@
         <version.jandex>3.3.1</version.jandex>
         <version.caffeine>3.2.1</version.caffeine>
         <version.apache.httpcore>4.4.16</version.apache.httpcore>
-        <version.log4j>2.24.3</version.log4j>
+        <version.log4j>2.25.0</version.log4j>
         <version.smallrye-jwt>4.6.2</version.smallrye-jwt>
         <version.bouncycastle>1.81</version.bouncycastle>
         <version.rest-assured>5.5.5</version.rest-assured>
