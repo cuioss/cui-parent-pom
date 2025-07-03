@@ -28,8 +28,7 @@ This project implements several measures to ensure reproducible builds. The foll
 
 [source,xml]
 ----
-<maven.compiler.source>17</maven.compiler.source> 
-<maven.compiler.target>17</maven.compiler.target> 
+<maven.compiler-plugin.release>21</maven.compiler-plugin.release>
 ----
 
 * Reproducibility configuration is set for JAR/WAR plugins in all modules:
@@ -41,7 +40,7 @@ This project implements several measures to ensure reproducible builds. The foll
  
 * No non-deterministic resource filtering is used (no timestamp, hostname, or environment injection in resources).
 * All GitHub Actions in `.github/workflows/` are pinned by commit hash (uses: `...@<commit-sha>`).
-* The build environment is documented: builds are tested on Linux with `Java 17` and Maven `3.9.6` using `./mvnw`.
+* The build environment is documented: builds are tested on Linux with `Java 21` and Maven `3.9.6` using `./mvnw`.
 
 == Pre-Commit Profile
 
