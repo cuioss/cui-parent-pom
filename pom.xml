@@ -476,11 +476,6 @@
                     <groupId>org.openrewrite.maven</groupId>
                     <artifactId>rewrite-maven-plugin</artifactId>
                     <version>${open.rewrite.maven.plugin.version}</version>
-                    <configuration>
-                        <activeRecipes>
-                            <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
-                        </activeRecipes>
-                    </configuration>
                     <dependencies>
                         <dependency>
                             <groupId>org.openrewrite.recipe</groupId>
