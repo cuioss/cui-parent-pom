@@ -28,8 +28,7 @@ This project implements several measures to ensure reproducible builds. The foll
 
 [source,xml]
 ----
-<maven.compiler.source>21</maven.compiler.source>
-<maven.compiler.target>21</maven.compiler.target>
+<maven.compiler-plugin.release>21</maven.compiler-plugin.release>
 ----
 
 * Reproducibility configuration is set for JAR/WAR plugins in all modules:

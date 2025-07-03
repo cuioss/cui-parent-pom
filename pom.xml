@@ -134,7 +134,6 @@
         <!-- Maven compiler Plugin -->
         <!-- Use release instead of source/target to properly handle modules. This will be removed soon -->
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler-plugin.release>21</maven.compiler-plugin.release>
         <!-- Sonatype -->
         <sonar.organization>cuioss-github</sonar.organization>
@@ -173,7 +172,6 @@
                     <version>${maven.compiler.plugin.version}</version>
                     <configuration>
                         <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
                         <annotationProcessorPaths>
                             <annotationProcessorPath>
                                 <groupId>org.projectlombok</groupId>
