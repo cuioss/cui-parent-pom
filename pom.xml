@@ -133,9 +133,9 @@
         <jandex.smallrye.maven.plugin.version>3.3.1</jandex.smallrye.maven.plugin.version>
         <!-- Maven compiler Plugin -->
         <!-- Use release instead of source/target to properly handle modules. This will be removed soon -->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler-plugin.release>17</maven.compiler-plugin.release>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler-plugin.release>21</maven.compiler-plugin.release>
         <!-- Sonatype -->
         <sonar.organization>cuioss-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -228,11 +228,11 @@
                                         </message>
                                     </requireMavenVersion>
                                     <requireJavaVersion>
-                                        <version>[11,)</version>
+                                        <version>[21,)</version>
                                         <message>Invalid Java Version.
                                             Make sure
                                             you have the latest
-                                            patch of Java11.
+                                            patch of Java21.
                                             Current
                                             version: ${java.version}
                                         </message>
@@ -478,6 +478,11 @@
                     <groupId>org.openrewrite.maven</groupId>
                     <artifactId>rewrite-maven-plugin</artifactId>
                     <version>${open.rewrite.maven.plugin.version}</version>
+                    <configuration>
+                        <activeRecipes>
+                            <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
+                        </activeRecipes>
+                    </configuration>
                     <dependencies>
                         <dependency>
                             <groupId>org.openrewrite.recipe</groupId>
@@ -502,6 +507,10 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

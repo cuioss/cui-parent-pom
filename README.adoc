@@ -13,7 +13,7 @@ image:https://img.shields.io/maven-central/v/de.cuioss/cui-parent-pom.svg?label=
 == What is it?
 
 Parent pom for cui-open-source-projects. It defines and configures a number of maven-plugins, unifying the descendant modules.
-It aims at modules being at least Java 17. It defines the sonatype-repositories as read and deploy repositories.
+It aims at modules being at least Java 21. It defines the sonatype-repositories as read and deploy repositories.
 
 Maven-site result can be found https://cuioss.github.io/cui-parent-pom/[Project-Home-Page]
 
