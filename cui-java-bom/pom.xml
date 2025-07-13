@@ -34,6 +34,7 @@
         <version.easymock>5.6.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
         <version.waitility>4.3.0</version.waitility>
+        <version.jspecify>1.0.0</version.jspecify>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,12 @@
                 <artifactId>lombok</artifactId>
                 <version>${version.lombok}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jspecify</groupId>
+                <artifactId>jspecify</artifactId>
+                <version>${version.jspecify}</version>
+                <scope>compile</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
             <dependency>
