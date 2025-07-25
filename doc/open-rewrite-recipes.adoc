@@ -8,7 +8,7 @@ The project includes a `pre-commit` profile that combines license header managem
 
 [source,shell]
 ----
-./mvnw ./mvnw -Ppre-commit clean verify -DskipTests
+./mvnw -Ppre-commit clean verify -DskipTests
 ----
 
 This profile applies all the recipes listed below and also manages license headers.

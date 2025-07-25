@@ -19,16 +19,8 @@ This parent POM is part of the link:../README.adoc[cui-java-bom] module.
 
 == Profiles
 
-=== cleanup
-Integrates a number of cleanup tasks to ensure the project is in a clean state before building.
-
-[source,shell]
-----
-./mvnw -Prewrite,rewrite-maven-clean,javadoc rewrite:run verify
-----
-
 === release
-Configures the project for a release build with all necessary plugins for deployment to Maven Central.
+Configures the project for a release build with all necessary plugins for deployment to Maven Central, including source and Javadoc JARs, GPG signing, and central publishing.
 
 [source,shell]
 ----
@@ -36,7 +28,7 @@ Configures the project for a release build with all necessary plugins for deploy
 ----
 
 === release-snapshot
-Configures the project for a snapshot release build.
+Configures the project for a snapshot release build with source and Javadoc JARs, GPG signing, and central publishing.
 
 [source,shell]
 ----
@@ -44,34 +36,41 @@ Configures the project for a snapshot release build.
 ----
 
 === javadoc
-Generates Javadoc documentation.
+Generates Javadoc documentation with build helper and Jandex plugins.
 
 [source,shell]
 ----
-./mvnw -Pjavadoc
+./mvnw -Pjavadoc verify
 ----
 
 === sonar
-Configures the project for Sonar analysis.
-Caution: You need to pass credentials for SonarQube to the command line or set them in your environment variables.
+Configures the project for SonarCloud analysis with JaCoCo code coverage reporting. You need to pass credentials for SonarCloud to the command line or set them in your environment variables.
 
 [source,shell]
 ----
-./mvnw -Psonar sonar:sonar
+./mvnw -Psonar verify sonar:sonar
 ----
 
-=== rewrite
-Unifies all OpenRewrite modernization and preparation recipes. Use this profile to apply formatting, header, import, and modernization best practices in one step.
+=== pre-commit
+Combined profile that handles license headers, code formatting with OpenRewrite recipes, and Javadoc validation. This should be run before committing changes.
 
 [source,shell]
 ----
-./mvnw -Prewrite rewrite:run
+./mvnw -Ppre-commit verify
 ----
 
 === coverage
-Configures the project for local code coverage analysis.
+Configures the project for local code coverage analysis with JaCoCo, including coverage thresholds (80% instruction and branch coverage).
 
 [source,shell]
 ----
 ./mvnw -Pcoverage verify
+----
+
+=== license-cleanup
+Temporary profile to clean up existing Javadoc-style license headers and apply new ones. This profile will be removed in version 1.2.0.
+
+[source,shell]
+----
+./mvnw -Plicense-cleanup process-sources
 ----
