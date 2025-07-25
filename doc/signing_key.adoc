@@ -17,10 +17,10 @@ Starting with Jose Carvajal excellent introduction: https://sgitario.github.io/d
 
 [source,json]
 ----
-pub   rsa3072 2022-12-04 [SC] [verfällt: 2024-12-03]
+pub   rsa3072 2022-12-04 [SC] [verfällt: 2026-12-03]
       D6A0*****
 uid        [ ultimativ ] ****>
-sub   rsa3072 2022-12-04 [E] [verfällt: 2024-12-03]
+sub   rsa3072 2022-12-04 [E] [verfällt: 2026-12-03]
 ----
 * gpg --keyserver keyserver.ubuntu.com --send-keys D6A0*****
 Optional, to speed things up, not strictly necessary: 
