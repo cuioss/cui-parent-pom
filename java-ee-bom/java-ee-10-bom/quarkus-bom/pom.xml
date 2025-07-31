@@ -12,7 +12,7 @@
     <properties>
         <!-- Quarkus -->
         <version.quarkus>3.23.3</version.quarkus>
-        <version.omnifaces.quarkus>4.6.2</version.omnifaces.quarkus>
+        <version.omnifaces.quarkus>4.6.5</version.omnifaces.quarkus>
         <version.primefaces.quarkus>3.15.6</version.primefaces.quarkus>
     </properties>
     <dependencyManagement>
