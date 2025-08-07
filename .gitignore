@@ -12,3 +12,6 @@ pom.xml.versionsBackup
 .vscode
 /deploy-setup.sh
 /settings.xml
+
+# Claude Code configuration
+.claude/
