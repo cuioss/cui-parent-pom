@@ -152,6 +152,7 @@
         <project.build.outputTimestamp>2025-08-07T10:49:31Z</project.build.outputTimestamp>
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
 
+        <cui-open-rewrite.version>1.0.0</cui-open-rewrite.version>
     </properties>
 
     <build>
@@ -492,6 +493,11 @@
                             <groupId>org.openrewrite.recipe</groupId>
                             <artifactId>rewrite-testing-frameworks</artifactId>
                             <version>${rewrite-testing-frameworks.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>de.cuioss.rewrite</groupId>
+                            <artifactId>cui-open-rewrite</artifactId>
+                            <version>${cui-open-rewrite.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
