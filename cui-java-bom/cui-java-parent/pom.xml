@@ -268,20 +268,20 @@
                                 <recipe>de.cuioss.rewrite.logging.CuiLoggerStandardsRecipe</recipe>
                                 <recipe>de.cuioss.rewrite.logging.CuiLogRecordPatternRecipe</recipe>
                                 <recipe>de.cuioss.rewrite.logging.InvalidExceptionUsageRecipe</recipe>
-                                
+
                                 <!-- Code formatting -->
                                 <recipe>org.openrewrite.java.format.AutoFormat</recipe>
                                 <recipe>org.openrewrite.java.format.NormalizeLineBreaks</recipe>
                                 <recipe>org.openrewrite.java.format.RemoveTrailingWhitespace</recipe>
-                                
+
                                 <!-- Java 21 migration and modernization -->
                                 <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
-                                
+
                                 <!-- Modern Java language features -->
                                 <recipe>org.openrewrite.java.migrate.lang.UseTextBlocks</recipe>
                                 <recipe>org.openrewrite.java.migrate.lang.StringFormatted</recipe>
                                 <recipe>org.openrewrite.staticanalysis.InstanceOfPatternMatch</recipe>
-                                
+
                                 <!-- Utility method modernization -->
                                 <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
@@ -289,22 +289,21 @@
                                 <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
-                                
+
                                 <!-- Code organization -->
                                 <recipe>org.openrewrite.java.OrderImports</recipe>
                                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                                 <recipe>org.openrewrite.java.ShortenFullyQualifiedTypeReferences</recipe>
-                                
+
                                 <!-- Testing improvements -->
                                 <recipe>org.openrewrite.java.testing.junit5.JUnit5BestPractices</recipe>
                                 <recipe>org.openrewrite.java.testing.junit5.RemoveTryCatchFailBlocks</recipe>
-                                
+
                                 <!-- Static analysis improvements -->
                                 <recipe>org.openrewrite.staticanalysis.EqualsAvoidsNull</recipe>
                                 <recipe>org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo</recipe>
                                 <recipe>org.openrewrite.staticanalysis.SimplifyBooleanExpression</recipe>
                                 <recipe>org.openrewrite.staticanalysis.UnnecessaryParentheses</recipe>
-                                <recipe>org.openrewrite.staticanalysis.RemoveRedundantTypeCast</recipe>
                             </activeRecipes>
                             <!-- Exclude generated files from being processed -->
                             <exclusions>
