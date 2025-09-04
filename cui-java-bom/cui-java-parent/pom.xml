@@ -324,6 +324,16 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven.javadoc.plugin.version}</version>
+                        <configuration>
+                            <sourcepath>src/main/java</sourcepath>
+                            <release>${maven.compiler-plugin.release}</release>
+                            <linksource>true</linksource>
+                            <quiet>true</quiet>
+                            <notimestamp>true</notimestamp>
+                            <splitindex>true</splitindex>
+                            <doctitle>${project.name}</doctitle>
+                            <doclint>${maven.javadoc.plugin.doclint}</doclint>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>check-javadocs-pre-commit</id>
