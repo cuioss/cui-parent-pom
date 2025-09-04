@@ -279,10 +279,7 @@
                                 
                                 <!-- Modern Java language features -->
                                 <recipe>org.openrewrite.java.migrate.lang.UseTextBlocks</recipe>
-                                <recipe>org.openrewrite.java.migrate.lang.SwitchCaseAssignmentsToSwitchExpression</recipe>
-                                <recipe>org.openrewrite.java.migrate.lang.SwitchCaseReturnsToSwitchExpression</recipe>
                                 <recipe>org.openrewrite.java.migrate.lang.StringFormatted</recipe>
-                                <recipe>org.openrewrite.java.migrate.lang.ExplicitRecordImport</recipe>
                                 <recipe>org.openrewrite.staticanalysis.InstanceOfPatternMatch</recipe>
                                 
                                 <!-- Utility method modernization -->

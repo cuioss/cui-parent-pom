@@ -1,5 +1,5 @@
 name: cui parent pom
 pages-reference: cui-parent-pom
 release:
-  current-version: 1.1.7
+  current-version: 1.1.8
   next-version: 1.1-SNAPSHOT
