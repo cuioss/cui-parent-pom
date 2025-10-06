@@ -20,7 +20,8 @@
 
     <properties>
         <version.cui.core.ui.model>2.3.0</version.cui.core.ui.model>
-        <version.cui.java.tools>2.5.1</version.cui.java.tools>
+        <version.cui.java.tools>2.6.0</version.cui.java.tools>
+        <version.cui.http>0.1.0</version.cui.http>
         <!-- Test -->
         <!-- The version needs to be aligned with the one defined within the quarkus boms.
         Otherwise, it's getting messy-->
@@ -66,6 +67,11 @@
                 <artifactId>cui-java-tools</artifactId>
                 <version>${version.cui.java.tools}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.cuioss</groupId>
+                <artifactId>cui-http</artifactId>
+                <version>${version.cui.http}</version>
             </dependency>
             <dependency>
                 <groupId>de.cuioss</groupId>
