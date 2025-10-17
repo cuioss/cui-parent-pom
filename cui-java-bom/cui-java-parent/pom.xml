@@ -277,7 +277,25 @@
                                 <recipe>de.cuioss.rewrite.logging.InvalidExceptionUsageRecipe</recipe>
 
                                 <!-- Java 21 migration and modernization -->
-                                <recipe>org.openrewrite.java.migrate.UpgradeToJava21</recipe>
+                                <!-- NOTE: Using individual recipes from UpgradeToJava21 to avoid adding maven.compiler.release property -->
+                                <!-- The parent POM enforces Java 21 via maven-enforcer-plugin, so maven.compiler.release is redundant -->
+                                <!-- and prevents multi-version CI builds that use -Dmaven.compiler.release=XX command-line overrides -->
+                                <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemoveMethodInvocation</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedFileIOFinalizeMethods</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedJImageFileAttributeMethods</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedLegacyApis</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedModifierExtensionMethods</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedPolicy_GetSysClassLoader</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedSSLSessionGetPeerCertificateChainMethod</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedToolProviderConstructor</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemovedZipFinalizeMethods</recipe>
+                                <recipe>org.openrewrite.java.migrate.ReplaceComSunAWTPeerWithJavaPeer</recipe>
+                                <recipe>org.openrewrite.java.migrate.UpgradePluginsForJava21</recipe>
+                                <recipe>org.openrewrite.java.migrate.lang.PreferUrlToUriConversion</recipe>
+                                <recipe>org.openrewrite.staticanalysis.RemoveExtraSemicolons</recipe>
+                                <!-- Explicitly excluding: org.openrewrite.java.migrate.UpgradeBuildToJava21 -->
+                                <!-- which contains org.openrewrite.maven.UpdateMavenProjectPropertyJavaVersion that adds maven.compiler.release -->
 
                                 <!-- Modern Java language features -->
                                 <recipe>org.openrewrite.java.migrate.lang.UseTextBlocks</recipe>
