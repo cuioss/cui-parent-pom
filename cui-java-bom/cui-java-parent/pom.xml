@@ -277,38 +277,26 @@
                                 <recipe>de.cuioss.rewrite.logging.InvalidExceptionUsageRecipe</recipe>
 
                                 <!-- Java 21 migration and modernization -->
-                                <!-- NOTE: Using individual recipes from UpgradeToJava21 to avoid adding maven.compiler.release property -->
+                                <!-- NOTE: Using UpgradeToJava17 as the base, which includes: -->
+                                <!--   - UseTextBlocks, StringFormatted, InstanceOfPatternMatch -->
+                                <!--   - RemovedFileIOFinalizeMethods, RemovedZipFinalizeMethods, RemovedSSLSessionGetPeerCertificateChainMethodImpl, RemovedToolProviderConstructor -->
+                                <!--   - UpgradePluginsForJava17, and many other Java 17 migrations -->
+                                <!-- Then adding Java 21-specific recipes not in UpgradeToJava17 -->
                                 <!-- The parent POM enforces Java 21 via maven-enforcer-plugin, so maven.compiler.release is redundant -->
                                 <!-- and prevents multi-version CI builds that use -Dmaven.compiler.release=XX command-line overrides -->
                                 <recipe>org.openrewrite.java.migrate.UpgradeToJava17</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemoveMethodInvocation</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedFileIOFinalizeMethods</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedJImageFileAttributeMethods</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedLegacyApis</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedModifierExtensionMethods</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedPolicy_GetSysClassLoader</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedSSLSessionGetPeerCertificateChainMethod</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedToolProviderConstructor</recipe>
-                                <recipe>org.openrewrite.java.migrate.RemovedZipFinalizeMethods</recipe>
-                                <recipe>org.openrewrite.java.migrate.ReplaceComSunAWTPeerWithJavaPeer</recipe>
+
+                                <!-- Java 21-specific recipes not included in UpgradeToJava17 -->
+                                <recipe>org.openrewrite.java.migrate.RemovedPolicy</recipe>
+                                <recipe>org.openrewrite.java.migrate.RemoveSecurityManager</recipe>
                                 <recipe>org.openrewrite.java.migrate.UpgradePluginsForJava21</recipe>
-                                <recipe>org.openrewrite.java.migrate.lang.PreferUrlToUriConversion</recipe>
-                                <recipe>org.openrewrite.staticanalysis.RemoveExtraSemicolons</recipe>
                                 <!-- Explicitly excluding: org.openrewrite.java.migrate.UpgradeBuildToJava21 -->
                                 <!-- which contains org.openrewrite.maven.UpdateMavenProjectPropertyJavaVersion that adds maven.compiler.release -->
 
-                                <!-- Modern Java language features -->
-                                <recipe>org.openrewrite.java.migrate.lang.UseTextBlocks</recipe>
-                                <recipe>org.openrewrite.java.migrate.lang.StringFormatted</recipe>
-                                <recipe>org.openrewrite.staticanalysis.InstanceOfPatternMatch</recipe>
-
-                                <!-- Utility method modernization -->
+                                <!-- Utility method modernization (not in UpgradeToJava17) -->
                                 <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.OptionalNotEmptyToIsPresent</recipe>
                                 <recipe>org.openrewrite.java.migrate.util.OptionalNotPresentToIsEmpty</recipe>
-                                <recipe>org.openrewrite.java.migrate.util.ReplaceStreamCollectWithToList</recipe>
-                                <recipe>org.openrewrite.java.migrate.util.UseLocaleOf</recipe>
-                                <recipe>org.openrewrite.java.migrate.util.UseMapOf</recipe>
 
                                 <!-- Code organization -->
                                 <recipe>org.openrewrite.java.OrderImports</recipe>
