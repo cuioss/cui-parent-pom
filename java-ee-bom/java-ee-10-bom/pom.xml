@@ -15,7 +15,7 @@
     <properties>
         <version.jakarta.jakartaee-web-api>10.0.0</version.jakarta.jakartaee-web-api>
         <version.myfaces>4.1.3</version.myfaces>
-        <version.omnifaces>5.3.3</version.omnifaces>
+        <version.omnifaces>5.3.4</version.omnifaces>
         <version.primefaces>15.0.15</version.primefaces>
         <version.cui.test.jsf.basic>4.2.0</version.cui.test.jsf.basic>
 
