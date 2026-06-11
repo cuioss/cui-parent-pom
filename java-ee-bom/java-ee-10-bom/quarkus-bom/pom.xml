@@ -11,7 +11,7 @@
     <description>Bundles all quarkus related dependencies / plufins</description>
     <properties>
         <!-- Quarkus -->
-        <version.quarkus>3.36.1</version.quarkus>
+        <version.quarkus>3.36.2</version.quarkus>
         <version.omnifaces.quarkus>5.3.4</version.omnifaces.quarkus>
         <version.primefaces.quarkus>4.15.15</version.primefaces.quarkus>
     </properties>
