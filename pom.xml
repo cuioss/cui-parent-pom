@@ -145,7 +145,7 @@
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>2.0.1</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>6.42.0</open.rewrite.maven.plugin.version>
-        <rewrite-testing-frameworks.version>3.37.0</rewrite-testing-frameworks.version>
+        <rewrite-testing-frameworks.version>3.38.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.37.0</rewrite-migrate-java.version>
         <rewrite-static-analysis.version>2.37.0</rewrite-static-analysis.version>
         <project.build.outputTimestamp>2026-04-20T19:13:46Z</project.build.outputTimestamp>
