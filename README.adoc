@@ -39,7 +39,7 @@ toc::[]
 <parent>
    <groupId>de.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
-   <version>1.4.5</version> <!-- use the latest release -->
+   <version>1.5.0</version> <!-- use the latest release -->
 </parent>
 ----
 
@@ -70,7 +70,7 @@ toc::[]
     <parent>
         <groupId>de.cuioss</groupId>
         <artifactId>cui-java-parent</artifactId>
-        <version>1.4.5</version>
+        <version>1.5.0</version>
     </parent>
     <artifactId>cui-java-sample</artifactId>
     <name>cui java sample</name>
