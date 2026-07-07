@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-cui-parent-pom is a Maven parent POM for CUI open-source Java projects. It provides standardized build configuration, dependency management, and development workflows for descendant projects.
+cui-parent-pom is a Maven parent POM for CUI open-source Java projects. It provides standardized build configuration, dependency management, and development workflows for descendant projects. It is a POM-and-BOM aggregator — there is no Java source in this repository.
 
 ## Key Commands
 
@@ -20,21 +20,20 @@ cui-parent-pom is a Maven parent POM for CUI open-source Java projects. It provi
 ./mvnw -Ppre-commit
 ```
 
-### Release Process
-```bash
-# Prepare release
-./mvnw -Prelease-pom release:clean release:prepare -DreleaseVersion=X.Y.Z -DdevelopmentVersion=X.Y.Z-SNAPSHOT
+### Releasing
+Releases are **fully automated by GitHub Actions**. Merging a pull request that changes
+`.github/project.yml` triggers `.github/workflows/release.yml` (the reusable
+`cuioss-organization` maven-release workflow), which runs the Maven release goals, tags,
+deploys to Maven Central, creates the GitHub release, and — because `pages.deploy-at-release`
+is set — deploys the documentation site.
 
-# Perform release
-./mvnw -Prelease-pom release:perform
-
-# Deploy snapshot
-./mvnw -B --no-transfer-progress deploy
-```
+Use the **`/release` skill** (`.claude/skills/release/`) to cut a release: it determines the
+version, opens and merges the version-bump PR, waits for the release workflow, and reformats
+the generated release notes. Do **not** hand-run `release:prepare`/`release:perform`.
 
 ### Other Useful Commands
 ```bash
-# Generate PlantUML diagrams
+# Generate PlantUML diagrams (add sources under doc/plantuml/*.puml first)
 ./mvnw generate-resources -Pbuild-plantuml
 
 # Generate Maven site
@@ -42,6 +41,9 @@ cui-parent-pom is a Maven parent POM for CUI open-source Java projects. It provi
 
 # Get current version
 ./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout
+
+# Deploy a SNAPSHOT (normally done automatically on main by CI)
+./mvnw -B --no-transfer-progress deploy
 ```
 
 ## Architecture and Structure
@@ -52,7 +54,7 @@ cui-parent-pom (root)
 ├── cui-java-bom (Java dependency management)
 │   └── cui-java-parent (Parent POM for simple Java projects)
 └── java-ee-bom (Jakarta EE dependency management)
-    ├── java-ee-10-bom (Jakarta EE 10 specific)
+    ├── java-ee-10-bom (Jakarta EE 10 module; forward-adopts some EE 11 APIs)
     │   └── quarkus-bom (Quarkus framework)
     └── java-ee-orthogonal (Cross-cutting EE concerns)
 ```
@@ -67,18 +69,21 @@ cui-parent-pom (root)
 ### Important Profiles
 
 - **pre-commit**: Applies license headers and OpenRewrite formatting
-- **release-pom**: Used for releasing POM-only artifacts (no Java code)
-- **release**: Used for releasing Java artifacts with sources and javadocs
+- **coverage**: Local JaCoCo coverage analysis with thresholds
+- **release-pom**: Used for releasing POM-only artifacts (no Java code); the release workflow uses this profile (`maven-profiles-release` in `project.yml`)
+- **release** / **release-snapshot**: Java-artifact release / snapshot profiles
+- **javadoc**: Javadoc generation
 - **sonar**: Enables SonarCloud analysis with JaCoCo coverage
-- **build-plantuml**: Generates PNG images from PlantUML diagrams
+- **build-plantuml**: Generates PNG images from PlantUML `.puml` sources under `doc/plantuml/`
 
 ### Critical Configuration
 
 1. **Java Version**: Requires Java 21 or higher (enforced by maven-enforcer-plugin)
-2. **Maven Version**: Requires Maven 3.8.0+ (3.9.6 via wrapper)
-3. **License Headers**: Apache 2.0 license, recently changed from javadoc to regular comment style
-4. **Deployment**: Uses new central-publishing-maven-plugin for Sonatype/Maven Central
-5. **Reproducible Builds**: Configured with project.build.outputTimestamp
+2. **Maven Version**: Requires Maven 3.8.0+ (3.9.6 via the `maven-wrapper-plugin`, `distributionType=only-script`)
+3. **License Headers**: Apache 2.0 license in regular comment style (`/* */`), stamped by the mycila `license-maven-plugin` (current year, no hardcoded year override)
+4. **Deployment**: Uses the `central-publishing-maven-plugin` for Sonatype/Maven Central
+5. **Reproducible Builds**: Configured with `project.build.outputTimestamp`
+6. **Parent version property**: `version.cui.parent` (root `pom.xml`) holds the released parent version; the release plugin bumps it automatically via `preparationGoals`. Consumers import BOMs with `${version.cui.parent}`.
 
 ### Development Guidelines
 
@@ -88,27 +93,28 @@ cui-parent-pom (root)
 4. **Validating Changes**: Always run `./mvnw verify` to ensure all modules build correctly
 5. **Module Structure**: New modules should follow the existing hierarchy pattern
 
-### Recent Changes
-
-The project changed license headers from javadoc style (`/** */`) to regular comment style (`/* */`) to avoid IDE warnings.
-
 ### CI/CD Integration
 
-- GitHub Actions workflows handle builds, tests, and deployments
-- Automatic SNAPSHOT deployments on main branch commits
-- Release workflow triggered by changes to project.yml
-- Security scanning via GitHub security features and scorecards
+- GitHub Actions workflows are **thin callers** to the reusable workflows in
+  `cuioss/cuioss-organization` (pinned by SHA, currently `v0.7.0`). Per-repo configuration
+  lives in `.github/project.yml`.
+  - `maven.yml` → `reusable-maven-build.yml` (build + Sonar + snapshot deploy; path filtering handled inside the reusable workflow)
+  - `release.yml` → `reusable-maven-release.yml` (triggered by a merged `project.yml` change)
+  - `dependency-review.yml`, `dependabot-auto-merge.yml`, `scorecards.yml` → their reusable counterparts
+- Automatic SNAPSHOT deployments on `main` commits.
+- Dependabot updates (maven + github-actions) with a tiered `cooldown`.
+- Supply-chain hardening via OpenSSF Scorecard; all actions pinned by commit SHA.
 
 ## Git Workflow
 
 All cuioss repositories have branch protection on `main`. Direct pushes to `main` are never allowed. Always use this workflow:
 
-1. Create a feature branch: `git checkout -b <branch-name>`
+1. Create a feature branch: `git checkout -b <branch-name>` (use a CI-recognized prefix: `feature/`, `fix/`, `chore/`, `release/`)
 2. Commit changes: `git add <files> && git commit -m "<message>"`
 3. Push the branch: `git push -u origin <branch-name>`
 4. Create a PR: `gh pr create --repo cuioss/cuioss-parent-pom --head <branch-name> --base main --title "<title>" --body "<body>"`
-5. Wait for CI + Gemini review (waits until checks complete): `gh pr checks --watch`
-6. **Handle Gemini review comments** — fetch with `gh api repos/cuioss/cuioss-parent-pom/pulls/<pr-number>/comments` and for each:
+5. Wait for CI + automated review (waits until checks complete): `gh pr checks --watch`
+6. **Handle review comments** — fetch with `gh api repos/cuioss/cuioss-parent-pom/pulls/<pr-number>/comments` and for each:
    - If clearly valid and fixable: fix it, commit, push, then reply explaining the fix and resolve the comment
    - If disagree or out of scope: reply explaining why, then resolve the comment
    - If uncertain (not 100% confident): **ask the user** before acting

@@ -13,5 +13,5 @@ pom.xml.versionsBackup
 /deploy-setup.sh
 /settings.xml
 
-# Claude Code configuration
-.claude/
+# Claude Code configuration — ignore local settings, track shared skills/commands
+.claude/settings.local.json
