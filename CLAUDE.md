@@ -90,7 +90,7 @@ cui-parent-pom (root)
 
 ### Recent Changes
 
-The project recently changed license headers from javadoc style (`/** */`) to regular comment style (`/* */`) to avoid IDE warnings. The `license-cleanup` profile will be removed in version 1.2.0.
+The project changed license headers from javadoc style (`/** */`) to regular comment style (`/* */`) to avoid IDE warnings.
 
 ### CI/CD Integration
 

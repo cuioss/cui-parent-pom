@@ -8,7 +8,7 @@
     <artifactId>quarkus-bom</artifactId>
     <packaging>pom</packaging>
     <name>cuioss quarkus bom</name>
-    <description>Bundles all quarkus related dependencies / plufins</description>
+    <description>Bundles all quarkus related dependencies / plugins</description>
     <properties>
         <!-- Quarkus -->
         <version.quarkus>3.37.1</version.quarkus>

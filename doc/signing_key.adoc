@@ -1,14 +1,14 @@
-# Creating Signing keys
-:toc: 
+= Creating Signing keys
+:toc:
 
-## Summary
+== Summary
 
 For Signing the code artifacts, precondition for uploading to maven-central
 We need a gpg-signing key
 
-## First Approach
+== First Approach
 
-Starting with Jose Carvajal excellent introduction: https://sgitario.github.io/deploy-to-maven-central-from-github-actions/[Deploy Your GitHub Project to Maven Central from GitHub actions] 
+Starting with Jose Carvajal excellent introduction: https://sgitario.github.io/deploy-to-maven-central-from-github-actions/[Deploy Your GitHub Project to Maven Central from GitHub actions]
 -> Thanks a lot for sharing
 
 * Install the GPG tool
@@ -23,18 +23,18 @@ uid        [ ultimativ ] ****>
 sub   rsa3072 2022-12-04 [E] [verfällt: 2026-12-03]
 ----
 * gpg --keyserver keyserver.ubuntu.com --send-keys D6A0*****
-Optional, to speed things up, not strictly necessary: 
+Optional, to speed things up, not strictly necessary:
 * gpg --keyserver eys.openpgp.org --send-keys D6A0*****
 * gpg --keyserver pgp.mit.edu --send-keys D6A0*****
 
-### Export Key to clipboard
-#### macOS
+=== Export Key to clipboard
+==== macOS
 gpg --armor --export-secret-key joe@foo.bar | pbcopy
 
-##### Ubuntu (assuming GNU base64)
+===== Ubuntu (assuming GNU base64)
 gpg --armor --export-secret-key joe@foo.bar -w0 | xclip
 
-## Open Tasks / Todos
+== Open Tasks / Todos
 
 * Minimize the key to a signing key
 * Create a project instead of a person specific key.

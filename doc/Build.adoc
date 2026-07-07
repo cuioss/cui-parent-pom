@@ -9,14 +9,14 @@ toc::[]
 
 == Updating the Maven Wrapper
 
-To update the Maven Wrapper scripts (mvnw, mvnw.cmd, .mvn/wrapper), run the following command:
+To update the Maven Wrapper scripts (mvnw, mvnw.cmd, .mvn/wrapper), run the following command, pinning the desired Maven version:
 
 [source,shell]
 ----
-./mvnw wrapper:wrapper
+./mvnw wrapper:wrapper -Dmaven=3.9.6
 ----
 
-This will update the Maven Wrapper to the latest version provided by the takari-maven-wrapper-plugin.
+This uses the official `org.apache.maven.plugins:maven-wrapper-plugin`. The wrapper is configured with `distributionType=only-script`.
 
 == Reproducible Builds
 

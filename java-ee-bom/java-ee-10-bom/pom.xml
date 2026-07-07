@@ -13,7 +13,6 @@
         <module>quarkus-bom</module>
     </modules>
     <properties>
-        <version.jakarta.jakartaee-web-api>10.0.0</version.jakarta.jakartaee-web-api>
         <version.myfaces>4.1.3</version.myfaces>
         <version.omnifaces>5.3.4</version.omnifaces>
         <version.primefaces>15.0.16</version.primefaces>
@@ -21,6 +20,8 @@
 
         <!-- Java EE-->
         <!-- Servlet / EE api -->
+        <!-- Note: this module (named java-ee-10-bom) forward-adopts Jakarta EE 11 APIs
+             (web-api 11.0.0, servlet 6.1.0). Versions are intentional; keep them aligned. -->
         <version.jakarta.ee.web-api>11.0.0</version.jakarta.ee.web-api>
         <version.jakarta.servlet-api>6.1.0</version.jakarta.servlet-api>
         <version.jakarta.websocket-api>2.2.0</version.jakarta.websocket-api>
