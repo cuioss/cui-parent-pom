@@ -6,12 +6,12 @@ Parent pom for simple java-projects. Provides configuration for Java projects wi
 
 To use this parent POM in your project, add it to your pom.xml:
 
-[source, xml]
+[source,xml]
 ----
 <parent>
     <groupId>de.cuioss</groupId>
     <artifactId>cui-java-parent</artifactId>
-    <version>${version}</version>
+    <version>1.4.5</version> <!-- use the latest release -->
 </parent>
 ----
 

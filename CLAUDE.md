@@ -17,7 +17,7 @@ cui-parent-pom is a Maven parent POM for CUI open-source Java projects. It provi
 ./mvnw clean install
 
 # Run pre-commit tasks (license headers + formatting)
-./mvnw -Ppre-commit
+./mvnw -Ppre-commit verify
 ```
 
 ### Releasing
@@ -89,7 +89,7 @@ cui-parent-pom (root)
 
 1. **Adding Dependencies**: Define versions as properties in the appropriate BOM module
 2. **Plugin Configuration**: Add to pluginManagement in root POM with version property
-3. **License Headers**: Run `./mvnw -Ppre-commit` before committing to ensure proper headers
+3. **License Headers**: Run `./mvnw -Ppre-commit verify` before committing to ensure proper headers
 4. **Validating Changes**: Always run `./mvnw verify` to ensure all modules build correctly
 5. **Module Structure**: New modules should follow the existing hierarchy pattern
 

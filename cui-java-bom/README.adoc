@@ -10,7 +10,7 @@ Provides a number of standard-java dependency-declarations that can be consumed 
 
 To use this BOM in your project, add it to your dependencyManagement section:
 
-[source, xml]
+[source,xml]
 ----
 <dependencyManagement>
     <dependencies>
@@ -29,12 +29,14 @@ This BOM includes managed dependencies for:
 
 * Standard Java libraries
 * Project Lombok
+* JSpecify (null-safety annotations)
 * JDOM2
 * CUI Java Tools
 * CUI Core UI Model
+* CUI HTTP
 * Testing frameworks:
   * JUnit 5
   * Hamcrest
   * EasyMock
-  * CUI Test utilities
+  * CUI Test utilities (generator, value-objects, juli-logger, mockwebserver-junit5)
   * Awaitility

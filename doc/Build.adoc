@@ -24,7 +24,7 @@ This project implements several measures to ensure reproducible builds. The foll
  
 * All plugin and dependency versions are pinned in all `pom.xml` files. No LATEST, RELEASE, or version ranges are used.
 * The Maven Wrapper is present (`mvnw`, `mvnw.cmd`, `.mvn/wrapper/maven-wrapper.properties`) and pins Maven `3.9.6`.
-* Java version is set explicitly in the root `pom.xml`, inherited by all modules.:
+* Java version is set explicitly in the root `pom.xml`, inherited by all modules:
 
 [source,xml]
 ----
@@ -48,13 +48,15 @@ The project includes a convenient `pre-commit` profile that combines license hea
 
 [source,shell]
 ----
-./mvnw -Ppre-commit
+./mvnw -Ppre-commit verify
 ----
 
 This profile performs the following tasks:
 
 1. Adds or updates Apache 2.0 license headers to source files
 2. Applies all configured OpenRewrite recipes for code modernization and formatting
+
+See link:open-rewrite-recipes.adoc[OpenRewrite Recipes] for the full list of recipes applied.
 
 == PlantUML Diagrams
 
