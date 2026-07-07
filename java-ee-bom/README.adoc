@@ -4,30 +4,16 @@ Aggregates the different java-ee versions. This module serves as a parent for Ja
 
 This module is part of the link:../README.adoc[cui-parent-pom] project.
 
-== Submodules
+== Modules
 
 This parent module includes the following submodules:
 
-* link:java-ee-10-bom/README.adoc[java-ee-10-bom]: Bundles all Java EE 10 related dependencies
+* link:java-ee-10-bom/README.adoc[java-ee-10-bom]: Bundles all Jakarta EE 10 related dependencies
 * link:java-ee-orthogonal/README.adoc[java-ee-orthogonal]: Libraries that are used in the Jakarta EE context but are agnostic to the actual version
 
 == Usage
 
-To use this BOM in your project, add it to your dependencyManagement section:
+This module is a pure aggregator/parent — it declares no managed dependencies of its own, and importing it as a BOM would import nothing (Maven does not import a BOM's submodules transitively). Import the concrete BOM(s) you need instead:
 
-[source, xml]
-----
-<dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>de.cuioss</groupId>
-            <artifactId>java-ee-bom</artifactId>
-            <version>${version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-</dependencyManagement>
-----
-
-This will import all the managed dependencies from both the java-ee-10-bom and java-ee-orthogonal modules.
+* link:java-ee-10-bom/README.adoc[java-ee-10-bom]
+* link:java-ee-orthogonal/README.adoc[java-ee-orthogonal]

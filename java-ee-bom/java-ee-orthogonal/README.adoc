@@ -8,7 +8,7 @@ This module is part of the link:../README.adoc[java-ee-bom] module.
 
 To use this BOM in your project, add it to your dependencyManagement section:
 
-[source, xml]
+[source,xml]
 ----
 <dependencyManagement>
     <dependencies>
@@ -33,7 +33,6 @@ This BOM includes managed dependencies for:
 * Apache HttpCore
 * Log4j
 * SmallRye JWT
-* Parsson (JSON implementation)
+* BouncyCastle (bcprov/bcpkix)
 * REST Assured
-* CUI JWT Token Handling
 * CUI Test Keycloak Integration

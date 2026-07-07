@@ -15,7 +15,7 @@ Starting with Jose Carvajal excellent introduction: https://sgitario.github.io/d
 * Generate a new key-par using 'gpg --generate-key'
 * gpg --list-keys:
 
-[source,json]
+[source,text]
 ----
 pub   rsa3072 2022-12-04 [SC] [verfällt: 2026-12-03]
       D6A0*****
@@ -24,15 +24,21 @@ sub   rsa3072 2022-12-04 [E] [verfällt: 2026-12-03]
 ----
 * gpg --keyserver keyserver.ubuntu.com --send-keys D6A0*****
 Optional, to speed things up, not strictly necessary:
-* gpg --keyserver eys.openpgp.org --send-keys D6A0*****
+* gpg --keyserver keys.openpgp.org --send-keys D6A0*****
 * gpg --keyserver pgp.mit.edu --send-keys D6A0*****
 
 === Export Key to clipboard
 ==== macOS
+[source,shell]
+----
 gpg --armor --export-secret-key joe@foo.bar | pbcopy
+----
 
-===== Ubuntu (assuming GNU base64)
+==== Ubuntu (assuming GNU base64)
+[source,shell]
+----
 gpg --armor --export-secret-key joe@foo.bar -w0 | xclip
+----
 
 == Open Tasks / Todos
 

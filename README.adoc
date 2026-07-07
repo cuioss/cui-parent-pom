@@ -6,7 +6,7 @@
 [.discrete]
 == Status
 
-image:https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-parent-pom/actions/workflows/maven.yml]
+image:https://github.com/cuioss/cuioss-parent-pom/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cuioss-parent-pom/actions/workflows/maven.yml]
 image:http://img.shields.io/:license-apache-blue.svg[License,link=http://www.apache.org/licenses/LICENSE-2.0.html]
 image:https://img.shields.io/maven-central/v/de.cuioss/cui-parent-pom.svg?label=Maven%20Central["Maven Central", link="https://central.sonatype.com/artifact/de.cuioss/cui-parent-pom"]
 
@@ -23,7 +23,12 @@ toc::[]
 
 * link:cui-java-bom/README.adoc[cui-java-bom] - Java dependency management
 * link:java-ee-bom/README.adoc[java-ee-bom] - Jakarta EE dependency management
-* link:doc/Build.adoc[Build Information] - Information about building the project
+
+== Documentation
+
+* link:doc/Build.adoc[Build Information] - Building the project, reproducible builds, PlantUML
+* link:doc/open-rewrite-recipes.adoc[OpenRewrite Recipes] - Code modernization and formatting recipes (pre-commit profile)
+* link:doc/signing_key.adoc[Signing Keys] - Creating the GPG signing key for Maven Central
 
 == Usage
 
@@ -34,7 +39,7 @@ toc::[]
 <parent>
    <groupId>de.cuioss</groupId>
    <artifactId>cui-parent-pom</artifactId>
-   <version>${version}</version>
+   <version>1.4.5</version> <!-- use the latest release -->
 </parent>
 ----
 
@@ -47,7 +52,7 @@ toc::[]
         <dependency>
             <groupId>de.cuioss</groupId>
             <artifactId>java-ee-10-bom</artifactId>
-            <!-- Starting with 0.9.8 version.cui.parent will be implicitly set by cui-parent-pom -->
+            <!-- version.cui.parent is set implicitly by cui-parent-pom; override only if needed -->
             <version>${version.cui.parent}</version>
             <type>pom</type>
             <scope>import</scope>
@@ -60,7 +65,7 @@ toc::[]
 
 [source,xml]
 ----
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.cuioss</groupId>
