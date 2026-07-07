@@ -66,11 +66,3 @@ Configures the project for local code coverage analysis with JaCoCo, including c
 ----
 ./mvnw -Pcoverage verify
 ----
-
-=== license-cleanup
-Temporary profile to clean up existing Javadoc-style license headers and apply new ones. This profile will be removed in version 1.2.0.
-
-[source,shell]
-----
-./mvnw -Plicense-cleanup process-sources
-----

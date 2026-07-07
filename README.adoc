@@ -65,7 +65,7 @@ toc::[]
     <parent>
         <groupId>de.cuioss</groupId>
         <artifactId>cui-java-parent</artifactId>
-        <version>1.4.1</version>
+        <version>1.4.5</version>
     </parent>
     <artifactId>cui-java-sample</artifactId>
     <name>cui java sample</name>
