@@ -106,7 +106,7 @@ git push -u origin chore/release_<version>
 gh pr create --repo cuioss/cuioss-parent-pom --base main \
   --title "chore(release): prepare release <version>" \
   --label "skip-bot-review" \
-  --body "Bump current-version to <version> (next-version stays 1.5-SNAPSHOT) and the README parent sample. Triggers the automated Release workflow on merge."
+  --body "Bump current-version to <version> (next-version stays <next-version>) and the README parent sample. Triggers the automated Release workflow on merge."
 ```
 Apply the **`skip-bot-review`** label (via `--label "skip-bot-review"` on `gh pr create`, or
 `gh pr edit <pr#> --add-label "skip-bot-review"` if the PR already exists). A mechanical
