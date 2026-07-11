@@ -105,8 +105,14 @@ git commit -m "chore(release): prepare release <version>"
 git push -u origin chore/release_<version>
 gh pr create --repo cuioss/cuioss-parent-pom --base main \
   --title "chore(release): prepare release <version>" \
-  --body "Bump current-version to <version> (next-version stays 1.4-SNAPSHOT) and the README parent sample. Triggers the automated Release workflow on merge."
+  --label "skip-bot-review" \
+  --body "Bump current-version to <version> (next-version stays <next-version>) and the README parent sample. Triggers the automated Release workflow on merge."
 ```
+Apply the **`skip-bot-review`** label (via `--label "skip-bot-review"` on `gh pr create`, or
+`gh pr edit <pr#> --add-label "skip-bot-review"` if the PR already exists). A mechanical
+release-prep PR only changes the `project.yml` version and the README sample — no bot review is
+necessary, and the label suppresses the automated reviewers (CodeRabbit / Sourcery).
+
 Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>` (no model name, no
 "Generated with Claude Code" footer).
 
