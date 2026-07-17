@@ -286,7 +286,13 @@
 
                                 <!-- Not included in UpgradeToJava21 -->
                                 <recipe>org.openrewrite.java.migrate.RemoveSecurityManager</recipe>
-                                <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe>
+                                <!-- JavaUtilAPIs intentionally excluded: its transitive UseMapOf recipe produces -->
+                                <!-- broken, non-compiling output - rewrites LinkedHashMap put-chains into -->
+                                <!-- new HashMap<>(Map.of(...)) without importing HashMap, feeds nulls into -->
+                                <!-- null-intolerant Map.of(), and discards insertion-ordering guarantees. -->
+                                <!-- OpenRewrite offers no per-sub-recipe exclusion, so the whole composite is dropped. -->
+                                <!-- See TokenSheriff PR #577 for the downstream failure modes this prevents. -->
+                                <!-- <recipe>org.openrewrite.java.migrate.util.JavaUtilAPIs</recipe> -->
 
                                 <!-- Code organization -->
                                 <recipe>org.openrewrite.java.OrderImports</recipe>
