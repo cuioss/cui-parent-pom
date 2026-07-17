@@ -121,3 +121,12 @@ All cuioss repositories have branch protection on `main`. Direct pushes to `main
    - Every comment MUST get a reply (reason for fix or reason for not fixing) and MUST be resolved
 7. Do **NOT** enable auto-merge unless explicitly instructed. Wait for user approval.
 8. Return to main: `git checkout main && git pull`
+
+## Temporary Files
+
+Use `.plan/temp/` for ALL temporary and generated files (covered by `Write(.plan/**)` permission — avoids permission prompts).
+
+## Tool Usage
+
+- Use proper tools (Edit, Read, Write) instead of shell commands (echo, cat)
+- Never use Bash for file operations (find, grep, cat, ls) — use Glob, Read, Grep tools instead

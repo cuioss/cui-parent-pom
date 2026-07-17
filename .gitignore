@@ -15,3 +15,9 @@ pom.xml.versionsBackup
 
 # Claude Code configuration — ignore local settings, track shared skills/commands
 .claude/settings.local.json
+
+# Planning system (managed by /marshall-steward)
+# Runtime state (plans, run-configuration, lessons-learned, memory, logs — managed by plan-marshall)
+.plan/*
+!.plan/marshal.json
+!.plan/project-architecture/
