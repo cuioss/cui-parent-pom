@@ -129,11 +129,22 @@ gh pr checks <pr#> --repo cuioss/cuioss-parent-pom --watch
   user when uncertain.
 
 ### Step 9 — Merge → release starts automatically
+`main` is governed by the org-managed **merge queue** (`main-merge-queue`), so the merge is
+**enqueued, not immediate**, and `--delete-branch` is **rejected** (the queue auto-deletes the
+head branch). Do **not** pass `--delete-branch`:
 ```bash
-gh pr merge <pr#> --repo cuioss/cuioss-parent-pom --squash --delete-branch
+gh pr merge <pr#> --repo cuioss/cuioss-parent-pom --squash
+```
+This only *queues* the PR. Poll until it actually lands on `main` — the release fires on the
+merge commit, not on enqueue (the queue can take a few minutes):
+```bash
+gh pr view <pr#> --repo cuioss/cuioss-parent-pom --json state --jq .state   # wait for MERGED
 ```
 Merging this PR (it touches `.github/project.yml`) fires `release.yml` automatically — do
 **not** dispatch the release manually unless the auto-trigger demonstrably did not fire.
+
+> The release workflow itself is unaffected by the queue: `cuioss-release-bot` is a bypass
+> actor on `main-merge-queue`, so its direct push of the release commit + tag succeeds.
 
 ### Step 10 — Wait for the Release workflow (~30 min)
 ```bash
