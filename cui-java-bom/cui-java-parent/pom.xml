@@ -312,6 +312,9 @@
                             <!-- Exclude generated files from being processed -->
                             <exclusions>
                                 <exclusion>target/**</exclusion>
+                                <exclusion>**/docker-compose.yml</exclusion>
+                                <exclusion>**/compose.yml</exclusion>
+                                <exclusion>**/compose.yaml</exclusion>
                             </exclusions>
                             <runPerSubmodule>true</runPerSubmodule>
                         </configuration>
