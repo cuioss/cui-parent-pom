@@ -43,6 +43,7 @@ consumers:
   - cui-test-mockwebserver-junit5
   - cui-test-value-objects
   - TokenSheriff
+  - API-Sheriff
 
 dependency-propagation:
   group-id: de.cuioss
