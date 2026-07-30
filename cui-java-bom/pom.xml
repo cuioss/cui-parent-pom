@@ -35,7 +35,7 @@
         <version.easymock>5.6.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
         <version.waitility>4.3.0</version.waitility>
-        <version.jspecify>1.0.0</version.jspecify>
+        <version.jspecify>1.0.1</version.jspecify>
     </properties>
 
     <dependencyManagement>
