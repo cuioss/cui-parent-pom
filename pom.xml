@@ -143,7 +143,7 @@
         <version.lombok>1.18.46</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>2.0.2</version.frontend-maven-plugin>
-        <open.rewrite.maven.plugin.version>6.45.0</open.rewrite.maven.plugin.version>
+        <open.rewrite.maven.plugin.version>6.46.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.44.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.41.0</rewrite-migrate-java.version>
         <rewrite-static-analysis.version>2.41.0</rewrite-static-analysis.version>
