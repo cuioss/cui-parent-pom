@@ -80,7 +80,9 @@ cui-parent-pom (root)
 
 1. **Java Version**: Requires Java 21 or higher (enforced by maven-enforcer-plugin)
 2. **Maven Version**: Requires Maven 3.8.0+ (3.9.6 via the `maven-wrapper-plugin`, `distributionType=only-script`)
-3. **License Headers**: Apache 2.0 license in regular comment style (`/* */`), stamped by the mycila `license-maven-plugin` (current year, no hardcoded year override)
+3. **License Headers**: Apache 2.0 license in regular comment style (`/* */`), stamped by the mycila `license-maven-plugin` as an open range, `${project.inceptionYear}-present`. Two rules go with this:
+   - Do not remove the explicit `<year>` override. The plugin binds `${year}` to `project.inceptionYear`, *not* to the current year, so dropping it silently restamps every descendant's headers with the inception year alone.
+   - **Every descendant project must declare its own `<inceptionYear>`.** It is an inherited POM element, so a project that omits it reports this parent's inception year and stamps a copyright year predating its own first commit.
 4. **Deployment**: Uses the `central-publishing-maven-plugin` for Sonatype/Maven Central
 5. **Reproducible Builds**: Configured with `project.build.outputTimestamp`
 6. **Parent version property**: `version.cui.parent` (root `pom.xml`) holds the released parent version; the release plugin bumps it automatically via `preparationGoals`. Consumers import BOMs with `${version.cui.parent}`.
