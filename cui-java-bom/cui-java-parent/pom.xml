@@ -233,7 +233,20 @@
                         <version>${license-maven-plugin.version}</version>
                         <configuration>
                             <properties>
-                                <!-- No <year> override: mycila license-maven-plugin defaults to the current year -->
+                                <!-- ${year} must be set explicitly. Contrary to a common assumption, mycila
+                                     license-maven-plugin does NOT default it to the current year:
+                                     AbstractLicenseMojo binds it to project.inceptionYear. Leaving it unset
+                                     stamps that inception year alone into every file, conflicting with the
+                                     headers already committed downstream and restamping them on every
+                                     -Ppre-commit run. A hardcoded year freezes and drifts out of date; a
+                                     current-year expression restamps every file each January. The open range
+                                     is stable, so headers are written exactly once.
+
+                                     IMPORTANT for descendant projects: <inceptionYear> is an inherited POM
+                                     element, so a project that does not declare its own silently reports this
+                                     parent's inception year and stamps a copyright year predating its first
+                                     commit. Every descendant MUST declare its own <inceptionYear>. -->
+                                <year>${project.inceptionYear}-present</year>
                                 <owner>CUI-OpenSource-Software</owner>
                                 <email>info@cuioss.de</email>
                             </properties>
