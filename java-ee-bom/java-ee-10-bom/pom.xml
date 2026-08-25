@@ -140,6 +140,16 @@
                 <version>${version.jakarta.websocket-api}</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- Since Jakarta WebSocket 2.1 the API is split: jakarta.websocket-api ships
+                 only jakarta.websocket.server.*, while CloseReason, Session and Endpoint
+                 live in the client artifact, which websocket-api declares as "provided"
+                 and Maven therefore does not resolve transitively. Manage both halves. -->
+            <dependency>
+                <groupId>jakarta.websocket</groupId>
+                <artifactId>jakarta.websocket-client-api</artifactId>
+                <version>${version.jakarta.websocket-api}</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- This is an artifact.
             The problem is inconsistent versioning
             of this module in certain smallrye implementations-->
@@ -316,24 +326,21 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!-- Import the BOM rather than pinning individual artifacts. Pinning only
+                 part of a family (previously: smallrye-config, -core, -source-injection,
+                 leaving -common and -validator to resolve elsewhere) yields a split stack:
+                 a parent's *direct* dependencyManagement entries beat a child's imported
+                 BOM (MNG-5971), but only for the artifacts actually listed. The BOM import
+                 keeps the family coherent by construction.
+                 The version must track the smallrye-config release io.quarkus:quarkus-bom
+                 manages - coherence alone is not enough, Quarkus' deployment classes are
+                 compiled against a specific release. -->
             <dependency>
                 <groupId>io.smallrye.config</groupId>
-                <artifactId>smallrye-config</artifactId>
+                <artifactId>smallrye-config-bom</artifactId>
                 <version>${version.microprofile.config.impl.smallrye}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <!-- The "core" does not contain CDI bits -->
-                <groupId>io.smallrye.config</groupId>
-                <artifactId>smallrye-config-core</artifactId>
-                <version>${version.microprofile.config.impl.smallrye}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.smallrye.config</groupId>
-                <artifactId>smallrye-config-source-injection</artifactId>
-                <version>${version.microprofile.config.impl.smallrye}</version>
-                <scope>provided</scope>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- MicroProfile REST Client -->
             <dependency>

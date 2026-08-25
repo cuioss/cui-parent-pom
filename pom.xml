@@ -147,7 +147,7 @@
         <rewrite-testing-frameworks.version>3.44.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.42.1</rewrite-migrate-java.version>
         <rewrite-static-analysis.version>2.41.1</rewrite-static-analysis.version>
-        <project.build.outputTimestamp>2026-08-25T16:02:10Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2026-08-25T19:11:34Z</project.build.outputTimestamp>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
 
         <cui-open-rewrite.version>1.4.0</cui-open-rewrite.version>
@@ -254,6 +254,44 @@
                                             <plugin>org.apache.maven.plugins:maven-failsafe-plugin</plugin>
                                             <plugin>org.apache.maven.plugins:maven-surefire-report-plugin</plugin>
                                         </plugins>
+                                    </requireSameVersions>
+                                    <!-- Artifact families that MUST resolve to one version.
+                                         Pinning only part of a family in a BOM produces a split
+                                         stack: a parent's direct dependencyManagement entries beat
+                                         a child's imported BOM (MNG-5971), but only for the
+                                         artifacts actually listed. That shipped a broken
+                                         smallrye-config stack (core 3.18.2 against
+                                         common/validator 3.17.2) to every Quarkus consumer.
+                                         One block PER family - requireSameVersions demands a single
+                                         version across everything matched in the same block, so
+                                         combining families would compare them against each other.
+                                         Only single upstream products belong here; io.smallrye:*
+                                         must NOT be added, it spans jandex, smallrye-jwt, -health
+                                         and -context-propagation, which version independently. -->
+                                    <requireSameVersions>
+                                        <dependencies>
+                                            <dependency>io.smallrye.config:*</dependency>
+                                        </dependencies>
+                                    </requireSameVersions>
+                                    <requireSameVersions>
+                                        <dependencies>
+                                            <dependency>org.jboss.resteasy:*</dependency>
+                                        </dependencies>
+                                    </requireSameVersions>
+                                    <requireSameVersions>
+                                        <dependencies>
+                                            <dependency>io.rest-assured:*</dependency>
+                                        </dependencies>
+                                    </requireSameVersions>
+                                    <requireSameVersions>
+                                        <dependencies>
+                                            <dependency>org.bouncycastle:*</dependency>
+                                        </dependencies>
+                                    </requireSameVersions>
+                                    <requireSameVersions>
+                                        <dependencies>
+                                            <dependency>jakarta.websocket:*</dependency>
+                                        </dependencies>
                                     </requireSameVersions>
                                 </rules>
                             </configuration>

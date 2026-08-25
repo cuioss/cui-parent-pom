@@ -136,6 +136,11 @@
                 <version>${version.smallrye-jwt}</version>
                 <scope>test</scope>
             </dependency>
+            <!-- Deliberately a single artifact, NOT an import of rest-assured-bom.
+                 Quarkus manages io.rest-assured itself; managing the whole family here
+                 would override only the artifacts Quarkus does not manage and split the
+                 stack whenever our version differs from the platform's. The
+                 requireSameVersions guard in cui-parent-pom catches that if it recurs. -->
             <dependency>
                 <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
