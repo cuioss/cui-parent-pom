@@ -72,6 +72,114 @@ gh pr list --repo cuioss/cuioss-parent-pom --state open --json number,title,isDr
 
 Confirm the working tree is clean (`git status --porcelain`) before branching.
 
+### Step 2b — Pre-release regression gate (do NOT skip)
+
+This BOM is consumed by every cuioss repo, so a bad version reaches all of them at once.
+Two regressions have shipped this way; both were cheap to catch here and expensive to catch
+downstream. Run both checks **before** branching, from the BOM checkout root.
+
+#### (a) Quarkus alignment — smallrye-config
+
+`java-ee-10-bom` pins `io.smallrye.config:*`, and `quarkus-bom` inherits `java-ee-10-bom` as
+its **parent**, so those pins win over the `io.quarkus:quarkus-bom` it imports. The version
+must therefore equal the release Quarkus itself was built against. A *newer* one is not
+safe: Quarkus' deployment classes are compiled against one specific release, so even an
+internally coherent newer stack fails augmentation with
+
+```
+failed to access io.smallrye.config.ConfigMappingLoader$ConfigMappingImplementation
+from io.quarkus.deployment.configuration.ConfigMappingUtils
+```
+
+The `requireSameVersions` enforcer guard does **not** catch this — nothing is split, so it is
+correctly silent. Only this check does.
+
+Save as `.plan/temp/check-quarkus-alignment.sh` and run it. It **exits non-zero** on a
+mismatch, so it can gate a scripted release rather than only printing a warning:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+QV=$(./mvnw -q -N -f java-ee-bom/java-ee-10-bom/quarkus-bom/pom.xml \
+      help:evaluate -Dexpression=version.quarkus -DforceStdout)
+OURS=$(./mvnw -q -N -f java-ee-bom/java-ee-10-bom/pom.xml \
+      help:evaluate -Dexpression=version.microprofile.config.impl.smallrye -DforceStdout)
+THEIRS=$(curl -sf "https://repo1.maven.org/maven2/io/quarkus/quarkus-bom/$QV/quarkus-bom-$QV.pom" | python3 -c '
+import sys, xml.etree.ElementTree as ET
+ns = "{http://maven.apache.org/POM/4.0.0}"
+r = ET.fromstring(sys.stdin.read())
+props = {e.tag.replace(ns, ""): (e.text or "") for e in (r.find(ns + "properties") or [])}
+for d in r.iter(ns + "dependency"):
+    if d.findtext(ns + "groupId") == "io.smallrye.config" and d.findtext(ns + "artifactId") == "smallrye-config":
+        v = (d.findtext(ns + "version") or "").strip()
+        if v.startswith("${"): v = props.get(v[2:-1], v)   # the BOM may use a property reference
+        print(v); break
+')
+printf 'quarkus=%s ours=%s theirs=%s\n' "$QV" "$OURS" "$THEIRS"
+[ -n "$THEIRS" ] || { echo "ERROR: could not resolve Quarkus smallrye-config version"; exit 2; }
+[ "$OURS" = "$THEIRS" ] || { echo "MISALIGNED - fix before releasing"; exit 1; }
+echo ALIGNED
+```
+
+`help:evaluate` is used rather than grepping the poms, and the Quarkus BOM's version is
+resolved through its `<properties>`, because either side may express the version as a
+property reference rather than a literal.
+
+**Exit 1 → stop.** Set the property to `$THEIRS` and land that fix first. Do not release
+"and fix it after"; the fan-out reaches consumers within minutes. Exit 2 means the check
+itself could not run — treat that as blocking too, never as a pass.
+
+`io.smallrye.config:*` is in `dependabot ignore` precisely because no automated bump can
+reason about this coupling — it must move together with `version.quarkus`. If you see a
+Dependabot PR raising it anyway, that ignore entry has been lost; restore it.
+
+#### (b) Downstream smoke build — a real Quarkus consumer
+
+The alignment check covers the one artifact that has burned us twice. It does **not** cover
+the other ~24 entries `java-ee-10-bom` and `quarkus-bom` both manage. Build a real Quarkus
+consumer against the candidate.
+
+`cui-reference-documentation` is the right canary: it is Quarkus-based and imports both
+`java-ee-10-bom` and `quarkus-bom`, so it exercises the overlap directly.
+
+Set the paths and the candidate version once, then reuse them — the cleanup **must** run
+against the BOM checkout, not the consumer you last `cd`-ed into:
+
+```bash
+BOM_DIR=$(pwd)                       # run from the BOM checkout root
+CANARY=~/git/cui-reference-documentation
+RC=<version>-RC                      # e.g. 1.5.8-RC
+DEV=$(./mvnw -q -N help:evaluate -Dexpression=project.version -DforceStdout)   # e.g. 1.5-SNAPSHOT
+
+./mvnw -B -q versions:set -DnewVersion="$RC" -DprocessAllModules=true -DgenerateBackupPoms=false
+./mvnw -B -q -N install
+for m in cui-java-bom java-ee-bom java-ee-bom/java-ee-10-bom \
+         java-ee-bom/java-ee-10-bom/quarkus-bom java-ee-bom/java-ee-orthogonal \
+         cui-java-bom/cui-java-parent; do
+  ./mvnw -B -q -N -f "$m/pom.xml" install
+done
+
+# point the canary's parent AND version.cui.parent at "$RC", then:
+(cd "$CANARY" && ./mvnw -B clean verify)      # must be BUILD SUCCESS
+```
+
+Afterwards restore the development version and purge the candidate — note the explicit
+`cd "$BOM_DIR"` and that `$DEV` was captured above rather than hard-coded, so this cannot
+stamp the wrong version across every POM:
+
+```bash
+cd "$BOM_DIR"
+./mvnw -B -q versions:set -DnewVersion="$DEV" -DprocessAllModules=true -DgenerateBackupPoms=false
+for a in cuioss-parent-pom cui-java-bom cui-java-parent java-ee-bom java-ee-10-bom \
+         quarkus-bom java-ee-orthogonal; do
+  rm -rf "$HOME/.m2/repository/de/cuioss/$a/$RC"
+done
+git status --porcelain      # must be empty before continuing
+(cd "$CANARY" && git checkout -- pom.xml)
+```
+
+Report both results before proceeding. A red canary is a **blocker**, not a warning.
+
 ### Step 3 — Pull current main
 ```bash
 git checkout main && git pull --ff-only origin main
@@ -204,5 +312,8 @@ collapsed/removed during note reformatting.
 - Branch prefix **must** be `chore/` (or another CI-accepted prefix) or the build check skips
   and auto-merge is blocked.
 - Never merge a red PR; fix and re-wait.
+- **Run the Step 2b regression gate every time.** A bad BOM version fans out to every cuioss
+  repo within minutes of the release. The enforcer guard cannot catch a coherent-but-wrong
+  Quarkus-managed version — only the alignment check and the downstream smoke build can.
 - Temporary files go under `.plan/temp/`.
 - Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>`; no PR footer line.
