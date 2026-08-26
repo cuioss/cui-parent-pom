@@ -94,40 +94,45 @@ from io.quarkus.deployment.configuration.ConfigMappingUtils
 The `requireSameVersions` enforcer guard does **not** catch this — nothing is split, so it is
 correctly silent. Only this check does.
 
-Save as `.plan/temp/check-quarkus-alignment.sh` and run it. It **exits non-zero** on a
-mismatch, so it can gate a scripted release rather than only printing a warning:
+Run the script that ships with this skill. It **exits non-zero** on a mismatch, so it can
+gate a scripted release rather than only printing a warning:
 
 ```bash
-#!/usr/bin/env bash
-set -euo pipefail
-QV=$(./mvnw -q -N -f java-ee-bom/java-ee-10-bom/quarkus-bom/pom.xml \
-      help:evaluate -Dexpression=version.quarkus -DforceStdout)
-OURS=$(./mvnw -q -N -f java-ee-bom/java-ee-10-bom/pom.xml \
-      help:evaluate -Dexpression=version.microprofile.config.impl.smallrye -DforceStdout)
-THEIRS=$(curl -sf "https://repo1.maven.org/maven2/io/quarkus/quarkus-bom/$QV/quarkus-bom-$QV.pom" | python3 -c '
-import sys, xml.etree.ElementTree as ET
-ns = "{http://maven.apache.org/POM/4.0.0}"
-r = ET.fromstring(sys.stdin.read())
-props = {e.tag.replace(ns, ""): (e.text or "") for e in (r.find(ns + "properties") or [])}
-for d in r.iter(ns + "dependency"):
-    if d.findtext(ns + "groupId") == "io.smallrye.config" and d.findtext(ns + "artifactId") == "smallrye-config":
-        v = (d.findtext(ns + "version") or "").strip()
-        if v.startswith("${"): v = props.get(v[2:-1], v)   # the BOM may use a property reference
-        print(v); break
-')
-printf 'quarkus=%s ours=%s theirs=%s\n' "$QV" "$OURS" "$THEIRS"
-[ -n "$THEIRS" ] || { echo "ERROR: could not resolve Quarkus smallrye-config version"; exit 2; }
-[ "$OURS" = "$THEIRS" ] || { echo "MISALIGNED - fix before releasing"; exit 1; }
-echo ALIGNED
+python3 .claude/skills/release/check-quarkus-alignment.py --repo .
 ```
 
-`help:evaluate` is used rather than grepping the poms, and the Quarkus BOM's version is
-resolved through its `<properties>`, because either side may express the version as a
-property reference rather than a literal.
+```
+quarkus            3.39.0   (java-ee-bom/java-ee-10-bom/quarkus-bom/pom.xml)
+quarkus expects    io.smallrye.config 3.17.2
+declared           3.17.2   (java-ee-bom/java-ee-10-bom/pom.xml)
 
-**Exit 1 → stop.** Set the property to `$THEIRS` and land that fix first. Do not release
-"and fix it after"; the fan-out reaches consumers within minutes. Exit 2 means the check
-itself could not run — treat that as blocking too, never as a pass.
+ALIGNED
+```
+
+| exit | meaning |
+|------|---------|
+| 0 | aligned — proceed |
+| 1 | **misaligned** — set the property to what Quarkus manages, land that fix, then restart |
+| 2 | **could not determine** — also blocking. An unresolvable check is never a pass. |
+
+The script resolves both versions through the POMs (following `${...}` indirection, since
+either side may express the version as a property reference) and reads the expected value
+out of `io.quarkus:quarkus-bom:<version.quarkus>` on Maven Central. It refuses to guess: a
+property declared inconsistently across the reactor is exit 2, not a coin toss.
+
+**In consumer repos** add `--check-resolved`. That additionally runs `dependency:list` and
+asserts every `io.smallrye.config` artifact actually resolves to the expected version, which
+catches a *split* family as well as a wrong one:
+
+```bash
+python3 check-quarkus-alignment.py --repo ~/git/cui-reference-documentation --check-resolved
+```
+
+Consumers cannot inherit `version.quarkus` — Maven does not propagate properties from
+*imported* BOMs, and `quarkus-maven-plugin` needs the value as a build extension — so each
+Quarkus consumer declares it locally and is checked against **its own** Quarkus, not this
+repo's. Removing that local property is not an option; it fails with
+`Unresolveable build extension`.
 
 `io.smallrye.config:*` is in `dependabot ignore` precisely because no automated bump can
 reason about this coupling — it must move together with `version.quarkus`. If you see a
