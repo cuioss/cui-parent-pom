@@ -72,6 +72,78 @@ gh pr list --repo cuioss/cuioss-parent-pom --state open --json number,title,isDr
 
 Confirm the working tree is clean (`git status --porcelain`) before branching.
 
+### Step 2b — Pre-release regression gate (do NOT skip)
+
+This BOM is consumed by every cuioss repo, so a bad version reaches all of them at once.
+Two regressions have shipped this way; both were cheap to catch here and expensive to catch
+downstream. Run both checks **before** branching.
+
+#### (a) Quarkus alignment — smallrye-config
+
+`java-ee-10-bom` pins `io.smallrye.config:*`, and `quarkus-bom` inherits `java-ee-10-bom` as
+its **parent**, so those pins win over the `io.quarkus:quarkus-bom` it imports. The version
+must therefore equal the release Quarkus itself was built against. A *newer* one is not
+safe: Quarkus' deployment classes are compiled against one specific release, so even an
+internally coherent newer stack fails augmentation with
+
+```
+failed to access io.smallrye.config.ConfigMappingLoader$ConfigMappingImplementation
+from io.quarkus.deployment.configuration.ConfigMappingUtils
+```
+
+The `requireSameVersions` enforcer guard does **not** catch this — nothing is split, so it is
+correctly silent. Only this check does.
+
+```bash
+QV=$(grep -oPm1 '(?<=<version.quarkus>)[^<]+' java-ee-bom/java-ee-10-bom/quarkus-bom/pom.xml)
+OURS=$(grep -oPm1 '(?<=<version.microprofile.config.impl.smallrye>)[^<]+' java-ee-bom/java-ee-10-bom/pom.xml)
+THEIRS=$(curl -sf "https://repo1.maven.org/maven2/io/quarkus/quarkus-bom/$QV/quarkus-bom-$QV.pom" \
+  | grep -A2 '<artifactId>smallrye-config</artifactId>' | grep -oPm1 '(?<=<version>)[^<]+')
+printf 'quarkus=%s ours=%s theirs=%s\n' "$QV" "$OURS" "$THEIRS"
+[ "$OURS" = "$THEIRS" ] || echo "MISALIGNED - fix before releasing"
+```
+
+**Misaligned → stop.** Set the property to `$THEIRS` and land that fix first. Do not release
+"and fix it after"; the fan-out reaches consumers within minutes.
+
+`io.smallrye.config:*` is in `dependabot ignore` precisely because no automated bump can
+reason about this coupling — it must move together with `version.quarkus`. If you see a
+Dependabot PR raising it anyway, that ignore entry has been lost; restore it.
+
+#### (b) Downstream smoke build — a real Quarkus consumer
+
+The alignment check covers the one artifact that has burned us twice. It does **not** cover
+the other ~24 entries `java-ee-10-bom` and `quarkus-bom` both manage. Build a real Quarkus
+consumer against the candidate:
+
+```bash
+./mvnw -B -q versions:set -DnewVersion=<version>-RC -DprocessAllModules=true -DgenerateBackupPoms=false
+./mvnw -B -q -N install
+for m in cui-java-bom java-ee-bom java-ee-bom/java-ee-10-bom \
+         java-ee-bom/java-ee-10-bom/quarkus-bom java-ee-bom/java-ee-orthogonal \
+         cui-java-bom/cui-java-parent; do
+  ./mvnw -B -q -N -f $m/pom.xml install
+done
+
+# in ~/git/cui-reference-documentation: point parent AND version.cui.parent at <version>-RC
+./mvnw -B clean verify     # must be BUILD SUCCESS
+```
+
+`cui-reference-documentation` is the right canary: it is Quarkus-based and imports both
+`java-ee-10-bom` and `quarkus-bom`, so it exercises the overlap directly.
+
+Afterwards **restore the version and purge the RC** so nothing stale is left behind:
+
+```bash
+./mvnw -B -q versions:set -DnewVersion=1.4-SNAPSHOT -DprocessAllModules=true -DgenerateBackupPoms=false
+for a in cuioss-parent-pom cui-java-bom cui-java-parent java-ee-bom java-ee-10-bom \
+         quarkus-bom java-ee-orthogonal; do
+  rm -rf ~/.m2/repository/de/cuioss/$a/<version>-RC
+done
+```
+
+Report both results before proceeding. A red canary is a **blocker**, not a warning.
+
 ### Step 3 — Pull current main
 ```bash
 git checkout main && git pull --ff-only origin main
@@ -204,5 +276,8 @@ collapsed/removed during note reformatting.
 - Branch prefix **must** be `chore/` (or another CI-accepted prefix) or the build check skips
   and auto-merge is blocked.
 - Never merge a red PR; fix and re-wait.
+- **Run the Step 2b regression gate every time.** A bad BOM version fans out to every cuioss
+  repo within minutes of the release. The enforcer guard cannot catch a coherent-but-wrong
+  Quarkus-managed version — only the alignment check and the downstream smoke build can.
 - Temporary files go under `.plan/temp/`.
 - Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>`; no PR footer line.
