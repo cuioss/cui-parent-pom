@@ -12,6 +12,14 @@ updates:
     semver-major-days: 7
     semver-minor-days: 3
     semver-patch-days: 1
+  ignore:
+  # smallrye-config must track the release io.quarkus:quarkus-bom is built
+  # against, not the newest available. Quarkus' deployment classes are compiled
+  # against a specific release, so a newer *coherent* stack still fails
+  # augmentation with an IllegalAccessError on ConfigMappingLoader - and the
+  # requireSameVersions guard cannot catch it, because nothing is split.
+  # Bump this together with version.quarkus, never on its own.
+  - dependency-name: "io.smallrye.config:*"
 
 - package-ecosystem: github-actions
   directory: "/"
