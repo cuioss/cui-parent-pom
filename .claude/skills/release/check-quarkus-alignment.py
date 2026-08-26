@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+"""Assert the smallrye-config version matches the release Quarkus was built against.
+
+Why this exists
+---------------
+``java-ee-10-bom`` pins ``io.smallrye.config:*``, and ``quarkus-bom`` inherits
+``java-ee-10-bom`` as its *parent*, so those pins beat the ``io.quarkus:quarkus-bom``
+it imports. The version therefore has to equal the smallrye-config release Quarkus
+itself was built against. A *newer* one is not safe: Quarkus' deployment classes are
+compiled against one specific release, so even an internally coherent newer stack
+fails augmentation with
+
+    failed to access io.smallrye.config.ConfigMappingLoader$ConfigMappingImplementation
+    from io.quarkus.deployment.configuration.ConfigMappingUtils
+
+The ``requireSameVersions`` enforcer guard cannot catch this: nothing is split, so it
+is correctly silent. Only this check does.
+
+Two shapes are supported, because consumers cannot inherit ``version.quarkus`` -- Maven
+does not propagate properties from *imported* BOMs, and ``quarkus-maven-plugin`` needs
+the value as a build extension. Every Quarkus consumer therefore declares it locally:
+
+* **declared** -- read both versions from the POMs (the BOM repo itself, and consumers
+  that pin their own Quarkus).
+* **resolved** (``--check-resolved``) -- additionally run ``dependency:list`` and assert
+  every ``io.smallrye.config`` artifact actually resolves to the expected version. This
+  catches a split family as well as a wrong one, and is what a consumer repo wants.
+
+Exit codes
+----------
+0 aligned; 1 misaligned; 2 could not determine (treat as blocking, never as a pass).
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import subprocess
+import sys
+import urllib.request
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+NS = "{http://maven.apache.org/POM/4.0.0}"
+QUARKUS_BOM_URL = (
+    "https://repo1.maven.org/maven2/io/quarkus/quarkus-bom/{v}/quarkus-bom-{v}.pom"
+)
+QUARKUS_PROP = "version.quarkus"
+SMALLRYE_PROP = "version.microprofile.config.impl.smallrye"
+SMALLRYE_GROUP = "io.smallrye.config"
+
+
+class Undetermined(Exception):
+    """The check could not run. Never report this as a pass."""
+
+
+def _properties(root: ET.Element) -> dict[str, str]:
+    node = root.find(NS + "properties")
+    return {} if node is None else {e.tag.replace(NS, ""): (e.text or "").strip() for e in node}
+
+
+def _deref(value: str, props: dict[str, str]) -> str:
+    """Resolve a single ${...} indirection; BOMs express versions either way."""
+    seen: set[str] = set()
+    while value.startswith("${") and value.endswith("}"):
+        key = value[2:-1]
+        if key in seen or key not in props:
+            break
+        seen.add(key)
+        value = props[key].strip()
+    return value
+
+
+def find_property(repo: Path, name: str) -> tuple[str, Path]:
+    """Find a property across the reactor. Later declarations do not override earlier
+    ones silently -- a genuine conflict is an error, not a coin toss."""
+    hits: list[tuple[str, Path]] = []
+    for pom in sorted(repo.rglob("pom.xml")):
+        if "target" in pom.parts or "node_modules" in pom.parts:
+            continue
+        try:
+            root = ET.parse(pom).getroot()
+        except ET.ParseError:
+            continue
+        props = _properties(root)
+        if name in props:
+            hits.append((_deref(props[name], props), pom))
+    if not hits:
+        raise Undetermined(f"property {name} not declared anywhere under {repo}")
+    values = {v for v, _ in hits}
+    if len(values) > 1:
+        detail = ", ".join(f"{v} ({p.relative_to(repo)})" for v, p in hits)
+        raise Undetermined(f"property {name} declared inconsistently: {detail}")
+    return hits[0]
+
+
+def quarkus_smallrye_version(quarkus_version: str) -> str:
+    """The smallrye-config release io.quarkus:quarkus-bom:<version> manages."""
+    url = QUARKUS_BOM_URL.format(v=quarkus_version)
+    try:
+        with urllib.request.urlopen(url, timeout=60) as resp:
+            root = ET.fromstring(resp.read())
+    except Exception as exc:  # network, 404, malformed - all are "cannot determine"
+        raise Undetermined(f"could not fetch {url}: {exc}") from exc
+    props = _properties(root)
+    for dep in root.iter(NS + "dependency"):
+        if (
+            dep.findtext(NS + "groupId") == SMALLRYE_GROUP
+            and dep.findtext(NS + "artifactId") == "smallrye-config"
+        ):
+            return _deref((dep.findtext(NS + "version") or "").strip(), props)
+    raise Undetermined(f"quarkus-bom {quarkus_version} does not manage {SMALLRYE_GROUP}:smallrye-config")
+
+
+def resolved_smallrye_versions(repo: Path) -> dict[str, set[str]]:
+    """Every io.smallrye.config artifact this project actually resolves."""
+    mvnw = repo / "mvnw"
+    cmd = [str(mvnw) if mvnw.exists() else "mvn", "-B", "-q", "dependency:list",
+           "-DincludeScope=test", "-DoutputFile=/dev/stdout", "-DappendOutput=true"]
+    try:
+        out = subprocess.run(cmd, cwd=repo, capture_output=True, text=True, timeout=1800)
+    except Exception as exc:
+        raise Undetermined(f"dependency:list failed to run: {exc}") from exc
+    if out.returncode != 0:
+        raise Undetermined(f"dependency:list exited {out.returncode}:\n{out.stderr[-2000:]}")
+    found: dict[str, set[str]] = {}
+    for line in out.stdout.splitlines():
+        m = re.search(rf"{re.escape(SMALLRYE_GROUP)}:([\w.-]+):jar:([\w.-]+):", line)
+        if m:
+            found.setdefault(m.group(1), set()).add(m.group(2))
+    return found
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--repo", type=Path, default=Path.cwd(),
+                    help="repository root to check (default: cwd)")
+    ap.add_argument("--check-resolved", action="store_true",
+                    help="also assert every resolved io.smallrye.config artifact matches "
+                         "(runs dependency:list; use in consumer repos)")
+    args = ap.parse_args()
+    repo: Path = args.repo.resolve()
+
+    try:
+        quarkus, quarkus_pom = find_property(repo, QUARKUS_PROP)
+        expected = quarkus_smallrye_version(quarkus)
+        print(f"quarkus            {quarkus}   ({quarkus_pom.relative_to(repo)})")
+        print(f"quarkus expects    {SMALLRYE_GROUP} {expected}")
+
+        problems: list[str] = []
+
+        # The declared pin is only relevant where the repo actually pins one.
+        try:
+            ours, ours_pom = find_property(repo, SMALLRYE_PROP)
+            print(f"declared           {ours}   ({ours_pom.relative_to(repo)})")
+            if ours != expected:
+                problems.append(f"declared {SMALLRYE_PROP}={ours}, Quarkus {quarkus} expects {expected}")
+        except Undetermined as exc:
+            if not args.check_resolved:
+                raise
+            print(f"declared           (none: {exc})")
+
+        if args.check_resolved:
+            resolved = resolved_smallrye_versions(repo)
+            if not resolved:
+                print("resolved           (no io.smallrye.config artifacts on the classpath)")
+            for artifact, versions in sorted(resolved.items()):
+                shown = ", ".join(sorted(versions))
+                print(f"resolved           {artifact} {shown}")
+                if versions != {expected}:
+                    problems.append(f"{artifact} resolves to {shown}, expected {expected}")
+
+        if problems:
+            print("\nMISALIGNED - fix before releasing:", file=sys.stderr)
+            for p in problems:
+                print(f"  - {p}", file=sys.stderr)
+            print("\nSet the version to what Quarkus manages, or move version.quarkus with it.\n"
+                  "Never release 'and fix it after': the fan-out reaches consumers within minutes.",
+                  file=sys.stderr)
+            return 1
+
+        print("\nALIGNED")
+        return 0
+
+    except Undetermined as exc:
+        print(f"CANNOT DETERMINE: {exc}", file=sys.stderr)
+        print("Treat this as blocking - an unresolvable check is not a pass.", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())
