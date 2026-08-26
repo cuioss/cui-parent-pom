@@ -48,6 +48,7 @@ QUARKUS_BOM_URL = (
 QUARKUS_PROP = "version.quarkus"
 SMALLRYE_PROP = "version.microprofile.config.impl.smallrye"
 SMALLRYE_GROUP = "io.smallrye.config"
+QUARKUS_CORE = ("io.quarkus", "quarkus-core")
 
 
 class Undetermined(Exception):
@@ -112,8 +113,9 @@ def quarkus_smallrye_version(quarkus_version: str) -> str:
     raise Undetermined(f"quarkus-bom {quarkus_version} does not manage {SMALLRYE_GROUP}:smallrye-config")
 
 
-def resolved_smallrye_versions(repo: Path) -> dict[str, set[str]]:
-    """Every io.smallrye.config artifact this project actually resolves."""
+def resolved_versions(repo: Path) -> tuple[dict[str, set[str]], set[str]]:
+    """What this project actually resolves: every io.smallrye.config artifact, and the
+    io.quarkus:quarkus-core version(s)."""
     mvnw = repo / "mvnw"
     cmd = [str(mvnw) if mvnw.exists() else "mvn", "-B", "-q", "dependency:list",
            "-DincludeScope=test", "-DoutputFile=/dev/stdout", "-DappendOutput=true"]
@@ -124,11 +126,15 @@ def resolved_smallrye_versions(repo: Path) -> dict[str, set[str]]:
     if out.returncode != 0:
         raise Undetermined(f"dependency:list exited {out.returncode}:\n{out.stderr[-2000:]}")
     found: dict[str, set[str]] = {}
+    core: set[str] = set()
     for line in out.stdout.splitlines():
         m = re.search(rf"{re.escape(SMALLRYE_GROUP)}:([\w.-]+):jar:([\w.-]+):", line)
         if m:
             found.setdefault(m.group(1), set()).add(m.group(2))
-    return found
+        c = re.search(rf"{re.escape(QUARKUS_CORE[0])}:{re.escape(QUARKUS_CORE[1])}:jar:([\w.-]+):", line)
+        if c:
+            core.add(c.group(1))
+    return found, core
 
 
 def main() -> int:
@@ -162,7 +168,21 @@ def main() -> int:
             print(f"declared           (none: {exc})")
 
         if args.check_resolved:
-            resolved = resolved_smallrye_versions(repo)
+            resolved, core = resolved_versions(repo)
+
+            # version.quarkus drives quarkus-maven-plugin (a build extension), while the
+            # Quarkus *artifacts* come from whichever BOM is imported. Those are separate
+            # inputs and can drift apart: cui-reference-documentation once ran plugin
+            # 3.38.0 against BOM-supplied 3.39.0, which is how the original outage began.
+            # The smallrye check cannot see this - both sides may still agree on smallrye.
+            if core:
+                shown = ", ".join(sorted(core))
+                print(f"resolved           quarkus-core {shown}")
+                if core != {quarkus}:
+                    problems.append(
+                        f"quarkus-maven-plugin uses version.quarkus={quarkus} but "
+                        f"io.quarkus:quarkus-core resolves to {shown} - the plugin and the "
+                        f"imported BOM have drifted apart")
             if not resolved:
                 print("resolved           (no io.smallrye.config artifacts on the classpath)")
             for artifact, versions in sorted(resolved.items()):
