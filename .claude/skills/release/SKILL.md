@@ -2,7 +2,7 @@
 name: release
 description: Cut a cui-parent-pom release — bump .github/project.yml version and the README sample version, open and merge the release PR, wait for the automated Release workflow, verify the release landed, then reformat the generated GitHub release notes
 user-invocable: true
-allowed-tools: Bash, Read, Edit
+allowed-tools: Bash, Read, Edit, AskUserQuestion
 ---
 
 # Release Skill
