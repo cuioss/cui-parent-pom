@@ -72,12 +72,37 @@ def _deref(value: str, props: dict[str, str]) -> str:
     return value
 
 
+def _outside_reactor(repo: Path, pom: Path) -> bool:
+    """True for a pom.xml that is on disk under ``repo`` but is not part of its reactor.
+
+    Build output (``target``) and vendored trees (``node_modules``) are the obvious cases.
+    The subtle one is a *nested checkout*: agent tooling parks git worktrees inside the
+    repository (``.plan/local/worktrees/<branch>/``), each a full copy of the project at
+    some other revision. Their poms declare the same properties at whatever value that
+    branch pinned, so scanning them turns every open worktree into a phantom
+    "declared inconsistently" conflict and the check exits 2 -- which the release gate
+    treats as blocking. A stale sibling branch must never be able to veto a release.
+
+    Two rules, because either alone leaves a hole: dot-directories (no reactor module
+    lives in one) and any directory carrying its own ``.git`` (a worktree has it as a
+    file, a clone as a directory) placed somewhere not hidden.
+    """
+    if "target" in pom.parts or "node_modules" in pom.parts:
+        return True
+    for parent in pom.parents:
+        if parent == repo or repo not in parent.parents:
+            break
+        if parent.name.startswith(".") or (parent / ".git").exists():
+            return True
+    return False
+
+
 def find_property(repo: Path, name: str) -> tuple[str, Path]:
     """Find a property across the reactor. Later declarations do not override earlier
     ones silently -- a genuine conflict is an error, not a coin toss."""
     hits: list[tuple[str, Path]] = []
     for pom in sorted(repo.rglob("pom.xml")):
-        if "target" in pom.parts or "node_modules" in pom.parts:
+        if _outside_reactor(repo, pom):
             continue
         try:
             root = ET.parse(pom).getroot()
