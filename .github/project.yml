@@ -2,8 +2,8 @@ name: cui parent pom
 description: Parent pom for all CUI-OSS projects
 
 release:
-  current-version: 1.5.11
-  next-version: 1.5-SNAPSHOT
+  current-version: 1.6.0
+  next-version: 1.6-SNAPSHOT
   create-github-release: true
 
 maven-build:
