@@ -140,7 +140,7 @@
         <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
         <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
         <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
-        <version.lombok>1.18.46</version.lombok>
+        <version.lombok>1.18.48</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>2.0.2</version.frontend-maven-plugin>
         <open.rewrite.maven.plugin.version>6.46.1</open.rewrite.maven.plugin.version>
