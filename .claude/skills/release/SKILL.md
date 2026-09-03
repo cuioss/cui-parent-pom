@@ -42,25 +42,32 @@ Observed timings:
 
 ## Version scheme (differs from library repos)
 
-Read the release block in `.github/project.yml`:
-- `release.current-version` — the last released version, e.g. `1.4.5`
-- `release.next-version` — the rolling development version, held at `1.4-SNAPSHOT`
+`.github/project.yml` is the single source of truth for both versions — read it, never
+assume:
 
-**Default rule — patch bump.** The tag history is `1.4.0, 1.4.1, … 1.4.5`, and `next-version`
-stays `1.4-SNAPSHOT` across releases (the pom `<version>` is `1.4-SNAPSHOT`). To cut the next
-release, **increment the third segment of `current-version`** (`1.4.5` → `1.4.6`) and **leave
-`next-version` at `1.4-SNAPSHOT`**. Do **not** strip `-SNAPSHOT` from `next-version`
-(that would produce a lower version like `1.4`).
+```bash
+grep -E 'current-version|next-version' .github/project.yml
+```
 
-**Ask the user** (AskUserQuestion) only if in doubt — e.g. a new minor line (`1.5.0`) or a
-major bump is intended, or `current-version`/tags look inconsistent. Otherwise state the
+- `release.current-version` — the last released version.
+- `release.next-version` — the rolling development version, held at the `X.Y-SNAPSHOT`
+  minor floor (the pom `<version>` carries it).
+
+**Default rule — patch bump.** Unlike the library repos, `next-version` does **not** move
+between releases. To cut the next release, **increment the third segment of
+`current-version`** and **leave `next-version` unchanged**. Do **not** strip `-SNAPSHOT`
+from `next-version` — that would publish a version lower than the one just released.
+
+**Ask the user** (AskUserQuestion) only if in doubt — e.g. a new minor line or a major bump
+is intended, or `current-version` and the tag history look inconsistent. Otherwise state the
 determined version and proceed.
 
 ## Workflow
 
 ### Step 1 — Determine the version number
-From `project.yml`: release version = `current-version` with patch+1 (e.g. `1.4.6`).
-`next-version` is unchanged (`1.4-SNAPSHOT`).
+
+Apply the patch-bump rule from [Version scheme](#version-scheme-differs-from-library-repos)
+above, reading both numbers out of `.github/project.yml`.
 
 ### Step 2 — Determine current status (clean to release?)
 ```bash
@@ -194,13 +201,13 @@ git checkout main && git pull --ff-only origin main
 Branch prefix **must** be a CI-accepted prefix (`main`, `feature/*`, `fix/*`, `chore/*`,
 `release/*`, `dependabot/**`) or the Maven Build check skips and auto-merge is blocked:
 ```bash
-git checkout -b chore/release_<version>   # e.g. chore/release_1.4.6
+git checkout -b chore/release_<version>
 ```
 
 ### Step 5 — Update `.github/project.yml` and the README sample version
 1. Edit the `release` block in `.github/project.yml`:
-   - `current-version:` → the release version from Step 1 (e.g. `1.4.6`)
-   - `next-version:` → **unchanged** (`1.4-SNAPSHOT`)
+   - `current-version:` → the release version from Step 1
+   - `next-version:` → **unchanged**
 2. Update the parent-version sample in **`README.adoc`** (the `<version>…</version>` under the
    `cui-java-parent` `<parent>` in the "Usage for Standard java-modules" snippet) to the new
    release version, so the published docs show the released parent version. Then check for any
@@ -294,15 +301,52 @@ gh release edit <version> --repo cuioss/cuioss-parent-pom --notes-file .plan/tem
      microprofile, cui-java-tools, cui-http)
    - `### Infra` — build/CI: build-plugin bumps, `cuioss-organization` workflow bumps,
      GitHub Actions bumps
-4. **Collapse version chains** — when the same artifact is bumped multiple times (`A → B → C`),
-   keep one entry spanning the full range (`A → C`).
-5. **Remove all OpenRewrite bumps and friends** — drop every `rewrite-maven-plugin`,
+4. **Collapse by library identity — one line per library, spanning the full range.**
+   The unit of collapsing is the *library*, not the PR title. Merge into a single line
+   whenever the PRs concern the same library, in all three shapes that occur:
+   - **Version chains** — several bumps of one artifact (`A → B → C`) collapse to one line
+     spanning `A → C`, carrying the latest PR's author.
+   - **The same library in several places** — one library bumped in more than one module or
+     directory is **one** line naming them all, not one line each. Those titles differ only
+     by that suffix, so do not wait for identical titles before merging.
+   - **One upstream release landing as several coordinates** — when a single upstream bump
+     arrives as separate PRs against different coordinates (e.g. a version property *and*
+     a BOM or parent), that is **one** bump: one line naming the coordinates in parentheses.
+
+   Carry every merged PR's URL onto the surviving line, comma-separated.
+5. **Recover versions the title omits.** Dependabot truncates a title to
+   `bump <lib> in /<dir>`, with no versions, when several dependencies must move together.
+   Never publish a dependency line without a version range: read the PR body, which states
+   ``Updates `<lib>` from X to Y``, and use those versions when computing the range:
+
+   ```bash
+   gh pr view <n> --repo cuioss/cuioss-parent-pom --json body --jq .body | head -6
+   ```
+6. **Remove all OpenRewrite bumps and friends** — drop every `rewrite-maven-plugin`,
    `rewrite-migrate-java`, `rewrite-testing-frameworks`, and related OpenRewrite PR.
-6. **Remove internal tooling churn** — drop PRs that only touch dev/build orchestration with no
+7. **Remove internal tooling churn** — drop PRs that only touch dev/build orchestration with no
    user-facing effect, and the mechanical version-bump PR itself.
-7. Preserve each kept PR line verbatim (`* <title> by @author in <url>`); merge duplicate
-   titles onto one line with both URLs.
-8. Keep the trailing `**Full Changelog**: ...compare/<prev>...<version>` line.
+8. **Preserve each kept PR line** in its original
+   `* <title> by @author in <url>` shape. Rules 4 and 5 **override** verbatimness where
+   they conflict: rewrite the title's version range to span the collapsed chain, and name
+   the several modules or coordinates on the surviving line.
+9. Keep the trailing `**Full Changelog**: ...compare/<prev>...<version>` line.
+
+#### Verify before publishing (mandatory)
+
+These rules are easy to under-apply: a duplicate survives whenever two PRs touch the same
+library under differing titles. After building the notes file and **before**
+`gh release edit`, assert that every library appears exactly once:
+
+```bash
+grep -oE '(bump|update) [^ ]+ (from|in)' .plan/temp/release-<version>.md \
+  | sort | uniq -c | sort -rn | head
+```
+
+Every count must be `1`. Any count `>1` is an unmerged duplicate — collapse it per rule
+4 and re-run. Also confirm that no dependency line is missing a version range
+(rule 5).
+
 
 ### Step 13 — Done
 Report: released version, release URL, the PR number, and how many dependency PRs were
@@ -311,7 +355,8 @@ collapsed/removed during note reformatting.
 ## Critical rules
 - The release is triggered by **merging a `.github/project.yml` change** — never hand-run Maven
   release goals.
-- **Patch-bump `current-version`; keep `next-version` at `1.4-SNAPSHOT`.**
+- **Patch-bump `current-version`; leave `next-version` unchanged** on its `X.Y-SNAPSHOT`
+  minor floor.
 - Always update the **README parent sample version** in the same PR; never touch
   `version.cui.parent` (auto-bumped by the release plugin).
 - Branch prefix **must** be `chore/` (or another CI-accepted prefix) or the build check skips
