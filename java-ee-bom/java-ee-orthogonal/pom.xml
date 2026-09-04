@@ -129,6 +129,14 @@
                 <artifactId>bcpkix-jdk18on</artifactId>
                 <version>${version.bouncycastle}</version>
             </dependency>
+            <!-- bcpkix-jdk18on has a hard dependency on a matching bcutil-jdk18on.
+                 Managing bcprov and bcpkix but not bcutil is exactly the partial pin
+                 that splits a stack, so all three move together. -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcutil-jdk18on</artifactId>
+                <version>${version.bouncycastle}</version>
+            </dependency>
             <!-- Test: Create jwt-tokens -->
             <dependency>
                 <groupId>io.smallrye</groupId>
