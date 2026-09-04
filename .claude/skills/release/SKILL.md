@@ -317,9 +317,6 @@ Apply the **`skip-bot-review`** label (via `--label "skip-bot-review"` on `gh pr
 release-prep PR only changes the `project.yml` version and the README sample — no bot review is
 necessary, and the label suppresses the automated reviewers (CodeRabbit / Sourcery).
 
-Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>` (no model name, no
-"Generated with Claude Code" footer).
-
 ### Step 7 — Wait for PR checks (~1–3 min)
 ```bash
 gh pr checks <pr#> --repo cuioss/cuioss-parent-pom --watch
@@ -456,4 +453,3 @@ collapsed/removed during note reformatting.
   artifacts that genuinely share a version, and keep a negative control proving it still
   fails on a real split.
 - Temporary files go under `.plan/temp/`.
-- Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>`; no PR footer line.
