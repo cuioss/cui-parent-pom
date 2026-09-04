@@ -267,7 +267,19 @@
                                          combining families would compare them against each other.
                                          Only single upstream products belong here; io.smallrye:*
                                          must NOT be added, it spans jandex, smallrye-jwt, -health
-                                         and -context-propagation, which version independently. -->
+                                         and -context-propagation, which version independently.
+                                         org.jboss.resteasy:* is the same trap, so it is enumerated
+                                         below instead of wildcarded: resteasy-tracing-api ships from
+                                         the separately released resteasy-extensions project (highest
+                                         published version 2.0.2.Final, no 6.x or 7.x will ever exist)
+                                         and is absent from RESTEasy's own resteasy-bom. RESTEasy
+                                         6.2.18 dropped <optional> from resteasy-jackson2-provider's
+                                         declaration of it, so Quarkus 3.39.2+ resolves it
+                                         transitively and the wildcard compared 2.0.2.Final against
+                                         the 6.2.18.Final core, which no dependencyManagement pin can
+                                         reconcile. The list is resteasy-bom membership (6.2.18.Final,
+                                         a superset of 7.0.4.Final); add new RESTEasy modules there,
+                                         never resteasy-tracing-api. -->
                                     <requireSameVersions>
                                         <dependencies>
                                             <dependency>io.smallrye.config:*</dependency>
@@ -275,7 +287,40 @@
                                     </requireSameVersions>
                                     <requireSameVersions>
                                         <dependencies>
-                                            <dependency>org.jboss.resteasy:*</dependency>
+                                            <dependency>org.jboss.resteasy:jose-jwt</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-atom-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-api</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-jetty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-reactor-netty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-utils</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-vertx</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-core</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-core-spi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-crypto</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-fastinfoset-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-html</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jackson2-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jaxb-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jsapi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-json-binding-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-json-p-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-links</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-multipart-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-netty4</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-netty4-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-reactor</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-reactor-netty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-rxjava2</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-servlet-initializer</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-stats</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-undertow</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-undertow-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-validator-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-vertx</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-wadl</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-wadl-undertow-connector</dependency>
                                         </dependencies>
                                     </requireSameVersions>
                                     <requireSameVersions>
