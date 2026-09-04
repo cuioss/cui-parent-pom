@@ -69,9 +69,23 @@ def artifacts_in_group(group):
     return sorted(n for n in names if n != "..")
 
 
+def parse_pom(pom_path):
+    """Parse a POM, refusing any DTD.
+
+    ElementTree does not resolve external entities - an undefined entity is a ParseError,
+    so XXE does not apply - but it does expand internal ones, which permits an
+    entity-expansion DoS. A POM never legitimately carries a DOCTYPE, so rejecting one
+    outright removes that class of input entirely, with no third-party parser needed.
+    """
+    text = Path(pom_path).read_text(encoding="utf-8", errors="replace")
+    if re.search(r"<!DOCTYPE", text, re.IGNORECASE):
+        raise ValueError(f"{pom_path} carries a DOCTYPE declaration; refusing to parse")
+    return ET.fromstring(text)
+
+
 def read_blocks(pom_path):
     """The requireSameVersions dependency patterns, one list per block, in pom order."""
-    root = ET.parse(pom_path).getroot()
+    root = parse_pom(pom_path)
     blocks = []
     for rule in root.iter(f"{POM_NS}requireSameVersions"):
         deps = rule.find(f"{POM_NS}dependencies")
@@ -167,7 +181,11 @@ def main():
         print(f"no pom.xml at {pom}", file=sys.stderr)
         return 2
 
-    blocks = read_blocks(pom)
+    try:
+        blocks = read_blocks(pom)
+    except (ValueError, ET.ParseError) as exc:
+        print(f"could not read {pom}: {exc}", file=sys.stderr)
+        return 2
     if not blocks:
         print("no requireSameVersions dependency blocks found - pom layout changed?",
               file=sys.stderr)
