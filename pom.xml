@@ -267,7 +267,19 @@
                                          combining families would compare them against each other.
                                          Only single upstream products belong here; io.smallrye:*
                                          must NOT be added, it spans jandex, smallrye-jwt, -health
-                                         and -context-propagation, which version independently. -->
+                                         and -context-propagation, which version independently.
+                                         org.jboss.resteasy:* is the same trap, so it is enumerated
+                                         below instead of wildcarded: resteasy-tracing-api ships from
+                                         the separately released resteasy-extensions project (highest
+                                         published version 2.0.2.Final, no 6.x or 7.x will ever exist)
+                                         and is absent from RESTEasy's own resteasy-bom. RESTEasy
+                                         6.2.18 dropped <optional> from resteasy-jackson2-provider's
+                                         declaration of it, so Quarkus 3.39.2+ resolves it
+                                         transitively and the wildcard compared 2.0.2.Final against
+                                         the 6.2.18.Final core, which no dependencyManagement pin can
+                                         reconcile. The list is resteasy-bom membership (6.2.18.Final,
+                                         a superset of 7.0.4.Final); add new RESTEasy modules there,
+                                         never resteasy-tracing-api. -->
                                     <requireSameVersions>
                                         <dependencies>
                                             <dependency>io.smallrye.config:*</dependency>
@@ -275,7 +287,40 @@
                                     </requireSameVersions>
                                     <requireSameVersions>
                                         <dependencies>
-                                            <dependency>org.jboss.resteasy:*</dependency>
+                                            <dependency>org.jboss.resteasy:jose-jwt</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-atom-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-api</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-jetty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-reactor-netty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-utils</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-client-vertx</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-core</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-core-spi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-crypto</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-fastinfoset-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-html</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jackson2-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jaxb-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-jsapi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-json-binding-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-json-p-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-links</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-multipart-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-netty4</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-netty4-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-reactor</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-reactor-netty</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-rxjava2</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-servlet-initializer</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-stats</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-undertow</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-undertow-cdi</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-validator-provider</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-vertx</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-wadl</dependency>
+                                            <dependency>org.jboss.resteasy:resteasy-wadl-undertow-connector</dependency>
                                         </dependencies>
                                     </requireSameVersions>
                                     <requireSameVersions>
@@ -283,9 +328,34 @@
                                             <dependency>io.rest-assured:*</dependency>
                                         </dependencies>
                                     </requireSameVersions>
+                                    <!-- org.bouncycastle is a groupId, not a product: it carries ~99
+                                         artifacts across independently released distributions (jdk14,
+                                         jdk15, jdk15on, jdk15to18, jdk16, jdk18on, lts8on, fips, plus
+                                         -debug and -ext variants). Only the jdk18on distribution below
+                                         is one versioned unit. The FIPS artifacts in particular can
+                                         never satisfy the rule, they version per artifact and
+                                         permanently disagree (bc-fips 2.1.3, bcutil-fips 2.1.7,
+                                         bcpkix-fips 2.1.12, bcpg-fips 2.1.13, bctls-fips 2.1.24), and
+                                         quarkus-bom manages bc-fips and bctls-fips alongside the
+                                         jdk18on line, so the old wildcard broke any consumer whose
+                                         graph reached both. jdk15on is frozen at 1.70.
+                                         Caveat: BouncyCastle does ship the occasional module-only
+                                         patch (bcprov-jdk18on 1.85.2, bcpg-jdk18on 1.72.1/1.72.2), and
+                                         quarkus-bom currently carries bcprov 1.85.2 against 1.85 for
+                                         the rest. java-ee-orthogonal therefore pins the whole trio it
+                                         uses (bcprov, bcpkix and its required bcutil) to one
+                                         version.bouncycastle; revisit that pin when adopting a
+                                         provider-only patch. -->
                                     <requireSameVersions>
                                         <dependencies>
-                                            <dependency>org.bouncycastle:*</dependency>
+                                            <dependency>org.bouncycastle:bcjmail-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcmail-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcmls-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcpg-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcpkix-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcprov-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bctls-jdk18on</dependency>
+                                            <dependency>org.bouncycastle:bcutil-jdk18on</dependency>
                                         </dependencies>
                                     </requireSameVersions>
                                     <requireSameVersions>
