@@ -82,8 +82,32 @@ Confirm the working tree is clean (`git status --porcelain`) before branching.
 ### Step 2b — Pre-release regression gate (do NOT skip)
 
 This BOM is consumed by every cuioss repo, so a bad version reaches all of them at once.
-Two regressions have shipped this way; both were cheap to catch here and expensive to catch
-downstream. Run both checks **before** branching, from the BOM checkout root.
+Regressions have shipped this way; all were cheap to catch here and expensive to catch
+downstream. Run all three checks **before** branching, from the BOM checkout root.
+
+#### What can go wrong (three distinct modes)
+
+This repo has **no Java source and resolves no dependencies of its own**, so its build is
+green for every one of these. None is caught by `./mvnw verify` here.
+
+| # | mode | symptom downstream | caught by |
+|---|------|--------------------|-----------|
+| 1 | **Coherent but wrong** — a family pinned to a version Quarkus was not built against | augmentation fails (`failed to access ...ConfigMappingLoader`) | (a) only — the enforcer is correctly silent, nothing is split |
+| 2 | **Split family** — part of a family pinned, the rest floating | `requireSameVersions` fires, and it is *right* | (b), or the consumer's own build |
+| 3 | **Over-broad family block** — a `requireSameVersions` groupId that is not one product | `requireSameVersions` fires and is **wrong**; no pin can satisfy it | (c) only |
+
+Mode 3 is the nastiest: the rule itself is the defect, every consumer is blocked at
+`validate`, and the fix must be released from here before anyone can build. It shipped
+twice — `org.jboss.resteasy:*` (`resteasy-tracing-api` is from the separately released
+`resteasy-extensions`, max `2.0.2.Final`) and `org.bouncycastle:*` (FIPS, `lts8on` and the
+legacy JDK lines version independently, and `quarkus-bom` manages `bc-fips` alongside the
+`jdk18on` line).
+
+**Do not rely on the canary for mode 3.** Coverage there is incidental: when this was
+investigated, `cui-reference-documentation` resolved RESTEasy on the **7.x** line — where
+`resteasy-jackson2-provider` still marks `resteasy-tracing-api` `<optional>true</optional>`,
+so the break was invisible — and resolved **zero** `org.bouncycastle` artifacts. Check (c)
+is metadata-based and needs no consumer, which is why it is the reliable one.
 
 #### (a) Quarkus alignment — smallrye-config
 
@@ -190,7 +214,67 @@ git status --porcelain      # must be empty before continuing
 (cd "$CANARY" && git checkout -- pom.xml)
 ```
 
-Report both results before proceeding. A red canary is a **blocker**, not a warning.
+A red canary is a **blocker**, not a warning.
+
+#### (c) requireSameVersions family blocks — still satisfiable?
+
+Each family block in the root pom asserts that a set of artifacts always resolves to one
+version. That holds only while they really are one release train. When an upstream groupId
+turns out to carry two independently versioned lines, the block becomes **impossible to
+satisfy** — and this repo cannot notice, because it resolves none of those artifacts.
+
+The check is pure Maven Central metadata: intersect the published version sets of each
+block's artifacts. An empty intersection means no `dependencyManagement` pin anywhere can
+make the rule pass.
+
+```bash
+python3 .claude/skills/release/check-family-blocks.py --repo .
+```
+
+```
+[OK] org.bouncycastle:* (8 artifacts enumerated)
+  8 artifacts
+  newest common version: 1.85
+  family newest is 1.85.2; 7 artifact(s) never published it, capping the common version
+    bcjmail-jdk18on (1.85), bcmail-jdk18on (1.85), ... +2 more
+```
+
+| exit | meaning |
+|------|---------|
+| 0 | every block satisfiable — proceed |
+| 1 | **a block is unsatisfiable** — narrow it before releasing (see below) |
+| 2 | **could not determine** — also blocking |
+
+Run against the pre-fix pom it reports `[BROKEN] org.jboss.resteasy:*` naming
+`resteasy-tracing-api → 2.0.2.Final`, and `[BROKEN] org.bouncycastle:*` naming the FIPS and
+`lts8on` outliers — i.e. it catches both shipped regressions.
+
+**When a block comes back BROKEN**, the fix is always to narrow it, never to delete it:
+
+1. Find the real family boundary — the upstream BOM is the authority (`resteasy-bom` never
+   listed `resteasy-tracing-api`). Confirm against `maven-metadata.xml` that the outlier
+   genuinely has no version in common; if it does, this is mode 2 and a pin is the fix.
+2. Replace the `groupId:*` wildcard with the artifacts that genuinely share a version.
+   There is **no exclusion syntax**: `requireSameVersions` (owned by maven-enforcer-plugin,
+   *not* extra-enforcer-rules) exposes only `dependencies`, `plugins`, `buildPlugins`,
+   `reportPlugins`, `uniqueVersions`, `sameModuleVersions`, and its pattern translation
+   rewrites `?` to `.`, so a negative lookahead is not expressible either.
+3. Record the carve-out in the comment above the blocks, in the style of the `io.smallrye`
+   note, so the next reader does not re-widen it.
+4. Verify with a negative control that the narrowed block still fails on a genuinely split
+   stack — narrowing must not neuter the rule.
+
+Informational lines are not failures. `N artifact(s) never published [the family newest]`
+means either an out-of-band module patch (`bcprov-jdk18on 1.85.2`) or a shrinking family
+(RESTEasy dropped its netty/vertx modules in 7.x). Worth reading, not worth blocking.
+
+The `WAIVERS` map at the top of the script holds blocks left broad on purpose, with the
+reason. `io.smallrye.config:*` is waived today (`smallrye-config-jasypt` 3.17.2 and the
+discontinued `smallrye-config-converter-json` 3.8.3 lag the 3.18.2 core; neither is on the
+Quarkus default path). A waiver is a decision — if a waived artifact becomes reachable,
+narrow the block instead of extending the waiver.
+
+Report all three results before proceeding.
 
 ### Step 3 — Pull current main
 ```bash
@@ -362,8 +446,14 @@ collapsed/removed during note reformatting.
 - Branch prefix **must** be `chore/` (or another CI-accepted prefix) or the build check skips
   and auto-merge is blocked.
 - Never merge a red PR; fix and re-wait.
-- **Run the Step 2b regression gate every time.** A bad BOM version fans out to every cuioss
-  repo within minutes of the release. The enforcer guard cannot catch a coherent-but-wrong
-  Quarkus-managed version — only the alignment check and the downstream smoke build can.
+- **Run all three Step 2b checks every time.** A bad BOM version fans out to every cuioss
+  repo within minutes of the release, and this repo's own build is green for all three
+  failure modes because it resolves no dependencies. The enforcer guard cannot catch a
+  coherent-but-wrong Quarkus-managed version (only the alignment check can), and the
+  canary's coverage of the enforcer families is incidental (only the family-block check is
+  reliable).
+- **Never delete a `requireSameVersions` block to make a build pass** — narrow it to the
+  artifacts that genuinely share a version, and keep a negative control proving it still
+  fails on a real split.
 - Temporary files go under `.plan/temp/`.
 - Commit trailer: `Co-Authored-By: Claude <noreply@anthropic.com>`; no PR footer line.
