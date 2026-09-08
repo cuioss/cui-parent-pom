@@ -111,6 +111,7 @@
         <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
         <maven.failsafe.plugin.version>3.6.0</maven.failsafe.plugin.version>
         <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
+        <maven.help.plugin.version>3.5.2</maven.help.plugin.version>
         <maven.install.plugin.version>3.1.4</maven.install.plugin.version>
 
         <maven.release.plugin.version>3.3.1</maven.release.plugin.version>
@@ -143,6 +144,10 @@
         <version.lombok>1.18.48</version.lombok>
         <!-- Needed for js / css -->
         <version.frontend-maven-plugin>2.0.2</version.frontend-maven-plugin>
+        <!-- The node/npm toolchain frontend-maven-plugin downloads. Owned here so the org runs one
+             toolchain instead of a different one per repo. Node 22 is the active LTS line. -->
+        <frontend.node.version>v22.23.1</frontend.node.version>
+        <frontend.npm.version>10.9.2</frontend.npm.version>
         <open.rewrite.maven.plugin.version>6.46.1</open.rewrite.maven.plugin.version>
         <rewrite-testing-frameworks.version>3.44.0</rewrite-testing-frameworks.version>
         <rewrite-migrate-java.version>3.42.1</rewrite-migrate-java.version>
@@ -399,6 +404,15 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <!-- Managed so descendants can bind help:effective-pom without a literal
+                         version: the enforcer's RequirePluginVersions rule rejects any
+                         unversioned plugin, which otherwise forces every consumer that uses
+                         maven-help-plugin to hard-code the version itself. -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-help-plugin</artifactId>
+                    <version>${maven.help.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
