@@ -75,6 +75,19 @@
                 <artifactId>cui-http</artifactId>
                 <version>${version.cui.http}</version>
             </dependency>
+            <!-- The curated http.security attack databases, shipped as a classifier variant of
+                 the same artifact. Managed here so it cannot drift from the main one: a classifier
+                 is a distinct managed key, and leaving it out meant every consumer had to pin it
+                 by hand off ${version.cui.http}. That works only for consumers that INHERIT this
+                 BOM - one that imports it gets dependencyManagement but no properties, and so had
+                 no way to express "same version as cui-http" at all. -->
+            <dependency>
+                <groupId>de.cuioss</groupId>
+                <artifactId>cui-http</artifactId>
+                <version>${version.cui.http}</version>
+                <classifier>generators</classifier>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>de.cuioss</groupId>
                 <artifactId>cui-core-ui-model</artifactId>
