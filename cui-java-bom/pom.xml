@@ -34,8 +34,10 @@
 
         <version.easymock>5.7.0</version.easymock>
         <version.jdom2>2.0.6.1</version.jdom2>
-        <version.waitility>4.3.0</version.waitility>
+        <version.awaitility>4.3.0</version.awaitility>
         <version.jspecify>1.0.1</version.jspecify>
+        <version.archunit>1.5.0</version.archunit>
+        <version.jmh>1.37</version.jmh>
     </properties>
 
     <dependencyManagement>
@@ -142,6 +144,22 @@
                 <version>${version.junit.jupiter}</version>
                 <scope>test</scope>
             </dependency>
+            <!-- JUnit Platform travels with Jupiter: since JUnit 6 the two share one version
+                 number, so pinning them apart is how a Jupiter 6.x consumer ends up dragging in a
+                 stale Platform transitively. Consumers used to re-declare this block themselves;
+                 it belongs with the rest of the org.junit.* coordinates this BOM already owns.
+                 Deliberately no <scope>: these are aligned transitively, and managing a scope here
+                 would re-scope them wherever they arrive that way. -->
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>${version.junit.jupiter}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-engine</artifactId>
+                <version>${version.junit.jupiter}</version>
+            </dependency>
             <!-- The single Hamcrest artifact. This replaced hamcrest-core and hamcrest-library,
                  which upstream deprecated - their POMs read "deprecated, please use hamcrest
                  instead" - and which now ship as empty shims depending only on this one.
@@ -162,7 +180,35 @@
             <dependency>
                 <groupId>org.awaitility</groupId>
                 <artifactId>awaitility</artifactId>
-                <version>${version.waitility}</version>
+                <version>${version.awaitility}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Architecture tests. Both artifacts are managed: archunit is the plain API,
+                 archunit-junit5 the JUnit 5 integration, and repos here use one or the other. -->
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit</artifactId>
+                <version>${version.archunit}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.tngtech.archunit</groupId>
+                <artifactId>archunit-junit5</artifactId>
+                <version>${version.archunit}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- JMH. jmh-core and the annotation processor must move together, so both are
+                 managed here rather than paired by hand in each benchmark module. -->
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${version.jmh}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${version.jmh}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
