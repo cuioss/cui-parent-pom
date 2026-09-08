@@ -198,18 +198,22 @@
                 <scope>test</scope>
             </dependency>
             <!-- JMH. jmh-core and the annotation processor must move together, so both are
-                 managed here rather than paired by hand in each benchmark module. -->
+                 managed here rather than paired by hand in each benchmark module.
+
+                 Deliberately no <scope>. A benchmark harness keeps its sources in
+                 src/main/java and declares jmh-core at compile scope; managing a test scope
+                 here silently rewrote that to test, because dependencyManagement supplies
+                 every field the declaration omits - not only the version. Verified against
+                 cui-http-benchmarking, where the scope did flip. -->
             <dependency>
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-core</artifactId>
                 <version>${version.jmh}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>${version.jmh}</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
